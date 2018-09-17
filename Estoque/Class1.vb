@@ -9,7 +9,10 @@ Public Class BdClass
     Public Sub Abreconexao()
         conexao.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\LiderBancoDados.accdb"
         Try
+
             conexao.Open()
+
+
         Catch ex As Exception
             MsgBox("Erro ao conectar com banco de dados \n" & ex.ToString, MsgBoxStyle.Critical)
         End Try
