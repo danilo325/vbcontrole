@@ -1,9 +1,9 @@
 ﻿Imports System.ComponentModel
 
 Public Class Estoque
-    Dim bancoDados As New BdClass
-    Dim grupoProduto As New DataTable
-    Dim dicionarioGrupo As New Dictionary(Of String, Integer)
+    Friend bancoDados As New BdClass
+    Friend grupoProduto As New DataTable
+    Friend dicionarioGrupo As New Dictionary(Of String, Integer)
     Dim dicionarioSimNao As New Dictionary(Of String, Boolean)
     Dim valorcelula As String
 
@@ -32,7 +32,9 @@ Public Class Estoque
 
 
     End Sub
-
+    Friend Function getGrupo() As ComboBox
+        Return cmb_TipoProduto
+    End Function
     Private Sub ComboGrupoProdutos()
         grupoProduto = bancoDados.Pesquisa("SELECT * FROM gruposProduto")
         cmb_TipoProduto.Items.Add("")
@@ -69,7 +71,7 @@ Public Class Estoque
     End Sub
 
     Private Sub Bnt_Inclui_Click(sender As Object, e As EventArgs) Handles bnt_Inclui.Click
-
+        dia_inclui.Visible = True
     End Sub
 
     Private Sub Bnt_Fechar_Click(sender As Object, e As EventArgs) Handles bnt_Fechar.Click

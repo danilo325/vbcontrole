@@ -19,7 +19,7 @@ Public Class BdClass
         Dim tabeladedados As New DataTable
         comando = New OleDbCommand(strQuery, conexao)
         Try
-            comando.ExecuteNonQuery()
+
             adaptador = New OleDbDataAdapter(comando)
             adaptador.Fill(tabeladedados)
 
