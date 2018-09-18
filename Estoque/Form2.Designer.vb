@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class fornecedores
+Partial Class Fornecedores
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
@@ -174,7 +174,7 @@ Partial Class fornecedores
         Me.bnt_pesquisa.Text = "Pesquisa"
         Me.bnt_pesquisa.UseVisualStyleBackColor = True
         '
-        'fornecedores
+        'Fornecedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -195,7 +195,7 @@ Partial Class fornecedores
         Me.Controls.Add(Me.bnt_Inclui)
         Me.Controls.Add(Me.bnt_Fechar)
         Me.Controls.Add(Me.dgv_fornecedor)
-        Me.Name = "fornecedores"
+        Me.Name = "Fornecedores"
         Me.Text = "Fornecedores"
         CType(Me.dgv_fornecedor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

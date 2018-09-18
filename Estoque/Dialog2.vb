@@ -10,17 +10,17 @@ Public Class dia_incluiFornecedor
 
             For i As Integer = 0 To dgv_incluiFornecedor.Rows.Count - 2
                 con += 1
-                query = "INSERT INTO produto (RasaoSocial,NomeFantasia,Cnpj,FormaDePagamento,ObsFornece) VALUES ("
+                query = "INSERT INTO fornecedores (RasaoSocial,NomeFantasia,Cnpj,FormaDePagamento,ObsFornecedor) VALUES ("
 
                 For celula As Integer = 0 To dgv_incluiFornecedor.Rows(i).Cells.Count - 1
 
 
-                    If dgv_incluiFornecedor.Rows(i).Cells(celula).Value.ToString = "" Then
+                    'If dgv_incluiFornecedor.Rows(i).Cells(celula).Value.ToString = "" Then
 
 
-                        MsgBox("O campo " & dgv_incluiFornecedor.Columns(celula).HeaderText & " deve ser preenchido")
-                        Exit Sub
-                    End If
+                    'MsgBox("O campo " & dgv_incluiFornecedor.Columns(celula).HeaderText & " deve ser preenchido")
+                    'Exit Sub
+                    'End If
 
 
                     Select Case celula
@@ -36,7 +36,7 @@ Public Class dia_incluiFornecedor
                 Next celula
                 query += ")"
                 MsgBox(query)
-                'fornecedores.database.Pesquisa(query)
+                Fornecedores.dbase.Pesquisa(query)
 
             Next
 
@@ -78,6 +78,10 @@ Public Class dia_incluiFornecedor
 
 
 
+
+    End Sub
+
+    Private Sub dgv_incluiFornecedor_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_incluiFornecedor.CellContentClick
 
     End Sub
 End Class

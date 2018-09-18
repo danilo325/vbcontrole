@@ -4,6 +4,10 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        fornecedores.Visible = True
+        Fornecedores.Visible = True
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Vendedores.Visible = True
     End Sub
 End Class
