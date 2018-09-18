@@ -17,6 +17,19 @@ Public Class BdClass
             MsgBox("Erro ao conectar com banco de dados \n" & ex.ToString, MsgBoxStyle.Critical)
         End Try
     End Sub
+    Public Function schemadedados() As DataTable
+        Dim schema As New DataTable
+        schema = conexao.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, New Object())
+        'For i = 0 To schema.Rows.Count - 1
+        ' Each j As DataRow In schema.Rows
+        ' Console.WriteLine(j.Item(0))
+
+        '  Next
+
+
+        '   Next i
+        Return schema
+    End Function
     'com esta fnção posso enviar e executar a query do Sql 
     Public Function Pesquisa(strQuery As String) As DataTable
         Dim tabeladedados As New DataTable

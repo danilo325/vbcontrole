@@ -26,7 +26,6 @@ Partial Class NovoRomneio
         Me.lbl_valorTotal = New System.Windows.Forms.Label()
         Me.dtp_dataRomaneio = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txt_NomeVendedor = New System.Windows.Forms.TextBox()
         Me.txt_VFiado = New System.Windows.Forms.TextBox()
         Me.txt_VBoleto = New System.Windows.Forms.TextBox()
         Me.txt_VMoeda = New System.Windows.Forms.TextBox()
@@ -42,6 +41,7 @@ Partial Class NovoRomneio
         Me.Label5 = New System.Windows.Forms.Label()
         Me.dgv_ProdutosRomaneio = New System.Windows.Forms.DataGridView()
         Me.bnt_fecha = New System.Windows.Forms.Button()
+        Me.cmb_vendedor = New System.Windows.Forms.ComboBox()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -80,13 +80,6 @@ Partial Class NovoRomneio
         Me.Label8.Size = New System.Drawing.Size(30, 13)
         Me.Label8.TabIndex = 36
         Me.Label8.Text = "Data"
-        '
-        'txt_NomeVendedor
-        '
-        Me.txt_NomeVendedor.Location = New System.Drawing.Point(91, 73)
-        Me.txt_NomeVendedor.Name = "txt_NomeVendedor"
-        Me.txt_NomeVendedor.Size = New System.Drawing.Size(245, 20)
-        Me.txt_NomeVendedor.TabIndex = 35
         '
         'txt_VFiado
         '
@@ -214,17 +207,25 @@ Partial Class NovoRomneio
         Me.bnt_fecha.Text = "Fechar"
         Me.bnt_fecha.UseVisualStyleBackColor = True
         '
+        'cmb_vendedor
+        '
+        Me.cmb_vendedor.FormattingEnabled = True
+        Me.cmb_vendedor.Location = New System.Drawing.Point(91, 68)
+        Me.cmb_vendedor.Name = "cmb_vendedor"
+        Me.cmb_vendedor.Size = New System.Drawing.Size(322, 21)
+        Me.cmb_vendedor.TabIndex = 41
+        '
         'NovoRomneio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(900, 450)
+        Me.Controls.Add(Me.cmb_vendedor)
         Me.Controls.Add(Me.bnt_fecha)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.lbl_valorTotal)
         Me.Controls.Add(Me.dtp_dataRomaneio)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.txt_NomeVendedor)
         Me.Controls.Add(Me.txt_VFiado)
         Me.Controls.Add(Me.txt_VBoleto)
         Me.Controls.Add(Me.txt_VMoeda)
@@ -251,7 +252,6 @@ Partial Class NovoRomneio
     Friend WithEvents lbl_valorTotal As Label
     Friend WithEvents dtp_dataRomaneio As DateTimePicker
     Friend WithEvents Label8 As Label
-    Friend WithEvents txt_NomeVendedor As TextBox
     Friend WithEvents txt_VFiado As TextBox
     Friend WithEvents txt_VBoleto As TextBox
     Friend WithEvents txt_VMoeda As TextBox
@@ -267,4 +267,5 @@ Partial Class NovoRomneio
     Friend WithEvents Label5 As Label
     Friend WithEvents dgv_ProdutosRomaneio As DataGridView
     Friend WithEvents bnt_fecha As Button
+    Friend WithEvents cmb_vendedor As ComboBox
 End Class

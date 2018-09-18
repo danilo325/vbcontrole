@@ -69,4 +69,9 @@
         Dia_DetalhesRomaneio.Visible = True
 
     End Sub
+
+    Private Sub bnt_Inclui_Click(sender As Object, e As EventArgs) Handles bnt_Inclui.Click
+        NovoRomneio.Visible = True
+
+    End Sub
 End Class
