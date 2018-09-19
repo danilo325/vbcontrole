@@ -42,6 +42,9 @@ Partial Class NovoRomneio
         Me.dgv_ProdutosRomaneio = New System.Windows.Forms.DataGridView()
         Me.bnt_fecha = New System.Windows.Forms.Button()
         Me.cmb_vendedor = New System.Windows.Forms.ComboBox()
+        Me.txt_obs = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.bnt_inclui = New System.Windows.Forms.Button()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -67,10 +70,12 @@ Partial Class NovoRomneio
         '
         'dtp_dataRomaneio
         '
+        Me.dtp_dataRomaneio.CustomFormat = "dd/mm/yyyy"
         Me.dtp_dataRomaneio.Location = New System.Drawing.Point(255, 29)
         Me.dtp_dataRomaneio.Name = "dtp_dataRomaneio"
         Me.dtp_dataRomaneio.Size = New System.Drawing.Size(158, 20)
         Me.dtp_dataRomaneio.TabIndex = 37
+        Me.dtp_dataRomaneio.Value = New Date(2018, 9, 19, 14, 50, 1, 0)
         '
         'Label8
         '
@@ -215,11 +220,40 @@ Partial Class NovoRomneio
         Me.cmb_vendedor.Size = New System.Drawing.Size(322, 21)
         Me.cmb_vendedor.TabIndex = 41
         '
+        'txt_obs
+        '
+        Me.txt_obs.Location = New System.Drawing.Point(710, 28)
+        Me.txt_obs.Multiline = True
+        Me.txt_obs.Name = "txt_obs"
+        Me.txt_obs.Size = New System.Drawing.Size(177, 100)
+        Me.txt_obs.TabIndex = 42
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(628, 38)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(65, 13)
+        Me.Label10.TabIndex = 43
+        Me.Label10.Text = "Observaçao"
+        '
+        'bnt_inclui
+        '
+        Me.bnt_inclui.Location = New System.Drawing.Point(652, 385)
+        Me.bnt_inclui.Name = "bnt_inclui"
+        Me.bnt_inclui.Size = New System.Drawing.Size(140, 53)
+        Me.bnt_inclui.TabIndex = 44
+        Me.bnt_inclui.Text = "Gravar Romaneio"
+        Me.bnt_inclui.UseVisualStyleBackColor = True
+        '
         'NovoRomneio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(900, 450)
+        Me.Controls.Add(Me.bnt_inclui)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.txt_obs)
         Me.Controls.Add(Me.cmb_vendedor)
         Me.Controls.Add(Me.bnt_fecha)
         Me.Controls.Add(Me.Label9)
@@ -268,4 +302,7 @@ Partial Class NovoRomneio
     Friend WithEvents dgv_ProdutosRomaneio As DataGridView
     Friend WithEvents bnt_fecha As Button
     Friend WithEvents cmb_vendedor As ComboBox
+    Friend WithEvents txt_obs As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents bnt_inclui As Button
 End Class

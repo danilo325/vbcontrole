@@ -27,14 +27,14 @@ Partial Class romaneios
         Me.bnt_Exclui = New System.Windows.Forms.Button()
         Me.bnt_Edita = New System.Windows.Forms.Button()
         Me.bnt_Inclui = New System.Windows.Forms.Button()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.dtp_inicial = New System.Windows.Forms.DateTimePicker()
+        Me.txt_id = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.dtp_final = New System.Windows.Forms.DateTimePicker()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmb_vendedor = New System.Windows.Forms.ComboBox()
         Me.bnt_pesquisa = New System.Windows.Forms.Button()
         CType(Me.dgv_romaneios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -83,19 +83,20 @@ Partial Class romaneios
         Me.bnt_Inclui.Text = "Inclui"
         Me.bnt_Inclui.UseVisualStyleBackColor = True
         '
-        'DateTimePicker1
+        'dtp_inicial
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(552, 126)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(75, 20)
-        Me.DateTimePicker1.TabIndex = 27
+        Me.dtp_inicial.Location = New System.Drawing.Point(552, 126)
+        Me.dtp_inicial.Name = "dtp_inicial"
+        Me.dtp_inicial.Size = New System.Drawing.Size(75, 20)
+        Me.dtp_inicial.TabIndex = 27
+        Me.dtp_inicial.Value = New Date(2018, 9, 19, 16, 1, 43, 0)
         '
-        'TextBox1
+        'txt_id
         '
-        Me.TextBox1.Location = New System.Drawing.Point(80, 126)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 28
+        Me.txt_id.Location = New System.Drawing.Point(80, 126)
+        Me.txt_id.Name = "txt_id"
+        Me.txt_id.Size = New System.Drawing.Size(100, 20)
+        Me.txt_id.TabIndex = 28
         '
         'Label1
         '
@@ -124,12 +125,12 @@ Partial Class romaneios
         Me.Label3.TabIndex = 31
         Me.Label3.Text = "Id"
         '
-        'DateTimePicker2
+        'dtp_final
         '
-        Me.DateTimePicker2.Location = New System.Drawing.Point(552, 153)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(75, 20)
-        Me.DateTimePicker2.TabIndex = 32
+        Me.dtp_final.Location = New System.Drawing.Point(552, 153)
+        Me.dtp_final.Name = "dtp_final"
+        Me.dtp_final.Size = New System.Drawing.Size(75, 20)
+        Me.dtp_final.TabIndex = 32
         '
         'Label4
         '
@@ -140,13 +141,13 @@ Partial Class romaneios
         Me.Label4.TabIndex = 33
         Me.Label4.Text = "Data final"
         '
-        'ComboBox1
+        'cmb_vendedor
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(300, 129)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(184, 21)
-        Me.ComboBox1.TabIndex = 34
+        Me.cmb_vendedor.FormattingEnabled = True
+        Me.cmb_vendedor.Location = New System.Drawing.Point(300, 129)
+        Me.cmb_vendedor.Name = "cmb_vendedor"
+        Me.cmb_vendedor.Size = New System.Drawing.Size(184, 21)
+        Me.cmb_vendedor.TabIndex = 34
         '
         'bnt_pesquisa
         '
@@ -163,14 +164,14 @@ Partial Class romaneios
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.bnt_pesquisa)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.cmb_vendedor)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.DateTimePicker2)
+        Me.Controls.Add(Me.dtp_final)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.txt_id)
+        Me.Controls.Add(Me.dtp_inicial)
         Me.Controls.Add(Me.bnt_Exclui)
         Me.Controls.Add(Me.bnt_Edita)
         Me.Controls.Add(Me.bnt_Inclui)
@@ -189,13 +190,13 @@ Partial Class romaneios
     Friend WithEvents bnt_Exclui As Button
     Friend WithEvents bnt_Edita As Button
     Friend WithEvents bnt_Inclui As Button
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents dtp_inicial As DateTimePicker
+    Friend WithEvents txt_id As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents DateTimePicker2 As DateTimePicker
+    Friend WithEvents dtp_final As DateTimePicker
     Friend WithEvents Label4 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmb_vendedor As ComboBox
     Friend WithEvents bnt_pesquisa As Button
 End Class
