@@ -22,6 +22,8 @@
         gravainfo()
     End Sub
 
+
+
     Private Sub ComboFornecedor()
         cmb_fornecedor.Items.Add("")
         Dim fornecedores As DataTable = bancodados.Pesquisa("SELECT IdForncedor, NomeFantasia FROM fornecedores")
@@ -45,6 +47,8 @@
 
         For Each prod As DataGridViewRow In dgv_produtos.Rows
             If Not prod.IsNewRow Then
+                bancodados.Pesquisa("UPDATE produto SET Qtd =" & (bancodados.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(1).Value) & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
+                '   bancodados.Pesquisa("UPDATE produto SET Pcusto =" & bancodados.Pesquisa("SELECT Pcusto FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(3).Value & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 bancodados.Pesquisa("INSERT INTO produtosCompra VALUES ( " & idcompra & "," & dicProdutos.Item(prod.Cells(0).Value.ToString) &
                                     "," & prod.Cells(1).Value.ToString & "," & prod.Cells(2).Value.ToString & "," & prod.Cells(3).Value.ToString &
                                       ")")

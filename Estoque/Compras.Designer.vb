@@ -200,7 +200,7 @@ Partial Class form_compras
         Me.Controls.Add(Me.bnt_fecha)
         Me.Controls.Add(Me.dgv_produtosCompra)
         Me.Name = "form_compras"
-        Me.Text = " "
+        Me.Text = " Compras"
         CType(Me.dgv_produtosCompra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

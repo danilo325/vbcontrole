@@ -36,6 +36,7 @@ Partial Class frm_novaCompra
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cmb_fornecedor = New System.Windows.Forms.ComboBox()
         Me.bnt_grava = New System.Windows.Forms.Button()
+        Me.bnt_frete = New System.Windows.Forms.Button()
         CType(Me.dgv_produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,7 +50,7 @@ Partial Class frm_novaCompra
         '
         'txt_obs
         '
-        Me.txt_obs.Location = New System.Drawing.Point(612, 72)
+        Me.txt_obs.Location = New System.Drawing.Point(591, 72)
         Me.txt_obs.Multiline = True
         Me.txt_obs.Name = "txt_obs"
         Me.txt_obs.Size = New System.Drawing.Size(228, 101)
@@ -155,11 +156,21 @@ Partial Class frm_novaCompra
         Me.bnt_grava.Text = "gravar"
         Me.bnt_grava.UseVisualStyleBackColor = True
         '
+        'bnt_frete
+        '
+        Me.bnt_frete.Location = New System.Drawing.Point(825, 113)
+        Me.bnt_frete.Name = "bnt_frete"
+        Me.bnt_frete.Size = New System.Drawing.Size(83, 65)
+        Me.bnt_frete.TabIndex = 15
+        Me.bnt_frete.Text = "Infomacao frete"
+        Me.bnt_frete.UseVisualStyleBackColor = True
+        '
         'frm_novaCompra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(938, 450)
+        Me.Controls.Add(Me.bnt_frete)
         Me.Controls.Add(Me.bnt_grava)
         Me.Controls.Add(Me.cmb_fornecedor)
         Me.Controls.Add(Me.Label6)
@@ -196,4 +207,5 @@ Partial Class frm_novaCompra
     Friend WithEvents Label6 As Label
     Friend WithEvents cmb_fornecedor As ComboBox
     Friend WithEvents bnt_grava As Button
+    Friend WithEvents bnt_frete As Button
 End Class
