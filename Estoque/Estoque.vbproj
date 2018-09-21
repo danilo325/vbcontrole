@@ -90,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BdClass.vb" />
+    <Compile Include="ListaAbastecimento.Designer.vb">
+      <DependentUpon>ListaAbastecimento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaAbastecimento.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IncluirProduto.Designer.vb">
       <DependentUpon>IncluirProduto.vb</DependentUpon>
     </Compile>
@@ -131,6 +137,18 @@
       <DependentUpon>Home.vb</DependentUpon>
     </Compile>
     <Compile Include="Home.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaFrota.Designer.vb">
+      <DependentUpon>ListaFrota.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaFrota.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovoAbastecimento.Designer.vb">
+      <DependentUpon>NovoAbastecimento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NovoAbastecimento.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vendedores.Designer.vb">
@@ -208,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaAbastecimento.resx">
+      <DependentUpon>ListaAbastecimento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaFrota.resx">
+      <DependentUpon>ListaFrota.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovoAbastecimento.resx">
+      <DependentUpon>NovoAbastecimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.vb</DependentUpon>
