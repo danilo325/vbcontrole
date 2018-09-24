@@ -90,6 +90,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BdClass.vb" />
+    <Compile Include="AdicionaDespesaVeiculo.Designer.vb">
+      <DependentUpon>AdicionaDespesaVeiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdicionaDespesaVeiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovaManutencao.Designer.vb">
+      <DependentUpon>NovaManutencao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NovaManutencao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaManutencao.Designer.vb">
+      <DependentUpon>ListaManutencao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaManutencao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaDespesaVeiculo.Designer.vb">
+      <DependentUpon>ListaDespesaVeiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaDespesaVeiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ListaAbastecimento.Designer.vb">
       <DependentUpon>ListaAbastecimento.vb</DependentUpon>
     </Compile>
@@ -206,6 +230,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdicionaDespesaVeiculo.resx">
+      <DependentUpon>AdicionaDespesaVeiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaManutencao.resx">
+      <DependentUpon>ListaManutencao.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IncluirProduto.resx">
       <DependentUpon>IncluirProduto.vb</DependentUpon>
     </EmbeddedResource>
@@ -233,9 +263,16 @@
     <EmbeddedResource Include="ListaFrota.resx">
       <DependentUpon>ListaFrota.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListaDespesaVeiculo.resx">
+      <DependentUpon>ListaDespesaVeiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovaManutencao.resx">
+      <DependentUpon>NovaManutencao.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NovoAbastecimento.resx">
       <DependentUpon>NovoAbastecimento.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.vb</DependentUpon>
     </EmbeddedResource>

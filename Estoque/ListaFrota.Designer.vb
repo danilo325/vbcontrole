@@ -54,7 +54,7 @@ Partial Class ListaFrota
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(106, 92)
         Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Button2"
+        Me.Button2.Text = "Despesas"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
@@ -63,7 +63,7 @@ Partial Class ListaFrota
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(106, 92)
         Me.Button3.TabIndex = 3
-        Me.Button3.Text = "Button3"
+        Me.Button3.Text = "Manutenção"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'ListaFrota

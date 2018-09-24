@@ -2,6 +2,8 @@
     Dim dicveiculoas As New Dictionary(Of String, Integer)
     Dim dado As New BdClass
     Private Sub ListaAbastecimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtp_dataabastecimentof.Checked = False
+        dtp_dataabastecimentoi.Checked = False
         dado.Abreconexao()
         pesquisa()
         comboveiculos()
@@ -29,13 +31,13 @@
                 str += " WHERE NumeroPedido = " & txt_numeropeido.Text
             End If
         End If
-        If dtp_dataabastecimento.Checked Then
+        If dtp_dataabastecimentoi.Checked Then
             If maisdeum Then
-                str += " AND Data = '" & Format(dtp_dataabastecimento.Value, "dd/MM/yyyy") & "'"
+                str += " AND Data = '" & Format(dtp_dataabastecimentoi.Value, "dd/MM/yyyy") & "'"
                 maisdeum = True
             Else
                 maisdeum = True
-                str += " WHERE Data = '" & Format(dtp_dataabastecimento.Value, "dd/MM/yyyy") & "'"
+                str += " WHERE Data = '" & Format(dtp_dataabastecimentoi.Value, "dd/MM/yyyy") & "'"
             End If
         End If
         MsgBox(str)
@@ -58,5 +60,9 @@
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         NovoAbastecimento.Visible = True
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
     End Sub
 End Class

@@ -26,6 +26,11 @@
 
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        ListaDespesaVeiculo.Visible = True
+    End Sub
 
-
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        ListaManutencao.Visible = True
+    End Sub
 End Class

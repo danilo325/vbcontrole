@@ -100,8 +100,7 @@ Partial Class NovoAbastecimento
         Me.dtp_dataabasteci.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtp_dataabasteci.Location = New System.Drawing.Point(463, 23)
         Me.dtp_dataabasteci.Name = "dtp_dataabasteci"
-        Me.dtp_dataabasteci.ShowCheckBox = True
-        Me.dtp_dataabasteci.Size = New System.Drawing.Size(200, 20)
+        Me.dtp_dataabasteci.Size = New System.Drawing.Size(110, 20)
         Me.dtp_dataabasteci.TabIndex = 7
         Me.dtp_dataabasteci.Value = New Date(2018, 9, 21, 14, 14, 56, 0)
         '
