@@ -8,6 +8,7 @@ Public Class Estoque
     Dim valorcelula As String
 
     Private Sub Estoque_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        bnt_Exclui.Visible = False
         bancoDados.Abreconexao()
         dgv_Produtos.AllowUserToAddRows = False
         dgv_Produtos.AllowUserToDeleteRows = False
@@ -95,9 +96,9 @@ Public Class Estoque
         If (txt_DecricaoProduto.Text <> "") Then
             contador = contador + 1
             If (contador > 1) Then
-                str += " AND Descricao LIKE '" & txt_DecricaoProduto.Text & "'"
+                str += " AND Descricao LIKE '%" & txt_DecricaoProduto.Text & "%'"
             Else
-                str += " Descricao Like '" & txt_DecricaoProduto.Text & "'"
+                str += " Descricao Like '%" & txt_DecricaoProduto.Text & "%'"
             End If
         End If
         If (cmb_TipoProduto.Text <> "") Then
@@ -211,18 +212,23 @@ Public Class Estoque
     End Sub
 
     Private Sub dgv_Produtos_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_Produtos.CellContentDoubleClick
-        Select Case e.ColumnIndex
-            Case 2
-                valorcelula = dicionarioGrupo.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
-            Case 7
-                valorcelula = dicionarioSimNao.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
-            Case 8
-                valorcelula = dicionarioSimNao.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
-            Case Else
-                valorcelula = dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
-        End Select
+        If Not dgv_Produtos.ReadOnly Then
 
-        valorcelula = dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+            Select Case e.ColumnIndex
+                Case 2
+                    valorcelula = dicionarioGrupo.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
+                Case 7
+                    valorcelula = dicionarioSimNao.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
+                Case 8
+                    valorcelula = dicionarioSimNao.Item(dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString)
+                Case Else
+                    valorcelula = dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+            End Select
+
+            valorcelula = dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+        End If
+
+
     End Sub
 
     Private Sub bnt_Exclui_Click(sender As Object, e As EventArgs) Handles bnt_Exclui.Click

@@ -207,6 +207,8 @@ Partial Class Estoque
         '
         'bnt_Exclui
         '
+        Me.bnt_Exclui.Enabled = False
+        Me.bnt_Exclui.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.bnt_Exclui.Location = New System.Drawing.Point(487, 23)
         Me.bnt_Exclui.Name = "bnt_Exclui"
         Me.bnt_Exclui.Size = New System.Drawing.Size(75, 57)

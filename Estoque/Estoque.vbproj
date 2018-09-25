@@ -291,6 +291,7 @@
       <DependentUpon>NovoAbastecimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="teste.rdlc" />
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.vb</DependentUpon>
     </EmbeddedResource>
