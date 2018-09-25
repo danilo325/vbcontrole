@@ -28,6 +28,7 @@ Partial Class home
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -84,11 +85,21 @@ Partial Class home
         Me.Button6.Text = "Frota"
         Me.Button6.UseVisualStyleBackColor = True
         '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(142, 136)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(93, 98)
+        Me.Button7.TabIndex = 6
+        Me.Button7.Text = "Despesas Gerais"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -107,4 +118,5 @@ Partial Class home
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents Button7 As Button
 End Class

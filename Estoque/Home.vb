@@ -22,4 +22,8 @@
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         ListaFrota.Visible = True
     End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        DespesasGerais.Visible = True
+    End Sub
 End Class
