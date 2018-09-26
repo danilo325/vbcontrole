@@ -75,17 +75,21 @@ Partial Class form_compras
         '
         'dtp_inicial
         '
+        Me.dtp_inicial.Checked = False
         Me.dtp_inicial.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtp_inicial.Location = New System.Drawing.Point(728, 78)
         Me.dtp_inicial.Name = "dtp_inicial"
+        Me.dtp_inicial.ShowCheckBox = True
         Me.dtp_inicial.Size = New System.Drawing.Size(84, 20)
         Me.dtp_inicial.TabIndex = 12
         '
         'dtp_final
         '
+        Me.dtp_final.Checked = False
         Me.dtp_final.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtp_final.Location = New System.Drawing.Point(728, 104)
         Me.dtp_final.Name = "dtp_final"
+        Me.dtp_final.ShowCheckBox = True
         Me.dtp_final.Size = New System.Drawing.Size(84, 20)
         Me.dtp_final.TabIndex = 13
         '
@@ -129,22 +133,22 @@ Partial Class form_compras
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(664, 84)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.Size = New System.Drawing.Size(63, 13)
         Me.Label4.TabIndex = 18
-        Me.Label4.Text = "Data Inicio"
+        Me.Label4.Text = "Compras de"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(670, 107)
+        Me.Label5.Location = New System.Drawing.Point(699, 107)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(52, 13)
+        Me.Label5.Size = New System.Drawing.Size(23, 13)
         Me.Label5.TabIndex = 19
-        Me.Label5.Text = "Data final"
+        Me.Label5.Text = "Até"
         '
         'bnt_Exclui
         '
-        Me.bnt_Exclui.Location = New System.Drawing.Point(556, 12)
+        Me.bnt_Exclui.Location = New System.Drawing.Point(545, 12)
         Me.bnt_Exclui.Name = "bnt_Exclui"
         Me.bnt_Exclui.Size = New System.Drawing.Size(75, 57)
         Me.bnt_Exclui.TabIndex = 27
