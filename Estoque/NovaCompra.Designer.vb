@@ -22,6 +22,7 @@ Partial Class frm_novaCompra
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.txt_obs = New System.Windows.Forms.TextBox()
         Me.dtp_data = New System.Windows.Forms.DateTimePicker()
         Me.txt_valorImposto = New System.Windows.Forms.TextBox()
@@ -39,17 +40,18 @@ Partial Class frm_novaCompra
         Me.gpb_produtos = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cmb_tipoTrasporte = New System.Windows.Forms.ComboBox()
-        Me.txt_freteValor = New System.Windows.Forms.TextBox()
-        Me.txt_freteObs = New System.Windows.Forms.TextBox()
-        Me.lbl_tipo = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lbl_tipo = New System.Windows.Forms.Label()
+        Me.txt_freteObs = New System.Windows.Forms.TextBox()
+        Me.txt_freteValor = New System.Windows.Forms.TextBox()
+        Me.cmb_tipoTrasporte = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.txt_valorChapa = New System.Windows.Forms.TextBox()
-        Me.txt_obsChapa = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txt_obsChapa = New System.Windows.Forms.TextBox()
+        Me.txt_valorChapa = New System.Windows.Forms.TextBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.dgv_produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpb_produtos.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -150,10 +152,11 @@ Partial Class frm_novaCompra
         '
         'cmb_fornecedor
         '
+        Me.cmb_fornecedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_fornecedor.FormattingEnabled = True
         Me.cmb_fornecedor.Location = New System.Drawing.Point(94, 70)
         Me.cmb_fornecedor.Name = "cmb_fornecedor"
-        Me.cmb_fornecedor.Size = New System.Drawing.Size(166, 21)
+        Me.cmb_fornecedor.Size = New System.Drawing.Size(150, 21)
         Me.cmb_fornecedor.TabIndex = 2
         '
         'bnt_grava
@@ -222,37 +225,14 @@ Partial Class frm_novaCompra
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Informações de Transporte"
         '
-        'cmb_tipoTrasporte
+        'Label11
         '
-        Me.cmb_tipoTrasporte.FormattingEnabled = True
-        Me.cmb_tipoTrasporte.Location = New System.Drawing.Point(71, 17)
-        Me.cmb_tipoTrasporte.Name = "cmb_tipoTrasporte"
-        Me.cmb_tipoTrasporte.Size = New System.Drawing.Size(97, 21)
-        Me.cmb_tipoTrasporte.TabIndex = 0
-        '
-        'txt_freteValor
-        '
-        Me.txt_freteValor.Location = New System.Drawing.Point(71, 42)
-        Me.txt_freteValor.Name = "txt_freteValor"
-        Me.txt_freteValor.Size = New System.Drawing.Size(184, 20)
-        Me.txt_freteValor.TabIndex = 1
-        '
-        'txt_freteObs
-        '
-        Me.txt_freteObs.Location = New System.Drawing.Point(71, 68)
-        Me.txt_freteObs.Multiline = True
-        Me.txt_freteObs.Name = "txt_freteObs"
-        Me.txt_freteObs.Size = New System.Drawing.Size(184, 84)
-        Me.txt_freteObs.TabIndex = 5
-        '
-        'lbl_tipo
-        '
-        Me.lbl_tipo.AutoSize = True
-        Me.lbl_tipo.Location = New System.Drawing.Point(36, 18)
-        Me.lbl_tipo.Name = "lbl_tipo"
-        Me.lbl_tipo.Size = New System.Drawing.Size(31, 13)
-        Me.lbl_tipo.TabIndex = 7
-        Me.lbl_tipo.Text = "Tipo "
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(4, 70)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(65, 13)
+        Me.Label11.TabIndex = 11
+        Me.Label11.Text = "Observação"
         '
         'Label9
         '
@@ -263,14 +243,38 @@ Partial Class frm_novaCompra
         Me.Label9.TabIndex = 9
         Me.Label9.Text = "Valor"
         '
-        'Label11
+        'lbl_tipo
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(4, 70)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(65, 13)
-        Me.Label11.TabIndex = 11
-        Me.Label11.Text = "Observação"
+        Me.lbl_tipo.AutoSize = True
+        Me.lbl_tipo.Location = New System.Drawing.Point(36, 18)
+        Me.lbl_tipo.Name = "lbl_tipo"
+        Me.lbl_tipo.Size = New System.Drawing.Size(31, 13)
+        Me.lbl_tipo.TabIndex = 7
+        Me.lbl_tipo.Text = "Tipo "
+        '
+        'txt_freteObs
+        '
+        Me.txt_freteObs.Location = New System.Drawing.Point(71, 68)
+        Me.txt_freteObs.Multiline = True
+        Me.txt_freteObs.Name = "txt_freteObs"
+        Me.txt_freteObs.Size = New System.Drawing.Size(184, 84)
+        Me.txt_freteObs.TabIndex = 5
+        '
+        'txt_freteValor
+        '
+        Me.txt_freteValor.Location = New System.Drawing.Point(71, 42)
+        Me.txt_freteValor.Name = "txt_freteValor"
+        Me.txt_freteValor.Size = New System.Drawing.Size(184, 20)
+        Me.txt_freteValor.TabIndex = 1
+        '
+        'cmb_tipoTrasporte
+        '
+        Me.cmb_tipoTrasporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_tipoTrasporte.FormattingEnabled = True
+        Me.cmb_tipoTrasporte.Location = New System.Drawing.Point(71, 17)
+        Me.cmb_tipoTrasporte.Name = "cmb_tipoTrasporte"
+        Me.cmb_tipoTrasporte.Size = New System.Drawing.Size(97, 21)
+        Me.cmb_tipoTrasporte.TabIndex = 0
         '
         'GroupBox3
         '
@@ -286,20 +290,14 @@ Partial Class frm_novaCompra
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Informação de descarga"
         '
-        'txt_valorChapa
+        'Label8
         '
-        Me.txt_valorChapa.Location = New System.Drawing.Point(69, 19)
-        Me.txt_valorChapa.Name = "txt_valorChapa"
-        Me.txt_valorChapa.Size = New System.Drawing.Size(100, 20)
-        Me.txt_valorChapa.TabIndex = 0
-        '
-        'txt_obsChapa
-        '
-        Me.txt_obsChapa.Location = New System.Drawing.Point(69, 48)
-        Me.txt_obsChapa.Multiline = True
-        Me.txt_obsChapa.Name = "txt_obsChapa"
-        Me.txt_obsChapa.Size = New System.Drawing.Size(146, 92)
-        Me.txt_obsChapa.TabIndex = 1
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(6, 74)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(60, 13)
+        Me.Label8.TabIndex = 3
+        Me.Label8.Text = "Obs Chapa"
         '
         'Label7
         '
@@ -310,14 +308,20 @@ Partial Class frm_novaCompra
         Me.Label7.TabIndex = 2
         Me.Label7.Text = "Valor chapa"
         '
-        'Label8
+        'txt_obsChapa
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(6, 74)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(60, 13)
-        Me.Label8.TabIndex = 3
-        Me.Label8.Text = "Obs Chapa"
+        Me.txt_obsChapa.Location = New System.Drawing.Point(69, 48)
+        Me.txt_obsChapa.Multiline = True
+        Me.txt_obsChapa.Name = "txt_obsChapa"
+        Me.txt_obsChapa.Size = New System.Drawing.Size(146, 92)
+        Me.txt_obsChapa.TabIndex = 1
+        '
+        'txt_valorChapa
+        '
+        Me.txt_valorChapa.Location = New System.Drawing.Point(69, 19)
+        Me.txt_valorChapa.Name = "txt_valorChapa"
+        Me.txt_valorChapa.Size = New System.Drawing.Size(100, 20)
+        Me.txt_valorChapa.TabIndex = 0
         '
         'frm_novaCompra
         '
@@ -370,4 +374,5 @@ Partial Class frm_novaCompra
     Friend WithEvents txt_obsChapa As TextBox
     Friend WithEvents txt_valorChapa As TextBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
