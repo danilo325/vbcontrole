@@ -2,7 +2,7 @@
 
 Public Class frm_novaCompra
     Dim comboproduto As New DataGridViewComboBoxColumn
-    Dim textcolqtd, textcolComNota, textColValor, textcolImposto As New DataGridViewTextBoxColumn
+    Dim textcolqtd, textcolComNota, textColValor, textcolImposto, textcolPrecoReal As New DataGridViewTextBoxColumn
     Dim dicProdutos, dicFornecedor As New Dictionary(Of String, Integer)
     Dim bancodados As New BdClass
 
@@ -103,7 +103,7 @@ Public Class frm_novaCompra
 
                 bancodados.Pesquisa("INSERT INTO produtosCompra VALUES ( " & idcompra & "," & dicProdutos.Item(prod.Cells(0).Value.ToString) &
                                     "," & prod.Cells(1).Value.ToString & "," & prod.Cells(2).Value.ToString & "," & prod.Cells(3).Value.ToString & "," &
-                                     prod.Cells(4).Value.ToString & ")")
+                                     prod.Cells(4).Value.ToString & "," & 0 & ")")
                 qtdcompras += prod.Cells(1).Value
             End If
         Next prod
@@ -116,6 +116,8 @@ Public Class frm_novaCompra
                 End If
                 Dim vdec As Decimal = CDec((prod.Cells(3).Value + vci + ((CDbl(txt_freteValor.Text.ToString) + CDbl(txt_valorChapa.Text.ToString)) / qtdcompras)))
                 MsgBox(vdec)
+                MsgBox("UPDATE produtosCompra SET PrecoReal = " & vdec.ToString.Replace(",", ".") & " WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
+                bancodados.Pesquisa("UPDATE produtosCompra SET PrecoReal = " & vdec.ToString.Replace(",", ".") & " WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 MsgBox("UPDATE produto SET Pcusto =" & vdec & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 ' bancodados.Pesquisa("UPDATE produto SET Pcusto =" & bancodados.Pesquisa("SELECT Pcusto FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(3).Value & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 bancodados.Pesquisa("UPDATE produto SET Pcusto =" & vdec.ToString.Replace(",", ".") & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
@@ -139,6 +141,7 @@ Public Class frm_novaCompra
         textcolqtd.Name = "quantiade"
         textcolImposto.HeaderText = "Imposto"
         textcolImposto.Name = "imposto"
+        textcolPrecoReal.HeaderText = "V. com despesas"
         txt_freteValor.CausesValidation = True
 
 
@@ -147,9 +150,11 @@ Public Class frm_novaCompra
         dgv_produtos.Columns.Add(textcolComNota)
         dgv_produtos.Columns.Add(textColValor)
         dgv_produtos.Columns.Add(textcolImposto)
+        dgv_produtos.Columns.Add(textcolPrecoReal)
         cmb_tipoTrasporte.Items.Add("")
         cmb_tipoTrasporte.Items.Add("Frete")
         cmb_tipoTrasporte.Items.Add("Proprio")
+        textcolPrecoReal.Visible = False
 
     End Sub
 
