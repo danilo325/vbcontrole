@@ -26,6 +26,26 @@
             End If
 
         End If
+        If dtp_inicial.Checked Then
+            If dtp_final.Checked Then
+                If contaargumentos > 1 Then
+                    contaargumentos += 1
+                    queryromaneios += "AND DataRomaneio BETWEEN  #" & Format(dtp_inicial.Value, "MM/dd/yyyy") & "# AND #" & Format(dtp_final.Value, "MM/dd/yyyy") & "#"
+                Else
+                    queryromaneios += " DataRomaneio BETWEEN #" & Format(dtp_inicial.Value, "MM/dd/yyyy") & "# AND #" & Format(dtp_final.Value, "MM/dd/yyyy") & "#"
+                    contaargumentos += 1
+                End If
+            Else
+                If contaargumentos > 1 Then
+                    contaargumentos += 1
+                    queryromaneios += "AND  DataRomaneio = #" & Format(dtp_inicial.Value, "MM/dd/yyyy") & "#"
+                Else
+                    queryromaneios += " DataRomaneio = #" & Format(dtp_inicial.Value, "MM/dd/yyyy") & "#"
+                    contaargumentos += 1
+                End If
+            End If
+        End If
+
         If contaargumentos = 0 Then
             dgv_romaneios.DataSource = dbdata.Pesquisa("SELECT * FROM romaneio")
         Else
@@ -52,6 +72,11 @@
         dbdata.Abreconexao()
         dgv_romaneios.DataSource = dbdata.Pesquisa("SELECT * FROM romaneio")
         combovendedor()
+        bnt_Edita.Enabled = False
+        bnt_Exclui.Enabled = False
+        bnt_Exclui.Visible = False
+        bnt_Edita.Visible = False
+
 
     End Sub
     'Remove o romaneio que possui a linha selecionada
@@ -103,5 +128,9 @@
     'Chama o formilário de inclusão do romaneio
     Private Sub bnt_Inclui_Click(sender As Object, e As EventArgs) Handles bnt_Inclui.Click
         NovoRomneio.Visible = True
+    End Sub
+
+    Private Sub bnt_fecha_Click(sender As Object, e As EventArgs) Handles bnt_fecha.Click
+        Me.Close()
     End Sub
 End Class

@@ -85,9 +85,12 @@ Partial Class romaneios
         '
         'dtp_inicial
         '
+        Me.dtp_inicial.Checked = False
+        Me.dtp_inicial.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtp_inicial.Location = New System.Drawing.Point(552, 126)
         Me.dtp_inicial.Name = "dtp_inicial"
-        Me.dtp_inicial.Size = New System.Drawing.Size(75, 20)
+        Me.dtp_inicial.ShowCheckBox = True
+        Me.dtp_inicial.Size = New System.Drawing.Size(103, 20)
         Me.dtp_inicial.TabIndex = 27
         Me.dtp_inicial.Value = New Date(2018, 9, 19, 16, 1, 43, 0)
         '
@@ -127,9 +130,12 @@ Partial Class romaneios
         '
         'dtp_final
         '
+        Me.dtp_final.Checked = False
+        Me.dtp_final.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtp_final.Location = New System.Drawing.Point(552, 153)
         Me.dtp_final.Name = "dtp_final"
-        Me.dtp_final.Size = New System.Drawing.Size(75, 20)
+        Me.dtp_final.ShowCheckBox = True
+        Me.dtp_final.Size = New System.Drawing.Size(103, 20)
         Me.dtp_final.TabIndex = 32
         '
         'Label4

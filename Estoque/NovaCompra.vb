@@ -111,9 +111,9 @@ Public Class frm_novaCompra
             Dim vci As Integer = 0
 
             If Not prod.IsNewRow Then
-                If prod.Cells(4).Value > 0 Then
-                    vci = (prod.Cells(1).Value / prod.Cells(4).Value)
-                End If
+
+                vci = (prod.Cells(4).Value / prod.Cells(1).Value)
+
                 Dim vdec As Decimal = CDec((prod.Cells(3).Value + vci + ((CDbl(txt_freteValor.Text.ToString) + CDbl(txt_valorChapa.Text.ToString)) / qtdcompras)))
                 MsgBox(vdec)
                 MsgBox("UPDATE produtosCompra SET PrecoReal = " & vdec.ToString.Replace(",", ".") & " WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))

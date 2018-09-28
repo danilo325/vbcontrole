@@ -26,4 +26,12 @@
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         DespesasGerais.Visible = True
     End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub PrintPreviewDialog1_Load(sender As Object, e As EventArgs) Handles ptv.Load
+
+    End Sub
 End Class

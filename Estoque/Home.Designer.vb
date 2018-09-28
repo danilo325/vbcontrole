@@ -22,6 +22,7 @@ Partial Class home
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(home))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -29,6 +30,8 @@ Partial Class home
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.ptv = New System.Windows.Forms.PrintPreviewDialog()
+        Me.FornecedoresTableAdapter1 = New Estoque.LiderBancoDadosDataSetTableAdapters.fornecedoresTableAdapter()
         Me.SuspendLayout()
         '
         'Button1
@@ -94,6 +97,20 @@ Partial Class home
         Me.Button7.Text = "Despesas Gerais"
         Me.Button7.UseVisualStyleBackColor = True
         '
+        'ptv
+        '
+        Me.ptv.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.ptv.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.ptv.ClientSize = New System.Drawing.Size(400, 300)
+        Me.ptv.Enabled = True
+        Me.ptv.Icon = CType(resources.GetObject("ptv.Icon"), System.Drawing.Icon)
+        Me.ptv.Name = "ptv"
+        Me.ptv.Visible = False
+        '
+        'FornecedoresTableAdapter1
+        '
+        Me.FornecedoresTableAdapter1.ClearBeforeFill = True
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -119,4 +136,6 @@ Partial Class home
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
+    Friend WithEvents ptv As PrintPreviewDialog
+    Friend WithEvents FornecedoresTableAdapter1 As Estoque.LiderBancoDadosDataSetTableAdapters.fornecedoresTableAdapter
 End Class
