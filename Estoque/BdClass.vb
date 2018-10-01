@@ -41,6 +41,21 @@ Public Class BdClass
         End Try
         Return tabeladedados
     End Function
+    Public Function geraDataSet(strq As String, dt As DataSet) As DataSet
+
+        comando = New OleDbCommand(strq, conexao)
+        Try
+
+            adaptador = New OleDbDataAdapter(comando)
+
+            adaptador.Fill(dt)
+
+
+        Catch ex As Exception
+            MsgBox("Problemas na consulta \n" & ex.ToString, MsgBoxStyle.Critical)
+        End Try
+        Return dt
+    End Function
     'Fechar a conexão
     Public Sub FechaConexao()
         Try

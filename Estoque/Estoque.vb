@@ -162,11 +162,11 @@ Public Class Estoque
             Case 2
                 str += "Grupo = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
             Case 3
-                str += "Qtd = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+                str += "Qtd = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString.Replace(",", ".")
             Case 4
                 str += "Unidade = '" & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString & "' "
             Case 5
-                str += "Pcusto = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+                str += "Pcusto = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString.Replace(",", ".")
             Case 6
                 str += "Pvenda = " & dgv_Produtos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
             Case 7

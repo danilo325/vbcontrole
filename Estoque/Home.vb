@@ -31,7 +31,16 @@
 
     End Sub
 
-    Private Sub PrintPreviewDialog1_Load(sender As Object, e As EventArgs) Handles ptv.Load
+    Private Sub PrintPreviewDialog1_Load(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
+        Form1.Visible = True
+
+    End Sub
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

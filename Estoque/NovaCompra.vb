@@ -102,7 +102,7 @@ Public Class frm_novaCompra
                 bancodados.Pesquisa("UPDATE produto SET Qtd =" & (bancodados.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(1).Value) & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
 
                 bancodados.Pesquisa("INSERT INTO produtosCompra VALUES ( " & idcompra & "," & dicProdutos.Item(prod.Cells(0).Value.ToString) &
-                                    "," & prod.Cells(1).Value.ToString & "," & prod.Cells(2).Value.ToString & "," & prod.Cells(3).Value.ToString & "," &
+                                    "," & prod.Cells(1).Value.ToString & "," & prod.Cells(2).Value.ToString & "," & prod.Cells(3).Value.ToString.Replace(",", ".") & "," &
                                      prod.Cells(4).Value.ToString & "," & 0 & ")")
                 qtdcompras += prod.Cells(1).Value
             End If

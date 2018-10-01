@@ -22,7 +22,6 @@ Partial Class home
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(home))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -30,8 +29,7 @@ Partial Class home
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
-        Me.ptv = New System.Windows.Forms.PrintPreviewDialog()
-        Me.FornecedoresTableAdapter1 = New Estoque.LiderBancoDadosDataSetTableAdapters.fornecedoresTableAdapter()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -97,25 +95,21 @@ Partial Class home
         Me.Button7.Text = "Despesas Gerais"
         Me.Button7.UseVisualStyleBackColor = True
         '
-        'ptv
+        'Button8
         '
-        Me.ptv.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.ptv.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.ptv.ClientSize = New System.Drawing.Size(400, 300)
-        Me.ptv.Enabled = True
-        Me.ptv.Icon = CType(resources.GetObject("ptv.Icon"), System.Drawing.Icon)
-        Me.ptv.Name = "ptv"
-        Me.ptv.Visible = False
-        '
-        'FornecedoresTableAdapter1
-        '
-        Me.FornecedoresTableAdapter1.ClearBeforeFill = True
+        Me.Button8.Location = New System.Drawing.Point(496, 136)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(93, 98)
+        Me.Button8.TabIndex = 7
+        Me.Button8.Text = "Reports"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
@@ -136,6 +130,5 @@ Partial Class home
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
-    Friend WithEvents ptv As PrintPreviewDialog
-    Friend WithEvents FornecedoresTableAdapter1 As Estoque.LiderBancoDadosDataSetTableAdapters.fornecedoresTableAdapter
+    Friend WithEvents Button8 As Button
 End Class
