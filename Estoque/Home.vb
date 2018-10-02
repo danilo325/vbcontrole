@@ -43,4 +43,9 @@
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Perdas.Visible = True
+
+    End Sub
 End Class

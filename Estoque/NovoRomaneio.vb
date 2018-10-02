@@ -26,27 +26,27 @@
         insertquey += "'" & Format(dtp_dataRomaneio.Value, "dd/MM/yyyy") & "'," 'Formata a data para inserir no banco
 
         If txt_VCheque.Text <> "" Then
-            insertquey += txt_VCheque.Text & ","
+            insertquey += txt_VCheque.Text.Replace(",", ".") & ","
         Else
             MsgBox("Coloque um valor para cheque")
         End If
         If txt_VDinheiro.Text <> "" Then
-            insertquey += txt_VDinheiro.Text & ","
+            insertquey += txt_VDinheiro.Text.Replace(",", ".") & ","
         Else
             MsgBox("Coloque um valor para Dinheiro")
         End If
         If txt_VMoeda.Text <> "" Then
-            insertquey += txt_VMoeda.Text & ","
+            insertquey += txt_VMoeda.Text.Replace(",", ".") & ","
         Else
             MsgBox("Coloque um valor para Moeda")
         End If
         If txt_VBoleto.Text <> "" Then
-            insertquey += txt_VBoleto.Text & ","
+            insertquey += txt_VBoleto.Text.Replace(",", ".") & ","
         Else
             MsgBox("Coloque um valor para Boleto")
         End If
         If txt_VFiado.Text <> "" Then
-            insertquey += txt_VFiado.Text & ","
+            insertquey += txt_VFiado.Text.Replace(",", ".") & ","
         Else
             MsgBox("Coloque um valor para fiado")
         End If
@@ -56,8 +56,10 @@
         id = dadosbd.ultimo_id("romaneio", "IdRomaneio") 'pega o valor do id gerado pelo novo romaneio
 
         Dim produtosromaneio As String = "" 'string que guarda a query para de inserçao dos produtos na tabela produtosRomaneio
-        Dim idprod, qtdprod As Integer 'Utilizadas para armazenar o id e a quantidade dos produtos
+        Dim idprod As Integer 'Utilizadas para armazenar o id
+        Dim qtdprod As Double ' e a quantidade dos produtos
         Dim prod As New DataTable 'Guarda o resultado da query produtos
+        Dim qtd As Double
         Try
             For Each dado As DataGridViewRow In dgv_ProdutosRomaneio.Rows
                 If Not dado.IsNewRow Then ' Verifica se a linha é uma nova linha
@@ -69,11 +71,14 @@
                     If qtdprod >= dado.Cells(1).Value Then ' verifica se tem produto no estoque
                         'insere os produtos na tabela produtos romaneio
                         produtosromaneio = "INSERT INTO produtosRomaneio(IdRomaneio,IdProduto,QtdProduto) VALUES (" & id & "," &
-                  idprod & "," & dado.Cells(1).Value.ToString & ")"
+                  idprod & "," & dado.Cells(1).Value.ToString.Replace(",", ".") & ")"
                         dadosbd.Pesquisa(produtosromaneio) ' executa a inserção
                         'atualiza o valor das quantidades do produto
-                        dadosbd.Pesquisa("UPDATE produto SET Qtd = " & qtdprod - dado.Cells(1).Value & " WHERE IdProduto = " & idprod)
+                        qtd = dado.Cells(1).Value
+                        MsgBox(qtdprod & " | " & qtd & " | " & qtdprod - qtd)
+                        dadosbd.Pesquisa("UPDATE produto SET Qtd = '" & (qtdprod - qtd) & "' WHERE IdProduto = " & idprod)
 
+                        'MsgBox("UPDATE produto SET Qtd = " & qtdprod - dado.Cells(1).Value.ToString.Replace(",", ".") & " WHERE IdProduto = " & idprod)
                     Else
                         MsgBox("Não tem produto suficiente no estoque")
                         dado.Cells(1).ErrorText = "Não temos esta quantia de produto no estoque"

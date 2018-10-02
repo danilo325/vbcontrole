@@ -134,6 +134,12 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NovaDespesaGeral.Designer.vb">
       <DependentUpon>NovaDespesaGeral.vb</DependentUpon>
     </Compile>
@@ -213,10 +219,22 @@
     <Compile Include="ListaFrota.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="novaPerda.Designer.vb">
+      <DependentUpon>novaPerda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="novaPerda.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NovoAbastecimento.Designer.vb">
       <DependentUpon>NovoAbastecimento.vb</DependentUpon>
     </Compile>
     <Compile Include="NovoAbastecimento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Perdas.Designer.vb">
+      <DependentUpon>Perdas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Perdas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="relatorios.vb" />
@@ -323,8 +341,14 @@
     <EmbeddedResource Include="NovaManutencao.resx">
       <DependentUpon>NovaManutencao.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="novaPerda.resx">
+      <DependentUpon>novaPerda.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NovoAbastecimento.resx">
       <DependentUpon>NovoAbastecimento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Perdas.resx">
+      <DependentUpon>Perdas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Report3.rdlc" />

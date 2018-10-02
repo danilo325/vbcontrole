@@ -17,10 +17,13 @@
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
+            <TablixColumn>
+              <Width>2.5cm</Width>
+            </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.71906cm</Height>
+              <Height>0.58677cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -91,7 +94,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Pcusto</Value>
+                              <Value>Quantidade</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -121,7 +124,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Preço de custo</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -129,6 +132,36 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox15</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Valor geral</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -209,6 +242,36 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Quantidade1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Quantidade.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Quantidade1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Pcusto">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -217,7 +280,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Pcusto.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>'R$'0.00;('R$'0.00)</Format>
+                                <rd:FormatSymbolCulture>pt-BR</rd:FormatSymbolCulture>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -239,21 +305,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox16">
+                    <Textbox Name="Id1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Label>Valor estoque</Label>
+                              <Value>=Fields!Quantidade.Value*Fields!Pcusto.Value</Value>
+                              <Style>
+                                <Format>'R$'0.00;('R$'0.00)</Format>
+                                <rd:FormatSymbolCulture>pt-BR</rd:FormatSymbolCulture>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox16</rd:DefaultName>
+                      <rd:DefaultName>Id1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -277,6 +347,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -292,32 +363,31 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.86995cm</Top>
         <Left>0.49953cm</Left>
-        <Height>1.43812cm</Height>
-        <Width>9.41792cm</Width>
+        <Height>1.30583cm</Height>
+        <Width>11.91792cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox10">
+      <Textbox Name="Textbox5">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Label>Soma geral</Label>
-                <Value>=Sum(Fields!Pcusto.Value, "DataSet1")</Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>2.74849cm</Top>
-        <Left>11.98245cm</Left>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>2.51037cm</Top>
+        <Left>10.15683cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>1</ZIndex>
@@ -397,6 +467,10 @@
         </Field>
         <Field Name="Pcusto">
           <DataField>Pcusto</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Quantidade">
+          <DataField>Quantidade</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="Unidade">
