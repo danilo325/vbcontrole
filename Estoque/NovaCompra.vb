@@ -7,7 +7,9 @@ Public Class frm_novaCompra
     Dim bancodados As New BdClass
 
 
-
+    '########################################################################################################################
+    'Carrega os valores do nom comboBox de produtos
+    '########################################################################################################################
     Private Sub ComboProdutos()
         comboproduto.Items.Add("")
         Dim produtos As DataTable = bancodados.Pesquisa("SELECT IdProduto, Descricao FROM produto")
@@ -18,7 +20,9 @@ Public Class frm_novaCompra
 
     End Sub
 
-
+    '########################################################################################################################
+    'Faz a verificação de valor nas células do DataGridView 
+    '########################################################################################################################
     Private Sub dgv_produtos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_produtos.CellEndEdit
         Dim celula As DataGridViewCell = dgv_produtos.CurrentCell
 
@@ -49,13 +53,17 @@ Public Class frm_novaCompra
     End Sub
 
 
-
+    '########################################################################################################################
+    'Quando se clica no botão gravar
+    '########################################################################################################################
     Private Sub bnt_grava_Click(sender As Object, e As EventArgs) Handles bnt_grava.Click
         gravainfo()
     End Sub
 
 
-
+    '########################################################################################################################
+    'Carrega os valores do nom comboBox de fornecedores
+    '########################################################################################################################
     Private Sub ComboFornecedor()
         cmb_fornecedor.Items.Add("")
         Dim fornecedores As DataTable = bancodados.Pesquisa("SELECT IdForncedor, NomeFantasia FROM fornecedores")
@@ -72,53 +80,68 @@ Public Class frm_novaCompra
         Return str
     End Function
 
-
+    '########################################################################################################################
     'Metodo utilizado para gravar as informações da compra
+    '########################################################################################################################
+
     Private Sub gravainfo()
-        Dim idcompra As Integer = 0
+        Dim idcompra As Integer = 0 'Variável utilizada oara guardar o ID da compra
         Dim qtdcompras As Integer = 0
+
         Dim strGrava As String = "INSERT INTO compras (IdForncedor ,NumeroPedido,DataCompra,ValorCompra,ImpostoCompra,ObsCompra) VALUES ("
         strGrava += dicFornecedor.Item(cmb_fornecedor.Text) & ","
         strGrava += txt_numeroPedido.Text & ","
         strGrava += "'" & Format(dtp_data.Value, "dd/MM/yyyy") & "',"
         strGrava += txt_valorTotal.Text.Replace(",", ".") & ","
         strGrava += txt_valorImposto.Text.Replace(",", ".") & ","
-        strGrava += "'" & txt_obs.Text & "')"
-        MsgBox(strGrava)
-        bancodados.Pesquisa(strGrava)
-        idcompra = bancodados.Pesquisa("SELECT MAX(IdCompras) FROM compras").Rows(0).Item(0)
+        strGrava += "'" & txt_obs.Text & "')" 'Grava os valores  dos dados da compra
+        MsgBox(strGrava) ' só teste
+        bancodados.Pesquisa(strGrava) ' Efetua a gravação dos dados no banco de dados
+        idcompra = bancodados.Pesquisa("SELECT MAX(IdCompras) FROM compras").Rows(0).Item(0) 'Armazena o ID da compra
 
+        'Grava as Informações sobre o transporte
         strGrava = "INSERT INTO transporteCompra (IdCompra, Tipo, Valor,Obs) VALUES ( " &
             idcompra & ",'" & cmb_tipoTrasporte.Text & "'," & txt_freteValor.Text.Replace(",", ".") & ",'" & txt_freteObs.Text & "')"
-        MsgBox(strGrava)
-        bancodados.Pesquisa(strGrava)
+        MsgBox(strGrava) ' só teste
+        bancodados.Pesquisa(strGrava) ' Realiza a gravação dos dados diretamente no banco de dados
+        'Armazena os dados do "Chapa"
         strGrava = "INSERT INTO chapa (IdTansporte, Valor,Obs) VALUES ( " &
             bancodados.Pesquisa("SELECT MAX(Id) FROM transporteCompra").Rows(0).Item(0) & "," & txt_valorChapa.Text.Replace(",", ".") & ",'" & txt_obsChapa.Text & "')"
-        bancodados.Pesquisa(strGrava)
+        bancodados.Pesquisa(strGrava) ' Realiza a gravação dos dados no banco de dados
 
+        'Armazena os dados dos produtos e atualiza o estoque
         For Each prod As DataGridViewRow In dgv_produtos.Rows
             If Not prod.IsNewRow Then
-
-                bancodados.Pesquisa("UPDATE produto SET Qtd =" & (bancodados.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(1).Value) & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
-
+                'Atualiza os valores  da quantidade dos produtos no banco de dados
+                bancodados.Pesquisa("UPDATE produto SET Qtd ='" & (bancodados.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(1).Value) & "' WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
+                'Armazena os dados dos produtos da compra no banco de dados
+                MsgBox("UPDATE produto SET Qtd ='" & (bancodados.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(1).Value) & "' WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 bancodados.Pesquisa("INSERT INTO produtosCompra VALUES ( " & idcompra & "," & dicProdutos.Item(prod.Cells(0).Value.ToString) &
                                     "," & prod.Cells(1).Value.ToString & "," & prod.Cells(2).Value.ToString & "," & prod.Cells(3).Value.ToString.Replace(",", ".") & "," &
                                      prod.Cells(4).Value.ToString & "," & 0 & ")")
-                qtdcompras += prod.Cells(1).Value
+
+                qtdcompras += prod.Cells(1).Value 'Armazena a quantidade de itens que fazem parte da compra
             End If
         Next prod
+        'Atualiza o valor real de cada produto
+        'O valor real é calculado de acordo com a formula:
+        'VFinal = (preço pago)+([Valor de Imposto do produto]/[Quantidade do produto])+([{valor Frete}+{Valor Chapa}]/[Número de itens na compra])
         For Each prod As DataGridViewRow In dgv_produtos.Rows
-            Dim vci As Integer = 0
+            Dim vci As Double = 0
+            Dim vpg As Double = 0
+            Dim vfretchapa As Double = 0
 
             If Not prod.IsNewRow Then
 
-                vci = (prod.Cells(4).Value / prod.Cells(1).Value)
+                vci = (prod.Cells(4).Value / prod.Cells(1).Value) 'é o ([Valor de Imposto do produto]/[Quantidade do produto])
+                vpg = prod.Cells(3).Value.ToString
+                vfretchapa = CDbl(txt_freteValor.Text.ToString) + CDbl(txt_valorChapa.Text.ToString)
 
-                Dim vdec As Decimal = CDec((prod.Cells(3).Value + vci + ((CDbl(txt_freteValor.Text.ToString) + CDbl(txt_valorChapa.Text.ToString)) / qtdcompras)))
+                Dim vdec As Double = vpg + vci + (vfretchapa / qtdcompras)
                 MsgBox(vdec)
-                MsgBox("UPDATE produtosCompra SET PrecoReal = " & vdec.ToString.Replace(",", ".") & " WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
+                MsgBox("UPDATE produtosCompra SET PrecoReal = '" & vdec.ToString.Replace(".", ",") & "' WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 bancodados.Pesquisa("UPDATE produtosCompra SET PrecoReal = " & vdec.ToString.Replace(",", ".") & " WHERE IdCompra = " & idcompra & " AND IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
-                MsgBox("UPDATE produto SET Pcusto =" & vdec & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
+                MsgBox("UPDATE produto SET Pcusto ='" & vdec.ToString.Replace(".", ",") & " 'WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 ' bancodados.Pesquisa("UPDATE produto SET Pcusto =" & bancodados.Pesquisa("SELECT Pcusto FROM produto WHERE IdProduto =" & dicProdutos.Item(prod.Cells(0).Value.ToString)).Rows(0).Item(0) + prod.Cells(3).Value & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
                 bancodados.Pesquisa("UPDATE produto SET Pcusto =" & vdec.ToString.Replace(",", ".") & " WHERE IdProduto = " & dicProdutos.Item(prod.Cells(0).Value.ToString))
             End If

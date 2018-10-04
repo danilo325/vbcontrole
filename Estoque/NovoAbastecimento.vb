@@ -17,7 +17,7 @@
     Private Sub gravadados()
         Dim str As String = ("INSERT INTO abastecimentos (IdVeicuo,NumeroPedido,LocalAbastecimento,Combustivel,Qtd,ValorLitro,ValorTotal,Data,Obs) VALUES (" &
                        dicveiculo.Item(cmb_veiculo.Text) & ", " & txt_npedido.Text & ",'" & txt_local.Text & "'," & diccombustivel(cmb_combustivel.Text) &
-                       "," & txt_qtdlitros.Text & "," & txt_valorlitro.Text & "," & txt_valortotal.Text & ",'" & Format(dtp_dataabasteci.Value, "dd/MM/yyyy") & "','" &
+                       ",'" & txt_qtdlitros.Text & "','" & txt_valorlitro.Text & "','" & txt_valortotal.Text & "','" & Format(dtp_dataabasteci.Value, "dd/MM/yyyy") & "','" &
                        txt_obs.Text & "')")
         MsgBox(str)
         dados.Pesquisa(str)

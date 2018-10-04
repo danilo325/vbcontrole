@@ -17,7 +17,7 @@
         Dim strgrava As String
         Dim vanterior As Double
         strgrava = "INSERT INTO perdasProduto VALUES  ( " & dicpro(cmb_produto.Text) & ", " & txt_qtdPerca.Text.ToString.Replace(",", ".") & ", '" &
-        Format(dtp_dataperca.Value, " dd/MM/yyyy") & "', '" & txt_observacao.ToString & "')"
+        Format(dtp_dataperca.Value, " dd/MM/yyyy") & "', '" & txt_observacao.Text & "')"
         MsgBox(strgrava)
         dado.Pesquisa(strgrava)
         vanterior = dado.Pesquisa("SELECT Qtd FROM produto WHERE IdProduto = " & dicpro(cmb_produto.Text)).Rows(0).Item(0)

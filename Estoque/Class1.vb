@@ -6,5 +6,7 @@
     Public Property Unidade As String
     Public Property Pcusto As Double
     Public Property Quantidade As Double
+    Public Property Valortotal As Double
+
 
 End Class

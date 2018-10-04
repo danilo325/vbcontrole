@@ -13,6 +13,7 @@
     Public Shared Function getDados() As List(Of Class1)
         Dim dados As New BdClass
         Dim tabeladados As DataTable
+        Dim total As Double = 0
         dados.Abreconexao()
         tabeladados = dados.Pesquisa("SELECT IdProduto,Descricao, Grupo, Qtd, Unidade, Pcusto FROM produto")
         Dim lista As New List(Of Class1)

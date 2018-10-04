@@ -35,7 +35,7 @@
         colData.Name = "data"
         colObsPerda.HeaderText = "Observação"
         colObsPerda.Name = "obs"
-        dgv_perdas.Columns.AddRange(colId, colQtdPerda, colData, colObsPerda)
+        'dgv_perdas.Columns.AddRange(colId, colQtdPerda, colData, colObsPerda)
         pesquisa()
 
     End Sub
@@ -74,9 +74,10 @@
         End If
         MsgBox(query)
         resulquery = dados.Pesquisa(query)
-        For Each produto As DataRow In resulquery.Rows
-            dgv_perdas.Rows.Add(produto)
-        Next produto
+        dgv_perdas.DataSource = resulquery
+        ''im da As DataGridViewRow
+        ' For Each produto As DataRow In resulquery.Rows
+        'next produto
     End Sub
 
 

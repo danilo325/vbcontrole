@@ -51,6 +51,8 @@ Partial Class novaPerda
         '
         'cmb_produto
         '
+        Me.cmb_produto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmb_produto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmb_produto.FormattingEnabled = True
         Me.cmb_produto.Location = New System.Drawing.Point(123, 28)
         Me.cmb_produto.Name = "cmb_produto"

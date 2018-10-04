@@ -9,6 +9,7 @@
     Private Sub bnt_fecha_Click(sender As Object, e As EventArgs) Handles bnt_fecha.Click
         Me.Close()
     End Sub
+
     'Grava os dados digitados no formulário 
     Private Sub gravaDados()
         Dim id As Integer
@@ -53,13 +54,19 @@
         insertquey += "'" & txt_obs.Text & "')"
 
         dadosbd.Pesquisa(insertquey) 'executa a query e insere o romaneio no banco
+
+
         id = dadosbd.ultimo_id("romaneio", "IdRomaneio") 'pega o valor do id gerado pelo novo romaneio
+        '#################################################################################################################################
 
         Dim produtosromaneio As String = "" 'string que guarda a query para de inserçao dos produtos na tabela produtosRomaneio
         Dim idprod As Integer 'Utilizadas para armazenar o id
         Dim qtdprod As Double ' e a quantidade dos produtos
         Dim prod As New DataTable 'Guarda o resultado da query produtos
         Dim qtd As Double
+        '################################################################################################################################
+        'Aqui nicia  a alteração das quantidades do produto no estoque
+        '################################################################################################################################
         Try
             For Each dado As DataGridViewRow In dgv_ProdutosRomaneio.Rows
                 If Not dado.IsNewRow Then ' Verifica se a linha é uma nova linha
@@ -76,7 +83,7 @@
                         'atualiza o valor das quantidades do produto
                         qtd = dado.Cells(1).Value
                         MsgBox(qtdprod & " | " & qtd & " | " & qtdprod - qtd)
-                        dadosbd.Pesquisa("UPDATE produto SET Qtd = '" & (qtdprod - qtd) & "' WHERE IdProduto = " & idprod)
+                        dadosbd.Pesquisa("UPDATE produto SET Qtd = '" & (qtdprod - qtd) & "' WHERE IdProduto = " & idprod) ' Faz a atualizaçõa no banco de dados
 
                         'MsgBox("UPDATE produto SET Qtd = " & qtdprod - dado.Cells(1).Value.ToString.Replace(",", ".") & " WHERE IdProduto = " & idprod)
                     Else

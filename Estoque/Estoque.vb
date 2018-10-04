@@ -1,11 +1,23 @@
 ﻿Imports System.ComponentModel
+''' <summary>
+''' Classe estoque
+''' Utilizada para mostrar o estoque existente no momento
+''' </summary>
 
 Public Class Estoque
+    'Inicia as variáveis importantes
+
     Friend bancoDados As New BdClass
     Friend grupoProduto As New DataTable
     Friend dicionarioGrupo As New Dictionary(Of String, Integer)
     Dim dicionarioSimNao As New Dictionary(Of String, Boolean)
     Dim valorcelula As String
+    ''' <summary>
+    ''' Evento que carrega as variáveis e carrega a tela incial do estoque 
+    ''' Este método é chamado asssim que o Form estoque é carregado
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
     Private Sub Estoque_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bnt_Exclui.Visible = False
@@ -28,21 +40,25 @@ Public Class Estoque
         cmb_TipoProduto.DropDownStyle = ComboBoxStyle.DropDownList
         cmb_Ativo.DropDownStyle = ComboBoxStyle.DropDownList
         dgv_Produtos.ReadOnly = True
-
-
-
-
     End Sub
+
+    ''' <summary>
+    ''' Este método retorna um combobox preebchido com os tipos de produto
+    ''' </summary>
+    ''' <returns></returns>
     Friend Function getGrupo() As ComboBox
         Return cmb_TipoProduto
     End Function
+
+    ''' <summary>
+    ''' Carrega os dados do banco de dados e preenche o combobox com eles
+    ''' </summary>
     Private Sub ComboGrupoProdutos()
         grupoProduto = bancoDados.Pesquisa("SELECT * FROM gruposProduto")
         cmb_TipoProduto.Items.Add("")
         For Each linha As DataRow In grupoProduto.Rows
             dicionarioGrupo.Add(linha(1).ToString, linha(0))
             cmb_TipoProduto.Items.Add(linha(1).ToString)
-
         Next linha
     End Sub
 
@@ -200,7 +216,7 @@ Public Class Estoque
 
         Else
             bnt_Edita.Text = "editar"
-             dgv_Produtos.ReadOnly = True
+            dgv_Produtos.ReadOnly = True
 
         End If
 
