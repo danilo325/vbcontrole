@@ -10,6 +10,7 @@ Public Class Estoque
     Friend bancoDados As New BdClass
     Friend grupoProduto As New DataTable
     Friend dicionarioGrupo As New Dictionary(Of String, Integer)
+    Friend dicionarioGrupo2 As New Dictionary(Of Integer, String)
     Dim dicionarioSimNao As New Dictionary(Of String, Boolean)
     Dim valorcelula As String
     ''' <summary>
@@ -58,6 +59,7 @@ Public Class Estoque
         cmb_TipoProduto.Items.Add("")
         For Each linha As DataRow In grupoProduto.Rows
             dicionarioGrupo.Add(linha(1).ToString, linha(0))
+            dicionarioGrupo2.Add(linha(0), linha(1).ToString)
             cmb_TipoProduto.Items.Add(linha(1).ToString)
         Next linha
     End Sub
@@ -269,5 +271,17 @@ Public Class Estoque
             MsgBox("É necessário selecionar aomenos uma linha")
         End If
 
+    End Sub
+
+    Private Sub dgv_Produtos_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgv_Produtos.CellMouseDoubleClick
+        DetalheProduto.lbl_idproduto.Text = dgv_Produtos.Rows(e.RowIndex).Cells(0).Value.ToString
+        DetalheProduto.lbl_descricao.Text = dgv_Produtos.Rows(e.RowIndex).Cells(1).Value.ToString
+        DetalheProduto.lbl_grupo.Text = dicionarioGrupo2.Item(dgv_Produtos.Rows(e.RowIndex).Cells(2).Value)
+        DetalheProduto.lbl_unidade.Text = dgv_Produtos.Rows(e.RowIndex).Cells(4).Value.ToString
+        DetalheProduto.lbl_pcusto.Text = "R$ " & dgv_Produtos.Rows(e.RowIndex).Cells(5).Value.ToString
+        DetalheProduto.lbl_pdroduzido.Text = dgv_Produtos.Rows(e.RowIndex).Cells(7).Value.ToString
+        DetalheProduto.lbl_avtivo.Text = dgv_Produtos.Rows(e.RowIndex).Cells(8).Value.ToString
+        DetalheProduto.lbl_qtd.Text = dgv_Produtos.Rows(e.RowIndex).Cells(3).Value.ToString
+        DetalheProduto.Show()
     End Sub
 End Class

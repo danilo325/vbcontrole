@@ -22,6 +22,8 @@ Partial Class Estoque
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Estoque))
         Me.txt_IdProduto = New System.Windows.Forms.TextBox()
         Me.lbl_IdProduto = New System.Windows.Forms.Label()
         Me.dgv_Produtos = New System.Windows.Forms.DataGridView()
@@ -42,6 +44,7 @@ Partial Class Estoque
         Me.bnt_Inclui = New System.Windows.Forms.Button()
         Me.bnt_Edita = New System.Windows.Forms.Button()
         Me.bnt_Exclui = New System.Windows.Forms.Button()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.dgv_Produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -216,6 +219,14 @@ Partial Class Estoque
         Me.bnt_Exclui.Text = "Exclui"
         Me.bnt_Exclui.UseVisualStyleBackColor = True
         '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "icons8-editar-arquivo-64-2.png")
+        Me.ImageList1.Images.SetKeyName(1, "icons8-fechar-janela-64.png")
+        Me.ImageList1.Images.SetKeyName(2, "icons8-adicionar-64.png")
+        '
         'Estoque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -269,4 +280,5 @@ Partial Class Estoque
     Friend WithEvents bnt_Inclui As Button
     Friend WithEvents bnt_Edita As Button
     Friend WithEvents bnt_Exclui As Button
+    Friend WithEvents ImageList1 As ImageList
 End Class
