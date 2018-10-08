@@ -1,4 +1,4 @@
-﻿Public Class romaneios
+﻿Public Class Romaneios
     Friend dbdata As New BdClass
     Friend vend As New Dictionary(Of String, Integer)
 

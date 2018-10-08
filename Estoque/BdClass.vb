@@ -3,7 +3,7 @@
 Public Class BdClass
     Private conexao As New OleDbConnection
     Private comando As OleDbCommand
-    Friend adaptador As OleDbDataAdapter
+    Private adaptador As OleDbDataAdapter
     Private querySql As String
     'Função utilizada para abrir a conexão com o banco de dados
     Public Sub Abreconexao()
