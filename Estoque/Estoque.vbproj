@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcessoDados.vb" />
+    <Compile Include="AcessoRomaneio.vb" />
     <Compile Include="BdClass.vb" />
     <Compile Include="AdicionaDespesaVeiculo.Designer.vb">
       <DependentUpon>AdicionaDespesaVeiculo.vb</DependentUpon>
@@ -256,16 +257,17 @@
     </Compile>
     <Compile Include="Produto.vb" />
     <Compile Include="relatorios.vb" />
+    <Compile Include="Romaneio.vb" />
     <Compile Include="Vendedores.Designer.vb">
       <DependentUpon>Vendedores.vb</DependentUpon>
     </Compile>
     <Compile Include="Vendedores.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Romaneio.Designer.vb">
-      <DependentUpon>Romaneio.vb</DependentUpon>
+    <Compile Include="Romaneios.Designer.vb">
+      <DependentUpon>Romaneios.vb</DependentUpon>
     </Compile>
-    <Compile Include="Romaneio.vb">
+    <Compile Include="Romaneios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NovoRomaneio.Designer.vb">
@@ -380,8 +382,8 @@
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Romaneio.resx">
-      <DependentUpon>Romaneio.vb</DependentUpon>
+    <EmbeddedResource Include="Romaneios.resx">
+      <DependentUpon>Romaneios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NovoRomaneio.resx">
       <DependentUpon>NovoRomaneio.vb</DependentUpon>

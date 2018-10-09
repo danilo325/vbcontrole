@@ -6,17 +6,18 @@ Public Class BdClass
     Private adaptador As OleDbDataAdapter
     Private querySql As String
     'Função utilizada para abrir a conexão com o banco de dados
-    Public Sub Abreconexao()
+    Public Function Abreconexao() As OleDbConnection
         conexao.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\LiderBancoDados.accdb"
         Try
 
             conexao.Open()
-
+            Return conexao
 
         Catch ex As Exception
             MsgBox("Erro ao conectar com banco de dados \n" & ex.ToString, MsgBoxStyle.Critical)
         End Try
-    End Sub
+        Return Nothing
+    End Function
     Public Function ultimo_id(tb As String, col As String) As Integer
         Dim id As Integer
 

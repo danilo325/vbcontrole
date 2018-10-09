@@ -44,6 +44,8 @@ Partial Class Dia_DetalhesRomaneio
         Me.dtp_dataRomaneio = New System.Windows.Forms.DateTimePicker()
         Me.lbl_valorTotal = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lbl_status = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -242,6 +244,24 @@ Partial Class Dia_DetalhesRomaneio
         Me.Label9.TabIndex = 19
         Me.Label9.Text = "Valor Total"
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(743, 44)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(37, 13)
+        Me.Label10.TabIndex = 20
+        Me.Label10.Text = "Status"
+        '
+        'lbl_status
+        '
+        Me.lbl_status.AutoSize = True
+        Me.lbl_status.Location = New System.Drawing.Point(786, 44)
+        Me.lbl_status.Name = "lbl_status"
+        Me.lbl_status.Size = New System.Drawing.Size(45, 13)
+        Me.lbl_status.TabIndex = 21
+        Me.lbl_status.Text = "Label11"
+        '
         'Dia_DetalhesRomaneio
         '
         Me.AcceptButton = Me.OK_Button
@@ -249,6 +269,8 @@ Partial Class Dia_DetalhesRomaneio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(928, 427)
+        Me.Controls.Add(Me.lbl_status)
+        Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.lbl_valorTotal)
         Me.Controls.Add(Me.dtp_dataRomaneio)
@@ -304,4 +326,6 @@ Partial Class Dia_DetalhesRomaneio
     Friend WithEvents dtp_dataRomaneio As DateTimePicker
     Friend WithEvents lbl_valorTotal As Label
     Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents lbl_status As Label
 End Class
