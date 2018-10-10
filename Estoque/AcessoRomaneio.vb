@@ -193,6 +193,29 @@ Public Class AcessoRomaneio
         Return Dt
     End Function
 
+    Private Function GetIdVendedor(nome As String) As Integer
+        Dt = New DataTable
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "SELECT IdVendedor FROM vendedores WHERE NomeVendedor ="& nome
+            End With
+            With Da
+                .SelectCommand = Cmd
+                .Fill(Dt)
+            End With
+
+        Catch ex As Exception
+            Dt = Nothing
+            MsgBox("Problemas ao recuperar o id do vendedor no momento de gravar o romaneio" & ex.ToString)
+            Return Nothing
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return Dt.Rows(0).Item(0)
+    End Function
+
     ''' <summary>
     ''' Gera uma <c>List(Of Romaneio)</c> e preenche os valores das propriedades dos Objetos romaneios atraves dos dados
     ''' do <c>DataTable</c> retornado da busca no banco de dados
@@ -201,6 +224,7 @@ Public Class AcessoRomaneio
     ''' <returns><c>List(Of Romaneio)</c> contendo os objetos com suas propriedades devidamente preenchidas</returns>
     Private Function GeraListaRomaneio(tabela As DataTable) As List(Of Romaneio)
         Dim lista As New List(Of Romaneio)
+
         Try
 
 
@@ -227,6 +251,47 @@ Public Class AcessoRomaneio
             MsgBox("Problemas ao capturar a lista de romaneio" & ex.ToString, MsgBoxStyle.Critical)
         End Try
         Return lista
+    End Function
+
+
+
+    Public Function VerificaProdutos(produto As Integer) As Integer
+        Dt = New DataTable
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "SELECT Qtd FROM produto WHERE IdProduto =" & produto
+            End With
+            With Da
+                .SelectCommand = Cmd
+                .Fill(Dt)
+            End With
+
+        Catch ex As Exception
+            Dt = Nothing
+            MsgBox("Problemas ao recuperar o id do vendedor no momento de gravar o romaneio" & ex.ToString)
+            Return Nothing
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return Dt.Rows(0).Item(0)
+    End Function
+
+
+    Public Function GravaRomaneio(romaneio As Romaneio) As Boolean
+        Dim query As String = "INSERT INTO romaneio(IdVendedor,DataRomaneio,ValorCheques,ValorDinheiro,ValorMoedas,ValorBoleto,ValorFiado,ObsRomaneio,Estado) Values(" &
+            "'" & GetIdVendedor(romaneio.Vendedor) & "'," &
+            "'" & romaneio.Data & "'," &
+            "'" & romaneio.VCheques.ToString.Replace(".", ",") & "'," &
+            "'" & romaneio.VDinheiro.ToString.Replace(".", ",") & "'," &
+            "'" & romaneio.VMoedas.ToString.Replace(".", ",") & "'," &
+            "'" & romaneio.VBoletos.ToString.Replace(".", ",") & "'," &
+            "'" & romaneio.VFiado.ToString.Replace(".", ",") & "'," &
+            "'" & romaneio.Observacao & "'," &
+            "'" & romaneio.Status & "')"
+
+
     End Function
 
 End Class

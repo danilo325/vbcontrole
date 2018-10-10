@@ -18,8 +18,29 @@ Public Class BdClass
         End Try
         Return Nothing
     End Function
+    Public Function teste() As DataTable
+        Return conexao.GetSchema
+
+    End Function
+    Public Function tt2() As Integer
+        Dim d As DataTable = conexao.GetSchema("indexes")
+        Dim foundRow As DataRow
+        Try
+
+            Dim s As String = "primaryKeyValue"
+
+            foundRow = d.Select("COLUMN_NAME ='IdRomaneio'").GetValue(0)
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
+
+        Return foundRow.Item("CARDINALITY")
+    End Function
     Public Function ultimo_id(tb As String, col As String) As Integer
         Dim id As Integer
+
 
         comando.CommandText = "SELECT max(" & col & ") FROM " & tb
 

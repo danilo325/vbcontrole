@@ -45,6 +45,9 @@ Partial Class NovoRomneio
         Me.txt_obs = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.bnt_inclui = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lbl_estado = New System.Windows.Forms.Label()
+        Me.bnt_mudaestado = New System.Windows.Forms.Button()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -246,11 +249,40 @@ Partial Class NovoRomneio
         Me.bnt_inclui.Text = "Gravar Romaneio"
         Me.bnt_inclui.UseVisualStyleBackColor = True
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(491, 9)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(40, 13)
+        Me.Label11.TabIndex = 45
+        Me.Label11.Text = "Estado"
+        '
+        'lbl_estado
+        '
+        Me.lbl_estado.AutoSize = True
+        Me.lbl_estado.Location = New System.Drawing.Point(546, 9)
+        Me.lbl_estado.Name = "lbl_estado"
+        Me.lbl_estado.Size = New System.Drawing.Size(39, 13)
+        Me.lbl_estado.TabIndex = 46
+        Me.lbl_estado.Text = "estado"
+        '
+        'bnt_mudaestado
+        '
+        Me.bnt_mudaestado.Location = New System.Drawing.Point(494, 35)
+        Me.bnt_mudaestado.Name = "bnt_mudaestado"
+        Me.bnt_mudaestado.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_mudaestado.TabIndex = 47
+        Me.bnt_mudaestado.UseVisualStyleBackColor = True
+        '
         'NovoRomneio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(900, 450)
+        Me.Controls.Add(Me.bnt_mudaestado)
+        Me.Controls.Add(Me.lbl_estado)
+        Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.bnt_inclui)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.txt_obs)
@@ -305,4 +337,7 @@ Partial Class NovoRomneio
     Friend WithEvents txt_obs As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents bnt_inclui As Button
+    Friend WithEvents Label11 As Label
+    Friend WithEvents lbl_estado As Label
+    Friend WithEvents bnt_mudaestado As Button
 End Class

@@ -16,6 +16,12 @@
             dicProdutos.Add(produto.Item(0), produto.Item(1).ToString)
         Next produto
     End Sub
+
+    ''' <summary>
+    ''' Quando  o botaão pesqusar é acionado
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles bnt_pesquisa.Click
         Dim contaargumentos As Integer = 0
         Dim idromaneio, idvendedor As Integer
@@ -64,7 +70,8 @@
     Private Sub romaneios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbdata.Abreconexao()
         CriaDicPro()
-        'dgv_romaneios.DataSource = dbdata.Pesquisa("SELECT * FROM romaneio")
+
+
 
         ColId.HeaderText = "Id"
         ColId.ToolTipText = "Identificador único do romaneio."
@@ -136,6 +143,7 @@
             MsgBox("É necessário selecionar aomenos uma linha")
         End If
     End Sub
+
     ''' <summary>
     ''' Quando acionado abre uma tela com os dados do roamaneio
     ''' </summary>
