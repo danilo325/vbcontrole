@@ -162,6 +162,7 @@
         ColQtdProdFinal.HeaderText = "Qtd Prod Acertado"
         ColQtdProdFinal.Name = "qtdprodacertado"
 
+
         Dim romaneio As Romaneio = AcRomaneio.PesquisaRomaneio(dgv_romaneios.Rows(dgv_romaneios.SelectedCells(0).RowIndex).Cells(0).Value, 0, "", "").Item(0)
         Dia_DetalhesRomaneio.lbl_idromaneio.Text = romaneio.Id
         Dia_DetalhesRomaneio.txt_NomeVendedor.Text = romaneio.Vendedor
@@ -179,8 +180,7 @@
         Next produto
 
         'Dia_DetalhesRomaneio.dgv_ProdutosRomaneio.DataSource = dbdata.Pesquisa("SELECT* FROM produtosRomaneio WHERE IdRomaneio = " & dgv_romaneios.Rows(indexlinha).Cells(0).Value)
-        Dia_DetalhesRomaneio.dgv_ProdutosRomaneio.AllowUserToAddRows = False
-
+        'Dia_DetalhesRomaneio.dgv_ProdutosRomaneio.AllowUserToAddRows = False
         Dia_DetalhesRomaneio.Visible = True
 
     End Sub
