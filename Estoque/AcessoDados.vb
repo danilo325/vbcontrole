@@ -142,4 +142,20 @@ Public Class AcessoDados
         End Try
     End Sub
 
+
+    Public Sub IncluiProduto(produto As Produto)
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = "INSERT INTO produto(Descricao, Grupo,Quantidade, Unidade,Pcusto,Pvenda,Produzido,Ativo)" &
+                "VALUES('" & produto.Descricao & "','" & produto.Grupo & "','" & produto.Quantidade & "','" & produto.Unidade & "','" & produto.Pcusto & "','" & "0" & "','" & produto.Produzido & "','" & produto.Ativo & "')"
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            CloseConexao(Cn)
+        End Try
+    End Sub
+
 End Class

@@ -251,6 +251,12 @@
     <Compile Include="NovoAbastecimento.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="NovoProduto.Designer.vb">
+      <DependentUpon>NovoProduto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NovoProduto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Perdas.Designer.vb">
       <DependentUpon>Perdas.vb</DependentUpon>
     </Compile>
@@ -372,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NovoAbastecimento.resx">
       <DependentUpon>NovoAbastecimento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovoProduto.resx">
+      <DependentUpon>NovoProduto.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Perdas.resx">
       <DependentUpon>Perdas.vb</DependentUpon>

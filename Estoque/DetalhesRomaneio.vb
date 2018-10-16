@@ -12,5 +12,22 @@ Public Class Dia_DetalhesRomaneio
         Me.Close()
     End Sub
 
+    Private Sub Dia_DetalhesRomaneio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+        NovoRomneio.txt_VBoleto.Text = txt_VBoleto.Text
+        NovoRomneio.txt_VCheque.Text = txt_VCheque.Text
+        NovoRomneio.txt_VMoeda.Text = txt_VMoeda.Text
+        NovoRomneio.txt_VDinheiro.Text = txt_VDinheiro.Text
+        NovoRomneio.txt_VFiado.Text = txt_VFiado.Text
+        NovoRomneio.lbl_estado.Text = lbl_status.Text
+        NovoRomneio.lbl_idromaneio.Text = lbl_idromaneio.Text
+        NovoRomneio.lbl_valorTotal.Text = lbl_valorTotal.Text
+        NovoRomneio.cmb_vendedor.Text = txt_NomeVendedor.Text
+        NovoRomneio.Visible = True
+    End Sub
 End Class

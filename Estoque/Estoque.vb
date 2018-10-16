@@ -90,7 +90,9 @@ Public Class Estoque
     End Sub
 
     Private Sub Bnt_Inclui_Click(sender As Object, e As EventArgs) Handles bnt_Inclui.Click
-        dia_inclui.Visible = True
+        'dia_inclui.Visible = True
+        NovoProduto.Visible = True
+
     End Sub
 
     Private Sub Bnt_Fechar_Click(sender As Object, e As EventArgs) Handles bnt_Fechar.Click
@@ -284,4 +286,10 @@ Public Class Estoque
         DetalheProduto.lbl_qtd.Text = dgv_Produtos.Rows(e.RowIndex).Cells(3).Value.ToString
         DetalheProduto.Show()
     End Sub
+
+    Friend Class LiderBancoDadosDataSet
+    End Class
+
+    Friend Class LiderBancoDadosDataSetTableAdapters
+    End Class
 End Class

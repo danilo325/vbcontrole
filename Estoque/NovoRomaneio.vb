@@ -5,7 +5,7 @@
     'Inicia as colunas para o data gridview
     Dim comboProdutos As New DataGridViewComboBoxColumn
     Dim txtidproduto, txtqtdsaida, txtqtdretorno, txtqtdfinalisa As New DataGridViewTextBoxColumn
-
+    Dim dadosamtes As New DataGrid
     'fecha a janela assim que se clica no botão fechar
     Private Sub bnt_fecha_Click(sender As Object, e As EventArgs) Handles bnt_fecha.Click
         Me.Close()
@@ -104,6 +104,9 @@
         '################################################################################################################################
 
 
+
+
+
     End Sub
     'Gera os dados para o combobox dosvendedores
     Private Sub comboVendedores()
@@ -126,6 +129,8 @@
     Private Sub bnt_mudaestado_Click(sender As Object, e As EventArgs) Handles bnt_mudaestado.Click
 
     End Sub
+
+
 
     Private Sub NovoRomneio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dadosbd.Abreconexao()
@@ -153,51 +158,18 @@
         txtidproduto.ToolTipText = "Identificador do produto no sistema"
 
         dgv_ProdutosRomaneio.Columns.AddRange(txtidproduto, comboProdutos, txtqtdsaida, txtqtdretorno, txtqtdfinalisa)
-
-        If lbl_estado.Text = "estado" Then
-            lbl_estado.Text = "Saida"
-            bnt_mudaestado.Visible = False
-            txtqtdretorno.Visible = False
-            txtqtdfinalisa.Visible = False
-            txtqtdsaida.Visible = True
-            txt_VBoleto.Enabled = False
-            txt_VCheque.Enabled = False
-            txt_VDinheiro.Enabled = False
-            txt_VMoeda.Enabled = False
-            txt_VFiado.Enabled = False
-            lbl_valorTotal.Text = 0
-
-        ElseIf lbl_estado.Text = "Saida" Then
-            bnt_mudaestado.Text = "Retornar"
-            bnt_mudaestado.Visible = True
-            txtqtdretorno.Visible = False
-            txtqtdsaida.Visible = True
-            txtqtdfinalisa.Visible = False
-            txt_VBoleto.Enabled = False
-            txt_VCheque.Enabled = False
-            txt_VDinheiro.Enabled = False
-            txt_VMoeda.Enabled = False
-            txt_VFiado.Enabled = False
-            lbl_valorTotal.Text = 0
-
-
-        ElseIf lbl_estado.Text = "Retorno" Then
-            bnt_mudaestado.Text = "Finalizar"
-            txtqtdretorno.Visible = True
-            txtqtdsaida.Visible = True
-            txt_VBoleto.Enabled = False
-            txt_VCheque.Enabled = False
-            txt_VDinheiro.Enabled = False
-            txt_VMoeda.Enabled = False
-            txt_VFiado.Enabled = False
-            lbl_valorTotal.Text = 0
-        ElseIf lbl_estado.Text = "Finalizado" Then
-            txtqtdretorno.Visible = True
-            txtqtdsaida.Visible = True
+        If lbl_idromaneio.Text = "ID" Then
+            lbl_idromaneio.Text = dadosbd.tt2() + 1
         End If
+
+        lbl_estado.Text = "Finalizado"
         Label1.Visible = False
-        lbl_idromaneio.Text = dadosbd.tt2() + 1
+
+
+
     End Sub
+
+
     'chama a função grava dados 
     Private Sub bnt_inclui_Click(sender As Object, e As EventArgs) Handles bnt_inclui.Click
         gravaDados()
@@ -209,19 +181,21 @@
         Dim detalhesproduto As DataTable
 
         If coluna = 0 Then
-            If dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString <> "" And IsNumeric(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString) Then
-                detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value))
-                If detalhesproduto.Rows.Count = 0 Then
-                    dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
-                    dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Selected = True
-                    MsgBox("O ID de produto digitado não existe", MsgBoxStyle.DefaultButton1)
-                    Return
+            If Not IsNothing(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value) Then
+                If dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString <> "" And IsNumeric(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString) Then
+                    detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value))
+                    If detalhesproduto.Rows.Count = 0 Then
+                        dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
+                        dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Selected = True
+                        MsgBox("O ID de produto digitado não existe", MsgBoxStyle.DefaultButton1)
+                        Return
+                    End If
+                    dgv_ProdutosRomaneio.Rows(linha).Cells(coluna + 1).Value = detalhesproduto.Rows(0).Item(1).ToString
                 End If
-                dgv_ProdutosRomaneio.Rows(linha).Cells(coluna + 1).Value = detalhesproduto.Rows(0).Item(1).ToString
             End If
         End If
 
-        If coluna = 1 Then
+            If coluna = 1 Then
             If dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString <> "" Then
                 detalhesproduto = AcessoRomaneio.VerificaProdutos(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString)
                 If detalhesproduto.Rows.Count = 0 Then
@@ -238,34 +212,34 @@
 
         If coluna = 2 Then
             MsgBox(linha)
-            detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(0).Value.ToString))
-            If detalhesproduto.Rows.Count = 0 Then
-                dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
-                dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Selected = True
-                MsgBox("Problemas para verificar a quantidade disponivel do produto", MsgBoxStyle.DefaultButton1)
-                Return
-            End If
-            If detalhesproduto.Rows(0).Item(2) < dgv_ProdutosRomaneio.Item(2, linha).Value Then
-                dgv_ProdutosRomaneio.Item(2, linha).ErrorText = "Em estoque temos somente " & detalhesproduto.Rows(0).Item(2) & "de " & detalhesproduto.Rows(0).Item(1)
-                dgv_ProdutosRomaneio.Item(2, linha).Value = ""
-                dgv_ProdutosRomaneio.Item(2, linha).Selected = True
-                Return
-            Else
-                dgv_ProdutosRomaneio.Item(2, linha).ErrorText = ""
-            End If
+            '  detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(0).Value.ToString))
+            'If detalhesproduto.Rows.Count = 0 Then
+            'dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
+            'dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Selected = True
+            'MsgBox("Problemas para verificar a quantidade disponivel do produto", MsgBoxStyle.DefaultButton1)
+            ' Return
+            'end If
+            ' If detalhesproduto.Rows(0).Item(2) < dgv_ProdutosRomaneio.Item(2, linha).Value Then
+            'dgv_ProdutosRomaneio.Item(2, linha).ErrorText = "Em estoque temos somente " & detalhesproduto.Rows(0).Item(2) & "de " & detalhesproduto.Rows(0).Item(1)
+            'dgv_ProdutosRomaneio.Item(2, linha).Value = ""
+            'dgv_ProdutosRomaneio.Item(2, linha).Selected = True
+            'Return
+            'Else
+            'dgv_ProdutosRomaneio.Item(2, linha).ErrorText = ""
+            'End If
         End If
         If coluna = 3 Then
             '  MsgBox(linha)
             ' detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(0).Value.ToString))
 
-            If dgv_ProdutosRomaneio.Item(2, linha) < dgv_ProdutosRomaneio.Item(3, linha).Value Then
-                dgv_ProdutosRomaneio.Item(3, linha).ErrorText = "A quantidade de produtos no retorno está maior que a saida "
-                dgv_ProdutosRomaneio.Item(3, linha).Value = ""
-                dgv_ProdutosRomaneio.Item(3, linha).Selected = True
-                Return
-            Else
-                dgv_ProdutosRomaneio.Item(3, linha).ErrorText = ""
-            End If
+            ' If dgv_ProdutosRomaneio.Item(2, linha).Value < dgv_ProdutosRomaneio.Item(3, linha).Value Then
+            '  dgv_ProdutosRomaneio.Item(3, linha).ErrorText = "A quantidade de produtos no retorno está maior que a saida "
+            '     dgv_ProdutosRomaneio.Item(3, linha).Value = ""
+            '  dgv_ProdutosRomaneio.Item(3, linha).Selected = True
+            '  Return
+            'Else
+            ' dgv_ProdutosRomaneio.Item(3, linha).ErrorText = ""
+            ' If
         End If
     End Sub
 End Class

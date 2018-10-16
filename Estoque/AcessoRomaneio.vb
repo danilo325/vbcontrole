@@ -363,7 +363,7 @@ Public Class AcessoRomaneio
         Try
             For Each produto As DataRow In produtos.Rows
                 Dim a As Integer = VerificaProdutos(Integer.Parse(produto.Item(1)), Cn).Rows(0).Item(2)
-                strquery = "UPDATE produto SET Qtd = '" & a - produto.Item(2) & "' WHERE IdProduto = " & produto.Item(1)
+                strquery = "UPDATE produto SET Qtd = '" & a - produto.Item(4) & "' WHERE IdProduto = " & produto.Item(1)
 
                 MsgBox(strquery)
                 Cmd = New OleDbCommand(strquery, Cn)
@@ -376,8 +376,8 @@ Public Class AcessoRomaneio
 
             Next
             For Each produto As DataRow In produtos.Rows
-                strquery = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS) VALUES(" &
-                 "'" & produto.Item(0) & "','" & produto.Item(1) & "','" & produto.Item(2) & "')"
+                strquery = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS,QtdProdutoR,QtdProduto) VALUES(" &
+                 "'" & produto.Item(0) & "','" & produto.Item(1) & "','" & produto.Item(2) & "','" & produto.Item(3) & "','" & produto.Item(4) & "')"
 
                 MsgBox(strquery)
                 Cmd = New OleDbCommand(strquery, Cn)

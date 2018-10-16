@@ -46,6 +46,7 @@ Partial Class Dia_DetalhesRomaneio
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lbl_status = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -247,7 +248,7 @@ Partial Class Dia_DetalhesRomaneio
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(743, 44)
+        Me.Label10.Location = New System.Drawing.Point(681, 22)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(37, 13)
         Me.Label10.TabIndex = 20
@@ -256,11 +257,20 @@ Partial Class Dia_DetalhesRomaneio
         'lbl_status
         '
         Me.lbl_status.AutoSize = True
-        Me.lbl_status.Location = New System.Drawing.Point(786, 44)
+        Me.lbl_status.Location = New System.Drawing.Point(724, 22)
         Me.lbl_status.Name = "lbl_status"
         Me.lbl_status.Size = New System.Drawing.Size(45, 13)
         Me.lbl_status.TabIndex = 21
         Me.lbl_status.Text = "Label11"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(727, 51)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 22
+        Me.Button1.Text = "Editar"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Dia_DetalhesRomaneio
         '
@@ -269,6 +279,7 @@ Partial Class Dia_DetalhesRomaneio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(928, 427)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lbl_status)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -328,4 +339,5 @@ Partial Class Dia_DetalhesRomaneio
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents lbl_status As Label
+    Friend WithEvents Button1 As Button
 End Class
