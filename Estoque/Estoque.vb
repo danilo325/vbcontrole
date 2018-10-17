@@ -292,4 +292,8 @@ Public Class Estoque
 
     Friend Class LiderBancoDadosDataSetTableAdapters
     End Class
+
+    Private Sub bnt_producao_Click(sender As Object, e As EventArgs) Handles bnt_producao.Click
+        Producao.Visible = True
+    End Sub
 End Class

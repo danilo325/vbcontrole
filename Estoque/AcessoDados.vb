@@ -7,10 +7,10 @@ Imports System.Configuration
 ''' </summary>
 ''' 
 Public Class AcessoDados
-    Dim Da As OleDbDataAdapter
-    Dim Dt As DataTable
-    Dim Cmd As OleDbCommand
-    Dim Cn As OleDb.OleDbConnection
+    Dim Da As New OleDbDataAdapter
+    Dim Dt As New DataTable
+    Dim Cmd As New OleDbCommand
+    Dim Cn As New OleDb.OleDbConnection
 
     ''' <summary>
     ''' Realiza a conexão com o banco de dados 
@@ -37,7 +37,9 @@ Public Class AcessoDados
                 cn.Close()
             End If
         Catch ex As Exception
+            MsgBox("Problemas ao criar combo de produtos" & ex.ToString)
             Throw ex
+
         End Try
     End Sub
 
@@ -147,8 +149,8 @@ Public Class AcessoDados
         Try
             Cn = GetConexaoDB()
             Cmd.Connection = Cn
-            Cmd.CommandText = "INSERT INTO produto(Descricao, Grupo,Quantidade, Unidade,Pcusto,Pvenda,Produzido,Ativo)" &
-                "VALUES('" & produto.Descricao & "','" & produto.Grupo & "','" & produto.Quantidade & "','" & produto.Unidade & "','" & produto.Pcusto & "','" & "0" & "','" & produto.Produzido & "','" & produto.Ativo & "')"
+            Cmd.CommandText = "INSERT INTO produto(Descricao, Grupo,Qtd, Unidade,Pcusto,Produzido,Ativo)" &
+                "VALUES('" & produto.Descricao & "','" & produto.Grupo & "','" & produto.Quantidade & "','" & produto.Unidade & "','" & produto.Pcusto & "','" & produto.Produzido & "','" & produto.Ativo & "')"
             Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
@@ -157,5 +159,123 @@ Public Class AcessoDados
             CloseConexao(Cn)
         End Try
     End Sub
+    Public Function ComboGruposProduto() As DataTable
+        Dim grupos As New ComboBox
+        Dim dados As New DataTable
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = "SELECT * FROM gruposProduto"
+            Da.SelectCommand = Cmd
+            Da.Fill(dados)
 
+        Catch ex As Exception
+            Throw ex
+        Finally
+            CloseConexao(Cn)
+        End Try
+
+
+        Return dados
+
+
+    End Function
+
+
+    Public Function DiciProduto() As DataTable
+
+        Dim dados As New DataTable
+        Dim query As String = "SELECT IdProduto, Descricao FROM produto"
+
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = query
+            Da.SelectCommand = Cmd
+            Da.Fill(dados)
+        Catch ex As Exception
+            Throw ex
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return dados
+    End Function
+
+
+
+    Public Sub PreencheProducao(ByRef dgv As DataGridView, Optional id As Integer = 0, Optional idpen As Integer = 0, Optional idpsai As Integer = 0, Optional dai As String = "", Optional daf As String = "")
+        Dim query As String = "SELECT * FROM producao "
+        Dim soum As Boolean = True
+        dgv.Rows.Clear()
+
+        If id > 0 Then
+            If soum Then
+                query += "WHERE IdProducao = " & id
+                soum = False
+            Else
+                query += " AND IdProducao = " & id
+            End If
+
+        End If
+
+        If idpen > 0 Then
+            If soum Then
+                query += " WHERE ProdutoEntrada = " & idpen
+                soum = False
+            Else
+                query += " AND ProdutoEntrada = " & idpen
+            End If
+
+        End If
+        If idpsai > 0 Then
+            If soum Then
+                query += " WHERE ProdutoSaida = " & idpsai
+                soum = False
+            Else
+                query += " AND ProdutoSaida = " & idpsai
+            End If
+
+        End If
+        If dai <> "" Then
+            If daf <> "" Then
+                If soum Then
+                    query += "WHERE Data BETWEEN  '#" & Format(dai, "MM/dd/yyyy") & "#' AND '#" & Format(daf, "MM/dd/yyyy") & "#"
+                    soum = False
+                Else
+                    query += " AND Data BETWEEN  '#" & Format(dai, "MM/dd/yyyy") & "#' AND '#" & Format(daf, "MM/dd/yyyy") & "#"
+                End If
+            Else
+                If soum Then
+                    query += "WHERE  Data = '#" & Format(dai, "MM/dd/yyyy") & "#'"
+                    soum = False
+                Else
+                    query += " AND  Data = '#" & Format(dai, "MM/dd/yyyy") & "#'"
+                End If
+            End If
+        End If
+        Dim dados As New DataTable
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = query
+            Da.SelectCommand = Cmd
+            Da.Fill(dados)
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            CloseConexao(Cn)
+        End Try
+        For Each dado As DataRow In dados.Rows
+            dgv.Rows.Add(dado.Item("IdProducao"),
+                         dado.Item("ProdutoEntrada"),
+                         dado.Item("QtdEntrada"),
+                         dado.Item("ProdutoSaida"),
+                         dado.Item("QtdSai"),
+                         dado.Item("Data"),
+                         dado.Item("ObsProducao"))
+
+        Next dado
+
+    End Sub
 End Class

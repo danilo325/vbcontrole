@@ -48,7 +48,7 @@ Partial Class NovoProduto
         '
         'txt_Quantidade
         '
-        Me.txt_Quantidade.Location = New System.Drawing.Point(94, 133)
+        Me.txt_Quantidade.Location = New System.Drawing.Point(93, 189)
         Me.txt_Quantidade.Name = "txt_Quantidade"
         Me.txt_Quantidade.Size = New System.Drawing.Size(100, 20)
         Me.txt_Quantidade.TabIndex = 1
@@ -62,13 +62,15 @@ Partial Class NovoProduto
         '
         'txt_Unidade
         '
-        Me.txt_Unidade.Location = New System.Drawing.Point(94, 185)
+        Me.txt_Unidade.Location = New System.Drawing.Point(93, 133)
         Me.txt_Unidade.Name = "txt_Unidade"
         Me.txt_Unidade.Size = New System.Drawing.Size(100, 20)
         Me.txt_Unidade.TabIndex = 3
         '
         'cmb_Grupo
         '
+        Me.cmb_Grupo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmb_Grupo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmb_Grupo.FormattingEnabled = True
         Me.cmb_Grupo.Location = New System.Drawing.Point(94, 93)
         Me.cmb_Grupo.Name = "cmb_Grupo"

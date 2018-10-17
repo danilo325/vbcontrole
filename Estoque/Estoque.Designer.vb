@@ -45,6 +45,7 @@ Partial Class Estoque
         Me.bnt_Edita = New System.Windows.Forms.Button()
         Me.bnt_Exclui = New System.Windows.Forms.Button()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.bnt_producao = New System.Windows.Forms.Button()
         CType(Me.dgv_Produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -227,11 +228,21 @@ Partial Class Estoque
         Me.ImageList1.Images.SetKeyName(1, "icons8-fechar-janela-64.png")
         Me.ImageList1.Images.SetKeyName(2, "icons8-adicionar-64.png")
         '
+        'bnt_producao
+        '
+        Me.bnt_producao.Location = New System.Drawing.Point(644, 57)
+        Me.bnt_producao.Name = "bnt_producao"
+        Me.bnt_producao.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_producao.TabIndex = 22
+        Me.bnt_producao.Text = "Produção"
+        Me.bnt_producao.UseVisualStyleBackColor = True
+        '
         'Estoque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.bnt_producao)
         Me.Controls.Add(Me.bnt_Exclui)
         Me.Controls.Add(Me.bnt_Edita)
         Me.Controls.Add(Me.bnt_Inclui)
@@ -281,4 +292,5 @@ Partial Class Estoque
     Friend WithEvents bnt_Edita As Button
     Friend WithEvents bnt_Exclui As Button
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents bnt_producao As Button
 End Class

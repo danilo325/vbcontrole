@@ -1,5 +1,6 @@
 ﻿Public Class NovoProduto
     Dim bancodados As New AcessoDados
+    Dim dicgrupo As New Dictionary(Of String, Integer)
     Private Sub bnt_Cancela_Click(sender As Object, e As EventArgs) Handles bnt_Cancela.Click
         Me.Close()
     End Sub
@@ -43,8 +44,11 @@
                 cmb_Grupo.ForeColor = DefaultBackColor
 
             End If
-            If IsNothing(txt_Unidade.Text) Or txt_Unidade.Text = "" Then
+            If IsNothing(txt_Quantidade.Text) Or txt_Quantidade.Text = "" Then
                 txt_Quantidade.Text = 0
+            End If
+            If IsNothing(txt_PrecoCusto.Text) Or txt_PrecoCusto.Text = "" Then
+                txt_PrecoCusto.Text = 0
             End If
 
         Catch ex As Exception
@@ -60,7 +64,7 @@
 
     Private Sub bnt_Inclui_Click(sender As Object, e As EventArgs) Handles bnt_Inclui.Click
         If VerificaEntradas() Then
-            Dim prod As New Produto(txt_Descricao.Text, cmb_Grupo.SelectedValue, Double.Parse(txt_Quantidade.Text), txt_Unidade.Text, Double.Parse(txt_PrecoCusto.Text), chk_Produzido.Checked, chk_Ativo.Checked)
+            Dim prod As New Produto(txt_Descricao.Text, dicgrupo.Item(cmb_Grupo.Text), Double.Parse(txt_Quantidade.Text), txt_Unidade.Text, Double.Parse(txt_PrecoCusto.Text), chk_Produzido.Checked, chk_Ativo.Checked)
             Try
                 bancodados.IncluiProduto(prod)
             Catch ex As Exception
@@ -70,6 +74,17 @@
     End Sub
 
     Private Sub NovoProduto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            For Each prod As DataRow In bancodados.ComboGruposProduto.Rows
+                dicgrupo.Add(prod(1).ToString, prod(0))
+
+                cmb_Grupo.Items.Add(prod(1).ToString)
+            Next
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
         'TODO: esta linha de código carrega dados na tabela 'LiderBancoDadosDataSet.gruposProduto'. Você pode movê-la ou removê-la conforme necessário.
         'Me.GruposProdutoTableAdapter.Fill(Me.LiderBancoDadosDataSet.gruposProduto)
 
