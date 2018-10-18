@@ -1,18 +1,38 @@
 ﻿Public Class Producao
+
+    ' Cria as colunas para mostrar no DataGridView
+
     Private IdProducao, ProdutoEntra, QuantidadeEntra, ProdutoSai, QuantidadeSai, Data, Obs As New DataGridViewTextBoxColumn
-    Private dicioProdu As New Dictionary(Of String, Integer)
     Private dados As New AcessoDados
+
+
+    'Chama o formulário de inclusão de nova produção
+    Private Sub bnt_inclui_Click(sender As Object, e As EventArgs) Handles bnt_inclui.Click
+        NovaProducao.Visible = True
+    End Sub
+
+
+    Private Sub ValidaId() Handles txt_idproducao.TextChanged
+        If Not Integer.TryParse(txt_idproducao.Text, 1) Then
+            txt_idproducao.Text = ""
+            MsgBox("O id é um número")
+        End If
+    End Sub
+
 
     Private Sub bnt_pesquisa_Click(sender As Object, e As EventArgs) Handles bnt_pesquisa.Click
 
-        dados.PreencheProducao(dgv_producao, txt_idproducao.Text, dicioProdu.Item(cmb_materiaPrima.Text), dicioProdu(cmb_produzido.Text))
+        dados.PreencheProducao(dgv_producao,
+                               If(txt_idproducao.Text <> "", txt_idproducao.Text, Nothing),
+                               cmb_materiaPrima.SelectedValue,
+                               cmb_produzido.SelectedValue,
+                               If(dtp_incial.Checked, dtp_incial.Value.ToString, Nothing),
+                               If(dtp_final.Checked, dtp_incial.Value.ToString, Nothing))
     End Sub
 
-    Private Sub PreencheDic()
-        For Each prod As DataRow In dados.DiciProduto.Rows
-            dicioProdu.Add(prod(1).ToString, prod(0))
-        Next prod
-    End Sub
+
+
+    'Carrega as informações na tela inicial 
     Private Sub Producao_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         With IdProducao
             .HeaderText = "ID"
@@ -52,8 +72,23 @@
             .ToolTipText = "Alguma informação relevante para a produçaõ"
         End With
         Try
+            cmb_produzido.Items.Add("")
+            cmb_materiaPrima.Items.Add("")
 
-
+            With cmb_materiaPrima
+                .DataSource = dados.DiciProduto
+                .DisplayMember = "Descricao"
+                .ValueMember = "IdProduto"
+            End With
+            With cmb_produzido
+                .DataSource = dados.DiciProduto
+                .DisplayMember = "Descricao"
+                .ValueMember = "IdProduto"
+            End With
+            cmb_materiaPrima.Text = ""
+            cmb_produzido.Text = ""
+            cmb_produzido.SelectedValue = 0
+            cmb_materiaPrima.SelectedValue = 0
             dgv_producao.Columns.AddRange(IdProducao, Data, ProdutoEntra, QuantidadeEntra, ProdutoSai, QuantidadeSai, Obs)
             dados.PreencheProducao(dgv_producao)
         Catch ex As Exception

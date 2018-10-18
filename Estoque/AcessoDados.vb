@@ -159,6 +159,7 @@ Public Class AcessoDados
             CloseConexao(Cn)
         End Try
     End Sub
+
     Public Function ComboGruposProduto() As DataTable
         Dim grupos As New ComboBox
         Dim dados As New DataTable
@@ -198,6 +199,7 @@ Public Class AcessoDados
         Finally
             CloseConexao(Cn)
         End Try
+
         Return dados
     End Function
 
@@ -266,16 +268,78 @@ Public Class AcessoDados
         Finally
             CloseConexao(Cn)
         End Try
+        Dim dic As New Dictionary(Of Integer, String)
+        For Each p As DataRow In DiciProduto().Rows
+            dic.Add(p(0), p(1))
+        Next
+
         For Each dado As DataRow In dados.Rows
             dgv.Rows.Add(dado.Item("IdProducao"),
-                         dado.Item("ProdutoEntrada"),
-                         dado.Item("QtdEntrada"),
-                         dado.Item("ProdutoSaida"),
+                         Format(dado.Item("Data"), "dd/MM/yyyy"),
+                       dic.Item(dado.Item("ProdutoEntrada")),
+                         dado.Item("QtdEntra"),
+                       dic.Item(dado.Item("ProdutoSaida")),
                          dado.Item("QtdSai"),
-                         dado.Item("Data"),
                          dado.Item("ObsProducao"))
 
         Next dado
 
+    End Sub
+
+
+    Public Sub GravaProducao(data As Date, materiaPrima As Integer, qtdMateriaprima As Double, producao As Integer, qtdProducao As Double, Optional obs As String = "")
+        Dim atualizamateriaprima As String = "UPDATE produto SET Qtd = Qtd - " & qtdMateriaprima & " WHERE IdProduto = " & materiaPrima
+        Dim atualizaproducao As String = "UPDATE produto SET Qtd = Qtd + " & qtdProducao & " 
+WHERE IdProduto = " & producao
+        Dim gravaproducao As String = "INSERT INTO producao(ProdutoEntrada,QtdEntra,ProdutoSaida,QtdSai,Data,ObsProducao) VALUES ('" &
+            materiaPrima & "','" & qtdMateriaprima & "','" & producao & "','" & qtdProducao & "','" & Format(data, "dd/MM/yyyy") & "','" & obs & "')"
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = gravaproducao
+            Cmd.ExecuteNonQuery()
+            '  Cmd.CommandText = atualizamateriaprima
+            'Cmd.ExecuteNonQuery()
+            ' Cmd.CommandText = atualizaproducao
+            ' Cmd.ExecuteNonQuery()
+
+
+        Catch ex As Exception
+            MsgBox("Problemas ao gravar a produção" & ex.ToString)
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = atualizamateriaprima
+            Cmd.ExecuteNonQuery()
+            '  Cmd.CommandText = atualizamateriaprima
+            'Cmd.ExecuteNonQuery()
+            ' Cmd.CommandText = atualizaproducao
+            ' Cmd.ExecuteNonQuery()
+
+
+        Catch ex As Exception
+            MsgBox("Problemas ao gravar a produção" & ex.ToString)
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Try
+            Cn = GetConexaoDB()
+            Cmd.Connection = Cn
+            Cmd.CommandText = atualizaproducao
+            Cmd.ExecuteNonQuery()
+            '  Cmd.CommandText = atualizamateriaprima
+            'Cmd.ExecuteNonQuery()
+            ' Cmd.CommandText = atualizaproducao
+            ' Cmd.ExecuteNonQuery()
+
+
+        Catch ex As Exception
+            MsgBox("Problemas ao gravar a produção" & ex.ToString)
+        Finally
+            CloseConexao(Cn)
+        End Try
     End Sub
 End Class

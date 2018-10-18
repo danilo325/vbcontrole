@@ -25,7 +25,7 @@ Option Explicit On
 Partial Public Class DataSet1
     Inherits Global.System.Data.DataSet
     
-    Private tableabastecimentos As abastecimentosDataTable
+    Private tableproducao As producaoDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -56,8 +56,8 @@ Partial Public Class DataSet1
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("abastecimentos")) Is Nothing) Then
-                MyBase.Tables.Add(New abastecimentosDataTable(ds.Tables("abastecimentos")))
+            If (Not (ds.Tables("producao")) Is Nothing) Then
+                MyBase.Tables.Add(New producaoDataTable(ds.Tables("producao")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -80,9 +80,9 @@ Partial Public Class DataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property abastecimentos() As abastecimentosDataTable
+    Public ReadOnly Property producao() As producaoDataTable
         Get
-            Return Me.tableabastecimentos
+            Return Me.tableproducao
         End Get
     End Property
     
@@ -153,8 +153,8 @@ Partial Public Class DataSet1
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("abastecimentos")) Is Nothing) Then
-                MyBase.Tables.Add(New abastecimentosDataTable(ds.Tables("abastecimentos")))
+            If (Not (ds.Tables("producao")) Is Nothing) Then
+                MyBase.Tables.Add(New producaoDataTable(ds.Tables("producao")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -188,10 +188,10 @@ Partial Public Class DataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableabastecimentos = CType(MyBase.Tables("abastecimentos"),abastecimentosDataTable)
+        Me.tableproducao = CType(MyBase.Tables("producao"),producaoDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableabastecimentos) Is Nothing) Then
-                Me.tableabastecimentos.InitVars
+            If (Not (Me.tableproducao) Is Nothing) Then
+                Me.tableproducao.InitVars
             End If
         End If
     End Sub
@@ -204,13 +204,13 @@ Partial Public Class DataSet1
         Me.Namespace = "http://tempuri.org/DataSet1.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableabastecimentos = New abastecimentosDataTable()
-        MyBase.Tables.Add(Me.tableabastecimentos)
+        Me.tableproducao = New producaoDataTable()
+        MyBase.Tables.Add(Me.tableproducao)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Private Function ShouldSerializeabastecimentos() As Boolean
+    Private Function ShouldSerializeproducao() As Boolean
         Return false
     End Function
     
@@ -273,41 +273,39 @@ Partial Public Class DataSet1
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Delegate Sub abastecimentosRowChangeEventHandler(ByVal sender As Object, ByVal e As abastecimentosRowChangeEvent)
+    Public Delegate Sub producaoRowChangeEventHandler(ByVal sender As Object, ByVal e As producaoRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class abastecimentosDataTable
-        Inherits Global.System.Data.TypedTableBase(Of abastecimentosRow)
+    Partial Public Class producaoDataTable
+        Inherits Global.System.Data.TypedTableBase(Of producaoRow)
         
-        Private columnId As Global.System.Data.DataColumn
+        Private columnIdProducao As Global.System.Data.DataColumn
         
-        Private columnIdVeicuo As Global.System.Data.DataColumn
+        Private columnProdutoEntrada As Global.System.Data.DataColumn
         
-        Private columnNumeroPedido As Global.System.Data.DataColumn
+        Private columnProdutoSaida As Global.System.Data.DataColumn
         
-        Private columnLocalAbastecimento As Global.System.Data.DataColumn
+        Private columnQtdEntra As Global.System.Data.DataColumn
         
-        Private columnCombustivel As Global.System.Data.DataColumn
+        Private columnQtdSai As Global.System.Data.DataColumn
         
-        Private columnQtd As Global.System.Data.DataColumn
+        Private columnIdInsumo As Global.System.Data.DataColumn
         
-        Private columnValorLitro As Global.System.Data.DataColumn
-        
-        Private columnValorTotal As Global.System.Data.DataColumn
+        Private columnQtdInsumo As Global.System.Data.DataColumn
         
         Private columnData As Global.System.Data.DataColumn
         
-        Private columnObs As Global.System.Data.DataColumn
+        Private columnObsProducao As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "abastecimentos"
+            Me.TableName = "producao"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -340,65 +338,57 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IdColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property IdProducaoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnId
+                Return Me.columnIdProducao
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IdVeicuoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ProdutoEntradaColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnIdVeicuo
+                Return Me.columnProdutoEntrada
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property NumeroPedidoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ProdutoSaidaColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnNumeroPedido
+                Return Me.columnProdutoSaida
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LocalAbastecimentoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property QtdEntraColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnLocalAbastecimento
+                Return Me.columnQtdEntra
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CombustivelColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property QtdSaiColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnCombustivel
+                Return Me.columnQtdSai
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property QtdColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property IdInsumoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnQtd
+                Return Me.columnIdInsumo
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property ValorLitroColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property QtdInsumoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnValorLitro
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property ValorTotalColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnValorTotal
+                Return Me.columnQtdInsumo
             End Get
         End Property
         
@@ -412,9 +402,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property ObsColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ObsProducaoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnObs
+                Return Me.columnObsProducao
             End Get
         End Property
         
@@ -429,50 +419,44 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As abastecimentosRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As producaoRow
             Get
-                Return CType(Me.Rows(index),abastecimentosRow)
+                Return CType(Me.Rows(index),producaoRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event abastecimentosRowChanging As abastecimentosRowChangeEventHandler
+        Public Event producaoRowChanging As producaoRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event abastecimentosRowChanged As abastecimentosRowChangeEventHandler
+        Public Event producaoRowChanged As producaoRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event abastecimentosRowDeleting As abastecimentosRowChangeEventHandler
+        Public Event producaoRowDeleting As producaoRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event abastecimentosRowDeleted As abastecimentosRowChangeEventHandler
+        Public Event producaoRowDeleted As producaoRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Sub AddabastecimentosRow(ByVal row As abastecimentosRow)
+        Public Overloads Sub AddproducaoRow(ByVal row As producaoRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddabastecimentosRow(ByVal IdVeicuo As Short, ByVal NumeroPedido As Integer, ByVal LocalAbastecimento As String, ByVal Combustivel As Integer, ByVal Qtd As Double, ByVal ValorLitro As Integer, ByVal ValorTotal As Double, ByVal Data As Date, ByVal Obs As String) As abastecimentosRow
-            Dim rowabastecimentosRow As abastecimentosRow = CType(Me.NewRow,abastecimentosRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, IdVeicuo, NumeroPedido, LocalAbastecimento, Combustivel, Qtd, ValorLitro, ValorTotal, Data, Obs}
-            rowabastecimentosRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowabastecimentosRow)
-            Return rowabastecimentosRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindById(ByVal Id As Integer) As abastecimentosRow
-            Return CType(Me.Rows.Find(New Object() {Id}),abastecimentosRow)
+        Public Overloads Function AddproducaoRow(ByVal ProdutoEntrada As Integer, ByVal ProdutoSaida As Integer, ByVal QtdEntra As Integer, ByVal QtdSai As Integer, ByVal IdInsumo As Integer, ByVal QtdInsumo As Integer, ByVal Data As Date, ByVal ObsProducao As String) As producaoRow
+            Dim rowproducaoRow As producaoRow = CType(Me.NewRow,producaoRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, ProdutoEntrada, ProdutoSaida, QtdEntra, QtdSai, IdInsumo, QtdInsumo, Data, ObsProducao}
+            rowproducaoRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowproducaoRow)
+            Return rowproducaoRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As abastecimentosDataTable = CType(MyBase.Clone,abastecimentosDataTable)
+            Dim cln As producaoDataTable = CType(MyBase.Clone,producaoDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -480,81 +464,74 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New abastecimentosDataTable()
+            Return New producaoDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnId = MyBase.Columns("Id")
-            Me.columnIdVeicuo = MyBase.Columns("IdVeicuo")
-            Me.columnNumeroPedido = MyBase.Columns("NumeroPedido")
-            Me.columnLocalAbastecimento = MyBase.Columns("LocalAbastecimento")
-            Me.columnCombustivel = MyBase.Columns("Combustivel")
-            Me.columnQtd = MyBase.Columns("Qtd")
-            Me.columnValorLitro = MyBase.Columns("ValorLitro")
-            Me.columnValorTotal = MyBase.Columns("ValorTotal")
+            Me.columnIdProducao = MyBase.Columns("IdProducao")
+            Me.columnProdutoEntrada = MyBase.Columns("ProdutoEntrada")
+            Me.columnProdutoSaida = MyBase.Columns("ProdutoSaida")
+            Me.columnQtdEntra = MyBase.Columns("QtdEntra")
+            Me.columnQtdSai = MyBase.Columns("QtdSai")
+            Me.columnIdInsumo = MyBase.Columns("IdInsumo")
+            Me.columnQtdInsumo = MyBase.Columns("QtdInsumo")
             Me.columnData = MyBase.Columns("Data")
-            Me.columnObs = MyBase.Columns("Obs")
+            Me.columnObsProducao = MyBase.Columns("ObsProducao")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnId = New Global.System.Data.DataColumn("Id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnId)
-            Me.columnIdVeicuo = New Global.System.Data.DataColumn("IdVeicuo", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIdVeicuo)
-            Me.columnNumeroPedido = New Global.System.Data.DataColumn("NumeroPedido", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNumeroPedido)
-            Me.columnLocalAbastecimento = New Global.System.Data.DataColumn("LocalAbastecimento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLocalAbastecimento)
-            Me.columnCombustivel = New Global.System.Data.DataColumn("Combustivel", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCombustivel)
-            Me.columnQtd = New Global.System.Data.DataColumn("Qtd", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQtd)
-            Me.columnValorLitro = New Global.System.Data.DataColumn("ValorLitro", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnValorLitro)
-            Me.columnValorTotal = New Global.System.Data.DataColumn("ValorTotal", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnValorTotal)
+            Me.columnIdProducao = New Global.System.Data.DataColumn("IdProducao", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIdProducao)
+            Me.columnProdutoEntrada = New Global.System.Data.DataColumn("ProdutoEntrada", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProdutoEntrada)
+            Me.columnProdutoSaida = New Global.System.Data.DataColumn("ProdutoSaida", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProdutoSaida)
+            Me.columnQtdEntra = New Global.System.Data.DataColumn("QtdEntra", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQtdEntra)
+            Me.columnQtdSai = New Global.System.Data.DataColumn("QtdSai", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQtdSai)
+            Me.columnIdInsumo = New Global.System.Data.DataColumn("IdInsumo", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIdInsumo)
+            Me.columnQtdInsumo = New Global.System.Data.DataColumn("QtdInsumo", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQtdInsumo)
             Me.columnData = New Global.System.Data.DataColumn("Data", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnData)
-            Me.columnObs = New Global.System.Data.DataColumn("Obs", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnObs)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId}, true))
-            Me.columnId.AutoIncrement = true
-            Me.columnId.AutoIncrementSeed = -1
-            Me.columnId.AutoIncrementStep = -1
-            Me.columnId.AllowDBNull = false
-            Me.columnId.Unique = true
-            Me.columnLocalAbastecimento.MaxLength = 255
-            Me.columnObs.MaxLength = 536870910
+            Me.columnObsProducao = New Global.System.Data.DataColumn("ObsProducao", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnObsProducao)
+            Me.columnIdProducao.AutoIncrement = true
+            Me.columnIdProducao.AutoIncrementSeed = -1
+            Me.columnIdProducao.AutoIncrementStep = -1
+            Me.columnObsProducao.MaxLength = 536870910
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function NewabastecimentosRow() As abastecimentosRow
-            Return CType(Me.NewRow,abastecimentosRow)
+        Public Function NewproducaoRow() As producaoRow
+            Return CType(Me.NewRow,producaoRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New abastecimentosRow(builder)
+            Return New producaoRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(abastecimentosRow)
+            Return GetType(producaoRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.abastecimentosRowChangedEvent) Is Nothing) Then
-                RaiseEvent abastecimentosRowChanged(Me, New abastecimentosRowChangeEvent(CType(e.Row,abastecimentosRow), e.Action))
+            If (Not (Me.producaoRowChangedEvent) Is Nothing) Then
+                RaiseEvent producaoRowChanged(Me, New producaoRowChangeEvent(CType(e.Row,producaoRow), e.Action))
             End If
         End Sub
         
@@ -562,8 +539,8 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.abastecimentosRowChangingEvent) Is Nothing) Then
-                RaiseEvent abastecimentosRowChanging(Me, New abastecimentosRowChangeEvent(CType(e.Row,abastecimentosRow), e.Action))
+            If (Not (Me.producaoRowChangingEvent) Is Nothing) Then
+                RaiseEvent producaoRowChanging(Me, New producaoRowChangeEvent(CType(e.Row,producaoRow), e.Action))
             End If
         End Sub
         
@@ -571,8 +548,8 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.abastecimentosRowDeletedEvent) Is Nothing) Then
-                RaiseEvent abastecimentosRowDeleted(Me, New abastecimentosRowChangeEvent(CType(e.Row,abastecimentosRow), e.Action))
+            If (Not (Me.producaoRowDeletedEvent) Is Nothing) Then
+                RaiseEvent producaoRowDeleted(Me, New producaoRowChangeEvent(CType(e.Row,producaoRow), e.Action))
             End If
         End Sub
         
@@ -580,14 +557,14 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.abastecimentosRowDeletingEvent) Is Nothing) Then
-                RaiseEvent abastecimentosRowDeleting(Me, New abastecimentosRowChangeEvent(CType(e.Row,abastecimentosRow), e.Action))
+            If (Not (Me.producaoRowDeletingEvent) Is Nothing) Then
+                RaiseEvent producaoRowDeleting(Me, New producaoRowChangeEvent(CType(e.Row,producaoRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub RemoveabastecimentosRow(ByVal row As abastecimentosRow)
+        Public Sub RemoveproducaoRow(ByVal row As producaoRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -614,7 +591,7 @@ Partial Public Class DataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "abastecimentosDataTable"
+            attribute2.FixedValue = "producaoDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -661,131 +638,120 @@ Partial Public Class DataSet1
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class abastecimentosRow
+    Partial Public Class producaoRow
         Inherits Global.System.Data.DataRow
         
-        Private tableabastecimentos As abastecimentosDataTable
+        Private tableproducao As producaoDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableabastecimentos = CType(Me.Table,abastecimentosDataTable)
+            Me.tableproducao = CType(Me.Table,producaoDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Id() As Integer
+        Public Property IdProducao() As Integer
             Get
-                Return CType(Me(Me.tableabastecimentos.IdColumn),Integer)
+                Try 
+                    Return CType(Me(Me.tableproducao.IdProducaoColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'IdProducao' na tabela 'producao' é DBNull.", e)
+                End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.IdColumn) = value
+                Me(Me.tableproducao.IdProducaoColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IdVeicuo() As Short
+        Public Property ProdutoEntrada() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.IdVeicuoColumn),Short)
+                    Return CType(Me(Me.tableproducao.ProdutoEntradaColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'IdVeicuo' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'ProdutoEntrada' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.IdVeicuoColumn) = value
+                Me(Me.tableproducao.ProdutoEntradaColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property NumeroPedido() As Integer
+        Public Property ProdutoSaida() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.NumeroPedidoColumn),Integer)
+                    Return CType(Me(Me.tableproducao.ProdutoSaidaColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'NumeroPedido' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'ProdutoSaida' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.NumeroPedidoColumn) = value
+                Me(Me.tableproducao.ProdutoSaidaColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LocalAbastecimento() As String
+        Public Property QtdEntra() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.LocalAbastecimentoColumn),String)
+                    Return CType(Me(Me.tableproducao.QtdEntraColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'LocalAbastecimento' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'QtdEntra' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.LocalAbastecimentoColumn) = value
+                Me(Me.tableproducao.QtdEntraColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Combustivel() As Integer
+        Public Property QtdSai() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.CombustivelColumn),Integer)
+                    Return CType(Me(Me.tableproducao.QtdSaiColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Combustivel' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'QtdSai' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.CombustivelColumn) = value
+                Me(Me.tableproducao.QtdSaiColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Qtd() As Double
+        Public Property IdInsumo() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.QtdColumn),Double)
+                    Return CType(Me(Me.tableproducao.IdInsumoColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Qtd' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'IdInsumo' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.QtdColumn) = value
+                Me(Me.tableproducao.IdInsumoColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ValorLitro() As Integer
+        Public Property QtdInsumo() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.ValorLitroColumn),Integer)
+                    Return CType(Me(Me.tableproducao.QtdInsumoColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'ValorLitro' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'QtdInsumo' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.ValorLitroColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ValorTotal() As Double
-            Get
-                Try 
-                    Return CType(Me(Me.tableabastecimentos.ValorTotalColumn),Double)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'ValorTotal' na tabela 'abastecimentos' é DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableabastecimentos.ValorTotalColumn) = value
+                Me(Me.tableproducao.QtdInsumoColumn) = value
             End Set
         End Property
         
@@ -794,137 +760,137 @@ Partial Public Class DataSet1
         Public Property Data() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.DataColumn),Date)
+                    Return CType(Me(Me.tableproducao.DataColumn),Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Data' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Data' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.DataColumn) = value
+                Me(Me.tableproducao.DataColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Obs() As String
+        Public Property ObsProducao() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableabastecimentos.ObsColumn),String)
+                    Return CType(Me(Me.tableproducao.ObsProducaoColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Obs' na tabela 'abastecimentos' é DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'ObsProducao' na tabela 'producao' é DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableabastecimentos.ObsColumn) = value
+                Me(Me.tableproducao.ObsProducaoColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIdVeicuoNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.IdVeicuoColumn)
+        Public Function IsIdProducaoNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.IdProducaoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIdVeicuoNull()
-            Me(Me.tableabastecimentos.IdVeicuoColumn) = Global.System.Convert.DBNull
+        Public Sub SetIdProducaoNull()
+            Me(Me.tableproducao.IdProducaoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsNumeroPedidoNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.NumeroPedidoColumn)
+        Public Function IsProdutoEntradaNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.ProdutoEntradaColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetNumeroPedidoNull()
-            Me(Me.tableabastecimentos.NumeroPedidoColumn) = Global.System.Convert.DBNull
+        Public Sub SetProdutoEntradaNull()
+            Me(Me.tableproducao.ProdutoEntradaColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLocalAbastecimentoNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.LocalAbastecimentoColumn)
+        Public Function IsProdutoSaidaNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.ProdutoSaidaColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLocalAbastecimentoNull()
-            Me(Me.tableabastecimentos.LocalAbastecimentoColumn) = Global.System.Convert.DBNull
+        Public Sub SetProdutoSaidaNull()
+            Me(Me.tableproducao.ProdutoSaidaColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCombustivelNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.CombustivelColumn)
+        Public Function IsQtdEntraNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.QtdEntraColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCombustivelNull()
-            Me(Me.tableabastecimentos.CombustivelColumn) = Global.System.Convert.DBNull
+        Public Sub SetQtdEntraNull()
+            Me(Me.tableproducao.QtdEntraColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsQtdNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.QtdColumn)
+        Public Function IsQtdSaiNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.QtdSaiColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetQtdNull()
-            Me(Me.tableabastecimentos.QtdColumn) = Global.System.Convert.DBNull
+        Public Sub SetQtdSaiNull()
+            Me(Me.tableproducao.QtdSaiColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsValorLitroNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.ValorLitroColumn)
+        Public Function IsIdInsumoNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.IdInsumoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetValorLitroNull()
-            Me(Me.tableabastecimentos.ValorLitroColumn) = Global.System.Convert.DBNull
+        Public Sub SetIdInsumoNull()
+            Me(Me.tableproducao.IdInsumoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsValorTotalNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.ValorTotalColumn)
+        Public Function IsQtdInsumoNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.QtdInsumoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetValorTotalNull()
-            Me(Me.tableabastecimentos.ValorTotalColumn) = Global.System.Convert.DBNull
+        Public Sub SetQtdInsumoNull()
+            Me(Me.tableproducao.QtdInsumoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsDataNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.DataColumn)
+            Return Me.IsNull(Me.tableproducao.DataColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDataNull()
-            Me(Me.tableabastecimentos.DataColumn) = Global.System.Convert.DBNull
+            Me(Me.tableproducao.DataColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsObsNull() As Boolean
-            Return Me.IsNull(Me.tableabastecimentos.ObsColumn)
+        Public Function IsObsProducaoNull() As Boolean
+            Return Me.IsNull(Me.tableproducao.ObsProducaoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetObsNull()
-            Me(Me.tableabastecimentos.ObsColumn) = Global.System.Convert.DBNull
+        Public Sub SetObsProducaoNull()
+            Me(Me.tableproducao.ObsProducaoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -932,16 +898,16 @@ Partial Public Class DataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Class abastecimentosRowChangeEvent
+    Public Class producaoRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As abastecimentosRow
+        Private eventRow As producaoRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub New(ByVal row As abastecimentosRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As producaoRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -949,7 +915,7 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Row() As abastecimentosRow
+        Public ReadOnly Property Row() As producaoRow
             Get
                 Return Me.eventRow
             End Get
@@ -976,7 +942,7 @@ Namespace DataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class abastecimentosTableAdapter
+    Partial Public Class producaoTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.OleDb.OleDbDataAdapter
@@ -1093,98 +1059,30 @@ Namespace DataSet1TableAdapters
             Me._adapter = New Global.System.Data.OleDb.OleDbDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "abastecimentos"
-            tableMapping.ColumnMappings.Add("Id", "Id")
-            tableMapping.ColumnMappings.Add("IdVeicuo", "IdVeicuo")
-            tableMapping.ColumnMappings.Add("NumeroPedido", "NumeroPedido")
-            tableMapping.ColumnMappings.Add("LocalAbastecimento", "LocalAbastecimento")
-            tableMapping.ColumnMappings.Add("Combustivel", "Combustivel")
-            tableMapping.ColumnMappings.Add("Qtd", "Qtd")
-            tableMapping.ColumnMappings.Add("ValorLitro", "ValorLitro")
-            tableMapping.ColumnMappings.Add("ValorTotal", "ValorTotal")
+            tableMapping.DataSetTable = "producao"
+            tableMapping.ColumnMappings.Add("IdProducao", "IdProducao")
+            tableMapping.ColumnMappings.Add("ProdutoEntrada", "ProdutoEntrada")
+            tableMapping.ColumnMappings.Add("ProdutoSaida", "ProdutoSaida")
+            tableMapping.ColumnMappings.Add("QtdEntra", "QtdEntra")
+            tableMapping.ColumnMappings.Add("QtdSai", "QtdSai")
+            tableMapping.ColumnMappings.Add("IdInsumo", "IdInsumo")
+            tableMapping.ColumnMappings.Add("QtdInsumo", "QtdInsumo")
             tableMapping.ColumnMappings.Add("Data", "Data")
-            tableMapping.ColumnMappings.Add("Obs", "Obs")
+            tableMapping.ColumnMappings.Add("ObsProducao", "ObsProducao")
             Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `abastecimentos` WHERE ((`Id` = ?) AND ((? = 1 AND `IdVeicuo` IS NULL"& _ 
-                ") OR (`IdVeicuo` = ?)) AND ((? = 1 AND `NumeroPedido` IS NULL) OR (`NumeroPedido"& _ 
-                "` = ?)) AND ((? = 1 AND `LocalAbastecimento` IS NULL) OR (`LocalAbastecimento` ="& _ 
-                " ?)) AND ((? = 1 AND `Combustivel` IS NULL) OR (`Combustivel` = ?)) AND ((? = 1 "& _ 
-                "AND `Qtd` IS NULL) OR (`Qtd` = ?)) AND ((? = 1 AND `ValorLitro` IS NULL) OR (`Va"& _ 
-                "lorLitro` = ?)) AND ((? = 1 AND `ValorTotal` IS NULL) OR (`ValorTotal` = ?)) AND"& _ 
-                " ((? = 1 AND `Data` IS NULL) OR (`Data` = ?)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Id", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_IdVeicuo", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_IdVeicuo", Global.System.Data.OleDb.OleDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_LocalAbastecimento", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_LocalAbastecimento", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Qtd", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Qtd", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ValorTotal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ValorTotal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Data", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Data", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `abastecimentos` (`IdVeicuo`, `NumeroPedido`, `LocalAbastecimento`, `"& _ 
-                "Combustivel`, `Qtd`, `ValorLitro`, `ValorTotal`, `Data`, `Obs`) VALUES (?, ?, ?,"& _ 
-                " ?, ?, ?, ?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `producao` (`ProdutoEntrada`, `ProdutoSaida`, `QtdEntra`, `QtdSai`, `"& _ 
+                "IdInsumo`, `QtdInsumo`, `Data`, `ObsProducao`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IdVeicuo", Global.System.Data.OleDb.OleDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("LocalAbastecimento", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qtd", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ValorTotal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ProdutoEntrada", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProdutoEntrada", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ProdutoSaida", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProdutoSaida", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QtdEntra", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QtdEntra", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QtdSai", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QtdSai", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IdInsumo", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdInsumo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QtdInsumo", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QtdInsumo", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Data", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Obs", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Obs", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `abastecimentos` SET `IdVeicuo` = ?, `NumeroPedido` = ?, `LocalAbastecimen"& _ 
-                "to` = ?, `Combustivel` = ?, `Qtd` = ?, `ValorLitro` = ?, `ValorTotal` = ?, `Data"& _ 
-                "` = ?, `Obs` = ? WHERE ((`Id` = ?) AND ((? = 1 AND `IdVeicuo` IS NULL) OR (`IdVe"& _ 
-                "icuo` = ?)) AND ((? = 1 AND `NumeroPedido` IS NULL) OR (`NumeroPedido` = ?)) AND"& _ 
-                " ((? = 1 AND `LocalAbastecimento` IS NULL) OR (`LocalAbastecimento` = ?)) AND (("& _ 
-                "? = 1 AND `Combustivel` IS NULL) OR (`Combustivel` = ?)) AND ((? = 1 AND `Qtd` I"& _ 
-                "S NULL) OR (`Qtd` = ?)) AND ((? = 1 AND `ValorLitro` IS NULL) OR (`ValorLitro` ="& _ 
-                " ?)) AND ((? = 1 AND `ValorTotal` IS NULL) OR (`ValorTotal` = ?)) AND ((? = 1 AN"& _ 
-                "D `Data` IS NULL) OR (`Data` = ?)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IdVeicuo", Global.System.Data.OleDb.OleDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("LocalAbastecimento", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qtd", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ValorTotal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Data", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Obs", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Obs", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Id", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_IdVeicuo", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_IdVeicuo", Global.System.Data.OleDb.OleDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IdVeicuo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_NumeroPedido", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "NumeroPedido", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_LocalAbastecimento", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_LocalAbastecimento", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LocalAbastecimento", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Combustivel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Combustivel", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Qtd", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Qtd", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qtd", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ValorLitro", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorLitro", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ValorTotal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ValorTotal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ValorTotal", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Data", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Data", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Data", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ObsProducao", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ObsProducao", Global.System.Data.DataRowVersion.Current, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1200,8 +1098,8 @@ Namespace DataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Id, IdVeicuo, NumeroPedido, LocalAbastecimento, Combustivel, Qtd, ValorLit"& _ 
-                "ro, ValorTotal, Data, Obs FROM abastecimentos"
+            Me._commandCollection(0).CommandText = "SELECT IdProducao, ProdutoEntrada, ProdutoSaida, QtdEntra, QtdSai, IdInsumo, QtdI"& _ 
+                "nsumo, Data, ObsProducao FROM producao"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1209,7 +1107,7 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.abastecimentosDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.producaoDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -1222,9 +1120,9 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DataSet1.abastecimentosDataTable
+        Public Overloads Overridable Function GetData() As DataSet1.producaoDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As DataSet1.abastecimentosDataTable = New DataSet1.abastecimentosDataTable()
+            Dim dataTable As DataSet1.producaoDataTable = New DataSet1.producaoDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -1232,7 +1130,7 @@ Namespace DataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DataSet1.abastecimentosDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As DataSet1.producaoDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
@@ -1240,7 +1138,7 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataSet As DataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "abastecimentos")
+            Return Me.Adapter.Update(dataSet, "producao")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1260,129 +1158,47 @@ Namespace DataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer, ByVal Original_IdVeicuo As Global.System.Nullable(Of Short), ByVal Original_NumeroPedido As Global.System.Nullable(Of Integer), ByVal Original_LocalAbastecimento As String, ByVal Original_Combustivel As Global.System.Nullable(Of Integer), ByVal Original_Qtd As Global.System.Nullable(Of Double), ByVal Original_ValorLitro As Global.System.Nullable(Of Integer), ByVal Original_ValorTotal As Global.System.Nullable(Of Double), ByVal Original_Data As Global.System.Nullable(Of Date)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Id,Integer)
-            If (Original_IdVeicuo.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_IdVeicuo.Value,Short)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NumeroPedido.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_NumeroPedido.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LocalAbastecimento Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_LocalAbastecimento,String)
-            End If
-            If (Original_Combustivel.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Combustivel.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Qtd.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Qtd.Value,Double)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ValorLitro.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_ValorLitro.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ValorTotal.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_ValorTotal.Value,Double)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Data.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Data.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal IdVeicuo As Global.System.Nullable(Of Short), ByVal NumeroPedido As Global.System.Nullable(Of Integer), ByVal LocalAbastecimento As String, ByVal Combustivel As Global.System.Nullable(Of Integer), ByVal Qtd As Global.System.Nullable(Of Double), ByVal ValorLitro As Global.System.Nullable(Of Integer), ByVal ValorTotal As Global.System.Nullable(Of Double), ByVal Data As Global.System.Nullable(Of Date), ByVal Obs As String) As Integer
-            If (IdVeicuo.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(IdVeicuo.Value,Short)
+        Public Overloads Overridable Function Insert(ByVal ProdutoEntrada As Global.System.Nullable(Of Integer), ByVal ProdutoSaida As Global.System.Nullable(Of Integer), ByVal QtdEntra As Global.System.Nullable(Of Integer), ByVal QtdSai As Global.System.Nullable(Of Integer), ByVal IdInsumo As Global.System.Nullable(Of Integer), ByVal QtdInsumo As Global.System.Nullable(Of Integer), ByVal Data As Global.System.Nullable(Of Date), ByVal ObsProducao As String) As Integer
+            If (ProdutoEntrada.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(ProdutoEntrada.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (NumeroPedido.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(NumeroPedido.Value,Integer)
+            If (ProdutoSaida.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(ProdutoSaida.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (LocalAbastecimento Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            If (QtdEntra.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(QtdEntra.Value,Integer)
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(LocalAbastecimento,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (Combustivel.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Combustivel.Value,Integer)
+            If (QtdSai.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(QtdSai.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
-            If (Qtd.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Qtd.Value,Double)
+            If (IdInsumo.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(IdInsumo.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (ValorLitro.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ValorLitro.Value,Integer)
+            If (QtdInsumo.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(QtdInsumo.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            If (ValorTotal.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(ValorTotal.Value,Double)
+            If (Data.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Data.Value,Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (Data.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Data.Value,Date)
-            Else
+            If (ObsProducao Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Obs Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Obs,String)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ObsProducao,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -1395,146 +1211,6 @@ Namespace DataSet1TableAdapters
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
                     Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal IdVeicuo As Global.System.Nullable(Of Short),  _
-                    ByVal NumeroPedido As Global.System.Nullable(Of Integer),  _
-                    ByVal LocalAbastecimento As String,  _
-                    ByVal Combustivel As Global.System.Nullable(Of Integer),  _
-                    ByVal Qtd As Global.System.Nullable(Of Double),  _
-                    ByVal ValorLitro As Global.System.Nullable(Of Integer),  _
-                    ByVal ValorTotal As Global.System.Nullable(Of Double),  _
-                    ByVal Data As Global.System.Nullable(Of Date),  _
-                    ByVal Obs As String,  _
-                    ByVal Original_Id As Integer,  _
-                    ByVal Original_IdVeicuo As Global.System.Nullable(Of Short),  _
-                    ByVal Original_NumeroPedido As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LocalAbastecimento As String,  _
-                    ByVal Original_Combustivel As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Qtd As Global.System.Nullable(Of Double),  _
-                    ByVal Original_ValorLitro As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ValorTotal As Global.System.Nullable(Of Double),  _
-                    ByVal Original_Data As Global.System.Nullable(Of Date)) As Integer
-            If (IdVeicuo.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(IdVeicuo.Value,Short)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (NumeroPedido.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(NumeroPedido.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (LocalAbastecimento Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(LocalAbastecimento,String)
-            End If
-            If (Combustivel.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Combustivel.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            If (Qtd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Qtd.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (ValorLitro.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ValorLitro.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (ValorTotal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(ValorTotal.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Data.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Data.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Obs Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Obs,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Id,Integer)
-            If (Original_IdVeicuo.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_IdVeicuo.Value,Short)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NumeroPedido.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_NumeroPedido.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LocalAbastecimento Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_LocalAbastecimento,String)
-            End If
-            If (Original_Combustivel.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Combustivel.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Qtd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Qtd.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ValorLitro.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_ValorLitro.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ValorTotal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_ValorTotal.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Data.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Data.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
         End Function
@@ -1553,7 +1229,7 @@ Namespace DataSet1TableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _abastecimentosTableAdapter As abastecimentosTableAdapter
+        Private _producaoTableAdapter As producaoTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -1575,12 +1251,12 @@ Namespace DataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property abastecimentosTableAdapter() As abastecimentosTableAdapter
+        Public Property producaoTableAdapter() As producaoTableAdapter
             Get
-                Return Me._abastecimentosTableAdapter
+                Return Me._producaoTableAdapter
             End Get
             Set
-                Me._abastecimentosTableAdapter = value
+                Me._producaoTableAdapter = value
             End Set
         End Property
         
@@ -1603,9 +1279,9 @@ Namespace DataSet1TableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._abastecimentosTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._abastecimentosTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._abastecimentosTableAdapter.Connection
+                If ((Not (Me._producaoTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._producaoTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._producaoTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -1620,7 +1296,7 @@ Namespace DataSet1TableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
+                If (Not (Me._producaoTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -1634,12 +1310,12 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.abastecimentos.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._producaoTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.producao.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._abastecimentosTableAdapter.Update(updatedRows))
+                    result = (result + Me._producaoTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -1653,11 +1329,11 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As DataSet1, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.abastecimentos.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._producaoTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.producao.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._abastecimentosTableAdapter.Update(addedRows))
+                    result = (result + Me._producaoTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -1671,11 +1347,11 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.abastecimentos.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._producaoTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.producao.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._abastecimentosTableAdapter.Update(deletedRows))
+                    result = (result + Me._producaoTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -1720,8 +1396,8 @@ Namespace DataSet1TableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._abastecimentosTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._abastecimentosTableAdapter.Connection) = false)) Then
+            If ((Not (Me._producaoTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._producaoTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("Todos os TableAdapters gerenciados por um TableAdapterManager devem usar a mesma "& _ 
                         "cadeia de conexão.")
             End If
@@ -1757,13 +1433,13 @@ Namespace DataSet1TableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._abastecimentosTableAdapter, Me._abastecimentosTableAdapter.Connection)
-                    Me._abastecimentosTableAdapter.Connection = CType(workConnection,Global.System.Data.OleDb.OleDbConnection)
-                    Me._abastecimentosTableAdapter.Transaction = CType(workTransaction,Global.System.Data.OleDb.OleDbTransaction)
-                    If Me._abastecimentosTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._abastecimentosTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._abastecimentosTableAdapter.Adapter)
+                If (Not (Me._producaoTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._producaoTableAdapter, Me._producaoTableAdapter.Connection)
+                    Me._producaoTableAdapter.Connection = CType(workConnection,Global.System.Data.OleDb.OleDbConnection)
+                    Me._producaoTableAdapter.Transaction = CType(workTransaction,Global.System.Data.OleDb.OleDbTransaction)
+                    If Me._producaoTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._producaoTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._producaoTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -1826,9 +1502,9 @@ Namespace DataSet1TableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._abastecimentosTableAdapter) Is Nothing) Then
-                    Me._abastecimentosTableAdapter.Connection = CType(revertConnections(Me._abastecimentosTableAdapter),Global.System.Data.OleDb.OleDbConnection)
-                    Me._abastecimentosTableAdapter.Transaction = Nothing
+                If (Not (Me._producaoTableAdapter) Is Nothing) Then
+                    Me._producaoTableAdapter.Connection = CType(revertConnections(Me._producaoTableAdapter),Global.System.Data.OleDb.OleDbConnection)
+                    Me._producaoTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
