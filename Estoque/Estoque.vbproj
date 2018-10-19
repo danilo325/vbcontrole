@@ -125,6 +125,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="c.vb" />
+    <Compile Include="CadastraRomaneio.Designer.vb">
+      <DependentUpon>CadastraRomaneio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CadastraRomaneio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Chapa.vb" />
     <Compile Include="Class1.vb" />
     <Compile Include="DataSet1.Designer.vb">
@@ -147,6 +153,12 @@
     <Compile Include="DetalheProduto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditaRomaneioSaida.Designer.vb">
+      <DependentUpon>EditaRomaneioSaida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditaRomaneioSaida.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
@@ -157,6 +169,12 @@
       <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
     <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.vb">
+      <DependentUpon>Form4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frete.vb" />
@@ -277,6 +295,12 @@
     </Compile>
     <Compile Include="Produto.vb" />
     <Compile Include="relatorios.vb" />
+    <Compile Include="RetornoRoameio.Designer.vb">
+      <DependentUpon>RetornoRoameio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RetornoRoameio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Romaneio.vb" />
     <Compile Include="Vendedores.Designer.vb">
       <DependentUpon>Vendedores.vb</DependentUpon>
@@ -336,12 +360,18 @@
     <EmbeddedResource Include="AdicionaDespesaVeiculo.resx">
       <DependentUpon>AdicionaDespesaVeiculo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CadastraRomaneio.resx">
+      <DependentUpon>CadastraRomaneio.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controledecargas.rdlc" />
     <EmbeddedResource Include="DespesasGerais.resx">
       <DependentUpon>DespesasGerais.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetalheProduto.resx">
       <DependentUpon>DetalheProduto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditaRomaneioSaida.resx">
+      <DependentUpon>EditaRomaneioSaida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -407,6 +437,9 @@
     <EmbeddedResource Include="Report3.rdlc" />
     <EmbeddedResource Include="Report4.rdlc" />
     <EmbeddedResource Include="Report5.rdlc" />
+    <EmbeddedResource Include="RetornoRoameio.resx">
+      <DependentUpon>RetornoRoameio.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="teste.rdlc" />
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.vb</DependentUpon>

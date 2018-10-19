@@ -46,7 +46,8 @@ Partial Class Dia_DetalhesRomaneio
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lbl_status = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.bnt_modifica = New System.Windows.Forms.Button()
+        Me.bnt_retorn = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -263,14 +264,23 @@ Partial Class Dia_DetalhesRomaneio
         Me.lbl_status.TabIndex = 21
         Me.lbl_status.Text = "Label11"
         '
-        'Button1
+        'bnt_modifica
         '
-        Me.Button1.Location = New System.Drawing.Point(727, 51)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 22
-        Me.Button1.Text = "Editar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.bnt_modifica.Location = New System.Drawing.Point(727, 51)
+        Me.bnt_modifica.Name = "bnt_modifica"
+        Me.bnt_modifica.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_modifica.TabIndex = 22
+        Me.bnt_modifica.Text = "Modifica"
+        Me.bnt_modifica.UseVisualStyleBackColor = True
+        '
+        'bnt_retorn
+        '
+        Me.bnt_retorn.Location = New System.Drawing.Point(630, 51)
+        Me.bnt_retorn.Name = "bnt_retorn"
+        Me.bnt_retorn.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_retorn.TabIndex = 23
+        Me.bnt_retorn.Text = "Retorno"
+        Me.bnt_retorn.UseVisualStyleBackColor = True
         '
         'Dia_DetalhesRomaneio
         '
@@ -279,7 +289,8 @@ Partial Class Dia_DetalhesRomaneio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(928, 427)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.bnt_retorn)
+        Me.Controls.Add(Me.bnt_modifica)
         Me.Controls.Add(Me.lbl_status)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -339,5 +350,6 @@ Partial Class Dia_DetalhesRomaneio
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents lbl_status As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents bnt_modifica As Button
+    Friend WithEvents bnt_retorn As Button
 End Class

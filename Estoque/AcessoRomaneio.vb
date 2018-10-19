@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.OleDb
+﻿Imports System.Data.OleDb
 Imports System.Configuration
 ''' <summary>
 ''' Classe permite o acesso ao banco de dados
@@ -9,6 +8,7 @@ Public Class AcessoRomaneio
     Dim Dt As DataTable
     Dim Cmd As New OleDbCommand
     Dim Cn As New OleDb.OleDbConnection
+
 
     ''' <summary>
     ''' Realiza a conexão com o banco de dados 
@@ -26,6 +26,8 @@ Public Class AcessoRomaneio
         End Try
     End Function
 
+
+
     ''' <summary>
     ''' Fecha uma conexão aberta
     ''' </summary>
@@ -39,6 +41,9 @@ Public Class AcessoRomaneio
             Throw ex
         End Try
     End Sub
+
+
+
 
     ''' <summary>
     ''' Metodo busca todos Romaneios dentro do banco de dados e devolve uma lista de romaneios
@@ -66,6 +71,8 @@ Public Class AcessoRomaneio
         End Try
         Return GeraListaRomaneio(Dt)
     End Function
+
+
 
     ''' <summary>
     ''' Função baseada no Carregaromaneios que possui parametros de pesquisa para filtrar os romaneios
@@ -133,6 +140,8 @@ Public Class AcessoRomaneio
         End Try
         Return GeraListaRomaneio(Dt)
     End Function
+
+
 
     ''' <summary>
     ''' Metodo que busca o nome do vendedor através do Id do vendedor
@@ -217,6 +226,184 @@ Public Class AcessoRomaneio
         Return Dt.Rows(0).Item(0)
     End Function
 
+    Public Function IncluiRomaneio(idromaneio As Integer, idVendedor As Integer, data As Date, lista As DataGridView, estado As String, Optional obs As String = "") As Boolean
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "INSERT INTO romaneio( IdVendedor,DataRomaneio,ObsRomaneio, Estado)VALUES ( '" &
+                    idVendedor & "','" & Format(data, "dd/MM/yyyy") & "','" & obs & "','" & estado & "')"
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao recuperar a lista de vendedores " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        If Not GravaProdutosRomaneio(lista, idromaneio) Then
+            MsgBox("Problemas ao gravar os produtos no romaneio")
+            Return False
+        End If
+
+        Return True
+    End Function
+
+
+    Public Function ModificaProdutoSaida(idRomaneio As Integer, idProduto As Integer, qtdprodutoromaneio As Double, qtdalteraemestoque As Double)
+        MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produto SET Qtd =  Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produtosRomaneio SET QtdProdutoS = '" & qtdprodutoromaneio & "' WHERE IdProduto = " & idProduto & " AND IdRomaneio =" & idRomaneio
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atulizar produto romaneio " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+    End Function
+
+    Public Function RetornoRomaneio(idRomaneio As Integer, idProduto As Integer, qtdprodutoromaneio As Double, qtdalteraemestoque As Double, qtdvendas As Double)
+        MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produto SET Qtd =  Qtd +'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produtosRomaneio SET QtdProdutoR = '" & qtdprodutoromaneio & "', QtdProduto = '" & qtdvendas & "' WHERE IdProduto = " & idProduto & " AND IdRomaneio =" & idRomaneio
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atulizar produto romaneio " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+    End Function
+
+
+    Public Function GravaProdutosRomaneio(produtos As DataGridView, idromaneio As Integer) As Boolean
+        Dim strquery As String = ""
+        Cn = GetConexaoDB()
+        Try
+            For Each produto As DataGridViewRow In produtos.Rows
+                If Not produto.IsNewRow Then
+                    strquery = "UPDATE produto SET Qtd = Qtd - '" & produto.Cells(2).Value & "' WHERE IdProduto = " & produto.Cells(0).Value
+
+                    MsgBox(strquery)
+                    Cmd = New OleDbCommand(strquery, Cn)
+                    Da.SelectCommand = Cmd
+                    Cmd.ExecuteNonQuery()
+
+
+
+                End If
+
+            Next
+            For Each produto As DataGridViewRow In produtos.Rows
+                If Not produto.IsNewRow Then
+                    strquery = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS) VALUES(" &
+                 "'" & Integer.Parse(idromaneio) & "','" & produto.Cells(0).Value & "','" & produto.Cells(2).Value & "')"
+
+                    MsgBox(strquery)
+                    Cmd = New OleDbCommand(strquery, Cn)
+                    Cmd.ExecuteNonQuery()
+                End If
+
+
+            Next
+        Catch ex As Exception
+            MsgBox("Problemas para aramzenar os produtos \n" & ex.ToString, MsgBoxStyle.Critical)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return True
+    End Function
+
+
+
+
+
+
+    Public Function ListaVendedor() As DataTable
+        Dt = New DataTable
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "SELECT IdVendedor,NomeVendedor FROM vendedores"
+                .Connection = Cn
+            End With
+            With Da
+                .SelectCommand = Cmd
+                .Fill(Dt)
+            End With
+
+        Catch ex As Exception
+            Dt = Nothing
+            MsgBox("Problemas ao recuperar a lista de vendedores " & ex.ToString)
+            Return Nothing
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return Dt
+    End Function
     ''' <summary>
     ''' Gera uma <c>List(Of Romaneio)</c> e preenche os valores das propriedades dos Objetos romaneios atraves dos dados
     ''' do <c>DataTable</c> retornado da busca no banco de dados
@@ -253,16 +440,18 @@ Public Class AcessoRomaneio
         End Try
         Return lista
     End Function
+    ''' <summary>
+    ''' 
+    ''' </summary>
 
-
-
-    Public Function VerificaProdutos(produto As Integer) As DataTable
+    ''' <returns></returns>
+    Public Function VerificaProdutos() As DataTable
         Dt = New DataTable
         Cn = GetConexaoDB()
         Try
             With Cmd
                 .CommandType = CommandType.Text
-                .CommandText = "SELECT IdProduto,Descricao,Qtd FROM produto WHERE IdProduto =" & produto
+                .CommandText = "SELECT IdProduto,Descricao,Qtd FROM produto"
                 .Connection = Cn
             End With
             With Da
@@ -280,6 +469,42 @@ Public Class AcessoRomaneio
         Return Dt
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="produto"></param>
+    ''' <returns></returns>
+    Public Function VerificaProdutos(produto As Integer) As DataTable
+        Dt = New DataTable
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "SELECT * FROM produto WHERE IdProduto =" & produto
+                .Connection = Cn
+            End With
+            With Da
+                .SelectCommand = Cmd
+                .Fill(Dt)
+            End With
+
+        Catch ex As Exception
+            Dt = Nothing
+            MsgBox("Problemas ao recuperar o id do produto no momento de gravar o romaneio" & ex.ToString)
+            Return Nothing
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return Dt
+    End Function
+
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="produto"></param>
+    ''' <param name="conexao"></param>
+    ''' <returns></returns>
     Public Function VerificaProdutos(produto As Integer, conexao As OleDbConnection) As DataTable
         Dt = New DataTable
         Cn = conexao
@@ -303,6 +528,14 @@ Public Class AcessoRomaneio
         Return Dt
     End Function
 
+
+
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="produto"></param>
+    ''' <returns></returns>
     Public Function VerificaProdutos(produto As String) As DataTable
         MsgBox(produto)
         Dt = New DataTable
@@ -328,7 +561,12 @@ Public Class AcessoRomaneio
         Return Dt
     End Function
 
-
+    ''' <summary>
+    ''' 
+    ''' 
+    ''' </summary>
+    ''' <param name="romaneio"></param>
+    ''' <returns></returns>
     Public Function GravaRomaneio(romaneio As Romaneio) As Boolean
         Dim query As String = "INSERT INTO romaneio(IdVendedor,DataRomaneio,ValorCheques,ValoDinheiro,ValorMoedas,ValorBoleto,ValorFiado,ObsRomaneio,Estado) Values(" &
             "'" & GetIdVendedor(romaneio.Vendedor) & "'," &

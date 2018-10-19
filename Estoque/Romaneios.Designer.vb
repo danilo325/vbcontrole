@@ -164,7 +164,7 @@ Partial Class Romaneios
         Me.bnt_pesquisa.Text = "Pesquisar"
         Me.bnt_pesquisa.UseVisualStyleBackColor = True
         '
-        'romaneios
+        'Romaneios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -183,7 +183,7 @@ Partial Class Romaneios
         Me.Controls.Add(Me.bnt_Inclui)
         Me.Controls.Add(Me.dgv_romaneios)
         Me.Controls.Add(Me.bnt_fecha)
-        Me.Name = "romaneios"
+        Me.Name = "Romaneios"
         Me.Text = "Romaneios"
         CType(Me.dgv_romaneios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

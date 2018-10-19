@@ -103,10 +103,10 @@
 
 
         combovendedor()
-        bnt_Edita.Enabled = False
+        '  bnt_Edita.Enabled = False
         bnt_Exclui.Enabled = False
         bnt_Exclui.Visible = False
-        bnt_Edita.Visible = False
+        '   bnt_Edita.Visible = False
 
 
     End Sub
@@ -191,5 +191,9 @@
 
     Private Sub bnt_fecha_Click(sender As Object, e As EventArgs) Handles bnt_fecha.Click
         Me.Close()
+    End Sub
+
+    Private Sub bnt_Edita_Click(sender As Object, e As EventArgs) Handles bnt_Edita.Click
+        CadastraRomaneio.Visible = True
     End Sub
 End Class
