@@ -295,13 +295,42 @@ Public Class AcessoRomaneio
         End Try
     End Function
 
+
+    Public Function FinalizaRoamenio(idromaneio As Integer, vcheque As Double, vdinheiro As Double, vmoedas As Double, vboletos As Double, vfiado As Double, Optional obs As String = "") As Boolean
+        MsgBox("UPDATE romaneio SET Estado = 'Finalizado' ,ValorCheque = '" & vcheque & "',ValoDinheiro = '" &
+                    vdinheiro & "' , ValorModedas = '" & vmoedas & "', ValorBoleto =' " &
+                    vboletos & "' , ValorFiado = " & vfiado & " " &
+                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = '" & idromaneio)
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE romaneio SET Estado = 'Finalizado' ,ValorCheque = '" & vcheque & "',ValoDinheiro = '" &
+                    vdinheiro & "' , ValorModedas = '" & vmoedas & "', ValorBoleto =' " &
+                    vboletos & "' , ValorFiado = " & vfiado & " " &
+                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = '" & idromaneio
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atulizar produto romaneio " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+    End Function
+
     Public Function RetornoRomaneio(idRomaneio As Integer, idProduto As Integer, qtdprodutoromaneio As Double, qtdalteraemestoque As Double, qtdvendas As Double)
-        MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
+        MsgBox("UPDATE produto SET Qtd = Qtd +'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
         Try
             Cn = GetConexaoDB()
             With Cmd
                 .CommandType = CommandType.Text
-                .CommandText = "UPDATE produto SET Qtd =  Qtd +'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto
+                .CommandText = "UPDATE produto SET Qtd =  Qtd +'" & qtdprodutoromaneio & "' WHERE IdProduto = " & idProduto
 
                 .Connection = Cn
                 .ExecuteNonQuery()
@@ -334,6 +363,44 @@ Public Class AcessoRomaneio
         Finally
             CloseConexao(Cn)
         End Try
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produto SET Qtd =  Qtd +'" & qtdprodutoromaneio & "' WHERE IdProduto = " & idProduto
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE romaneio SET Estado = 'Retorno' WHERE IdRomaneio =" & idRomaneio
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atulizar produto romaneio " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return True
     End Function
 
 

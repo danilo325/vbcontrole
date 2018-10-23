@@ -60,10 +60,58 @@
         End Try
     End Sub
 
-    Private Sub dgv_produto_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_produto.CellEndEdit
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        GravaRetorno()
+    End Sub
 
-        Dim est As Double = dgv_produto.Rows(e.RowIndex).Cells("qtds").Value - dgv_produto.Rows(e.RowIndex).Cells("qtdr").Value
-        dgv_produto.Rows(e.RowIndex).Cells("qtdv").Value = est
-        dadosromaneio.RetornoRomaneio(lbl_id.Text, dgv_produto.Rows(e.RowIndex).Cells("idproduto").Value, dgv_produto.Rows(e.RowIndex).Cells("qtdr").Value, est, dgv_produto.Rows(e.RowIndex).Cells("qtds").Value - dgv_produto.Rows(e.RowIndex).Cells("qtdv").Value)
+    Private Function VerificaCelulas(celula As DataGridViewCell) As Boolean
+        If IsDBNull(celula.Value) Then
+            celula.Value = 0
+            celula.ErrorText = ""
+            celula.ToolTipText = "O valor da celula foi colocado como 0"
+
+        Else
+            If Not IsNumeric(celula.Value) Then
+                celula.ErrorText = "Por favor digitar somente numeros"
+                celula.ToolTipText = ""
+                Return False
+            Else
+                If celula.Value > dgv_produto.Rows(celula.RowIndex).Cells(celula.ColumnIndex - 1).Value Then
+                    celula.ErrorText = " A quantidade de retorno não pode ser maior que a saida"
+                    celula.ToolTipText = ""
+                    Return False
+                End If
+            End If
+        End If
+        celula.ErrorText = ""
+        celula.ToolTipText = ""
+        Return True
+
+    End Function
+
+
+    Private Sub GravaRetorno()
+        Dim ok As Boolean = False
+        For Each produto As DataGridViewRow In dgv_produto.Rows
+            If Not produto.IsNewRow Then
+                If Not VerificaCelulas(produto.Cells("qtdr")) Then
+                    Return
+                End If
+            End If
+        Next produto
+
+        For Each produto As DataGridViewRow In dgv_produto.Rows
+            If Not produto.IsNewRow Then
+                Dim est As Double = dgv_produto.Rows(produto.Index).Cells("qtds").Value - dgv_produto.Rows(produto.Index).Cells("qtdr").Value
+                dadosromaneio.RetornoRomaneio(lbl_id.Text, dgv_produto.Rows(produto.Index).Cells("idproduto").Value, dgv_produto.Rows(produto.Index).Cells("qtdr").Value, est, dgv_produto.Rows(produto.Index).Cells("qtdv").Value)
+            End If
+        Next produto
+
+    End Sub
+    Private Sub dgv_produto_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_produto.CellEndEdit
+        If VerificaCelulas(dgv_produto.Rows(e.RowIndex).Cells("qtdr")) Then
+            dgv_produto.Rows(e.RowIndex).Cells("qtdv").Value = dgv_produto.Rows(e.RowIndex).Cells("qtds").Value - dgv_produto.Rows(e.RowIndex).Cells("qtdr").Value
+        End If
+
     End Sub
 End Class

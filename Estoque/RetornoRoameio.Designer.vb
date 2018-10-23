@@ -31,6 +31,7 @@ Partial Class RetornoRoameio
         Me.cbm_vendedores = New System.Windows.Forms.ComboBox()
         Me.dtp_data = New System.Windows.Forms.DateTimePicker()
         Me.dgv_produto = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.dgv_produto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -113,11 +114,21 @@ Partial Class RetornoRoameio
         Me.dgv_produto.Size = New System.Drawing.Size(776, 269)
         Me.dgv_produto.TabIndex = 20
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(684, 424)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'RetornoRoameio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lbl_id)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -144,4 +155,5 @@ Partial Class RetornoRoameio
     Friend WithEvents cbm_vendedores As ComboBox
     Friend WithEvents dtp_data As DateTimePicker
     Friend WithEvents dgv_produto As DataGridView
+    Friend WithEvents Button1 As Button
 End Class

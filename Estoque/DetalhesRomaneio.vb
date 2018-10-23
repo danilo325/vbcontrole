@@ -39,12 +39,32 @@ Public Class Dia_DetalhesRomaneio
 
         ' EditaRomaneioSaida.lbl_id.Text = lbl_idromaneio.Text
         Select Case lbl_status.Text
-            Case "saida"
+            Case "Saida"
                 EditaRomaneioSaida.lbl_id.Text = lbl_idromaneio.Text
                 EditaRomaneioSaida.cbm_vendedores.Text = txt_NomeVendedor.Text
                 EditaRomaneioSaida.dtp_data.Value = dtp_dataRomaneio.Value
                 EditaRomaneioSaida.Visible = True
+            Case "Retorno"
+                FinalizaRomaneio.lbl_idromaneio.Text = lbl_idromaneio.Text
+                FinalizaRomaneio.txt_NomeVendedor.Text = txt_NomeVendedor.Text
+                FinalizaRomaneio.dtp_dataRomaneio.Value = dtp_dataRomaneio.Value
+                For Each coluna As DataGridViewColumn In dgv_ProdutosRomaneio.Columns
+                    FinalizaRomaneio.dgv_ProdutosRomaneio.Columns.Add(coluna.Clone)
+                Next
+
+
+
+                For Each linha As DataGridViewRow In dgv_ProdutosRomaneio.Rows
+                    If Not linha.IsNewRow Then
+                        FinalizaRomaneio.dgv_ProdutosRomaneio.Rows.Add(linha.Cells("IdRomaneio").Value, linha.Cells(1).Value, linha.Cells(2).Value, linha.Cells(3).Value, linha.Cells(4).Value)
+                    End If
+                Next
+
+
+                FinalizaRomaneio.Visible = True
+
         End Select
+
 
     End Sub
 
