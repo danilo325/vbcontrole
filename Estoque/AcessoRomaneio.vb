@@ -295,19 +295,25 @@ Public Class AcessoRomaneio
         End Try
     End Function
 
-
+    '
+    'Resumo:
+    '       Grava as informações sobre valores no romaneio
+    'Devoluções:
+    '       Um valor booleano, TRUE indica sucesso na operação e FALSE indica que houve algum erro.
     Public Function FinalizaRoamenio(idromaneio As Integer, vcheque As Double, vdinheiro As Double, vmoedas As Double, vboletos As Double, vfiado As Double, Optional obs As String = "") As Boolean
         MsgBox("UPDATE romaneio SET Estado = 'Finalizado' ,ValorCheque = '" & vcheque & "',ValoDinheiro = '" &
                     vdinheiro & "' , ValorModedas = '" & vmoedas & "', ValorBoleto =' " &
-                    vboletos & "' , ValorFiado = " & vfiado & " " &
-                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = '" & idromaneio)
+                    vboletos & "' , ValorFiado = '" & vfiado & "' " &
+                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = " & idromaneio)
+        Cn = GetConexaoDB()
+
         Try
             With Cmd
                 .CommandType = CommandType.Text
-                .CommandText = "UPDATE romaneio SET Estado = 'Finalizado' ,ValorCheque = '" & vcheque & "',ValoDinheiro = '" &
-                    vdinheiro & "' , ValorModedas = '" & vmoedas & "', ValorBoleto =' " &
-                    vboletos & "' , ValorFiado = " & vfiado & " " &
-                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = '" & idromaneio
+                .CommandText = "UPDATE romaneio SET Estado ='Finalizado' ,ValorCheques ='" & vcheque & "',ValoDinheiro ='" &
+                    vdinheiro & "' , ValorMoedas ='" & vmoedas & "', ValorBoleto ='" &
+                    vboletos & "' , ValorFiado = '" & vfiado & "' " &
+                    If(obs <> "", ", ObsRomaneio = " & obs, Nothing) & "WHERE IdRomaneio = " & idromaneio
 
                 .Connection = Cn
                 .ExecuteNonQuery()

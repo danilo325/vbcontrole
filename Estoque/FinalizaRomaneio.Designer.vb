@@ -44,6 +44,7 @@ Partial Class FinalizaRomaneio
         Me.dgv_ProdutosRomaneio = New System.Windows.Forms.DataGridView()
         Me.Process1 = New System.Diagnostics.Process()
         Me.errofinaliza = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.bnt_finaliza = New System.Windows.Forms.Button()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errofinaliza, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -222,11 +223,21 @@ Partial Class FinalizaRomaneio
         '
         Me.errofinaliza.ContainerControl = Me
         '
+        'bnt_finaliza
+        '
+        Me.bnt_finaliza.Location = New System.Drawing.Point(815, 415)
+        Me.bnt_finaliza.Name = "bnt_finaliza"
+        Me.bnt_finaliza.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_finaliza.TabIndex = 39
+        Me.bnt_finaliza.Text = "Finalizar"
+        Me.bnt_finaliza.UseVisualStyleBackColor = True
+        '
         'FinalizaRomaneio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(993, 450)
+        Me.Controls.Add(Me.bnt_finaliza)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.lbl_valorTotal)
         Me.Controls.Add(Me.dtp_dataRomaneio)
@@ -276,4 +287,5 @@ Partial Class FinalizaRomaneio
     Friend WithEvents dgv_ProdutosRomaneio As DataGridView
     Friend WithEvents Process1 As Process
     Friend WithEvents errofinaliza As ErrorProvider
+    Friend WithEvents bnt_finaliza As Button
 End Class

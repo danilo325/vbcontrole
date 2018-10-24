@@ -1,5 +1,12 @@
 ﻿Public Class FinalizaRomaneio
+
+    'Define um erro que aparece ao se digitar numeros nas caixas de texto
     Dim erroo As New ErrorProvider
+    Private acesso As New AcessoRomaneio
+
+
+    'Resumo:
+    ' Carrega as informações iniciais do formulário
     Private Sub FinalizaRomaneio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txt_NomeVendedor.Enabled = False
         dtp_dataRomaneio.Enabled = False
@@ -11,6 +18,8 @@
 
         dgv_ProdutosRomaneio.Enabled = False
     End Sub
+
+
 
     Private Sub txt_VBoleto_Validated(sender As Object, e As EventArgs) Handles txt_VBoleto.Validated
         VerificaCampos()
@@ -24,26 +33,16 @@
 
     Private Sub txt_VMoeda_Validated(sender As Object, e As EventArgs) Handles txt_VMoeda.Validated
 
-        If VerificaCampos() Then
-            Try
-
-
-
-                erroo.SetError(Me.txt_VMoeda, "")
-                ' erroo.Clear()
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
-
-        Else
-            erroo.SetError(Me.txt_VMoeda, "Erro que deve aparecer")
-        End If
+        VerificaCampos()
     End Sub
     Private Sub txt_VFiado_Validated(sender As Object, e As EventArgs) Handles txt_VFiado.Validated
         VerificaCampos()
     End Sub
+
+
+    'Resumo:
+    '   Verifica se as informações do campos de valores estão preenchidos de forma correta
     Private Function VerificaCampos() As Boolean
-        Dim errr As New ErrorProvider
 
         Dim tt As New ToolTip
         tt.IsBalloon = False
@@ -64,11 +63,11 @@
                 tt.ShowAlways = True
                 tt.UseAnimation = True
                 tt.Show("Digite somente números", txt_VBoleto, 1000)
-                errr.SetError(txt_VBoleto, "O valor deverá ser um número")
+                erroo.SetError(txt_VBoleto, "O valor deverá ser um número")
                 Return False
             Else
-                errr.Clear()
-
+                erroo.SetError(txt_VBoleto, String.Empty)
+                tt.RemoveAll()
             End If
         End If
         'verifica o campo cheque
@@ -87,10 +86,10 @@
                 tt.ShowAlways = True
                 tt.UseAnimation = True
                 tt.Show("Digite somente números", Me.txt_VCheque, 1000)
-                errr.SetError(txt_VCheque, "O valor deverá ser um número")
+                erroo.SetError(txt_VCheque, "O valor deverá ser um número")
                 Return False
             Else
-                errr.Clear()
+                erroo.SetError(txt_VCheque, String.Empty)
 
             End If
         End If
@@ -110,10 +109,10 @@
                 tt.ShowAlways = True
                 tt.UseAnimation = True
                 tt.Show("Digite somente números", Me.txt_VDinheiro, 1000)
-                errr.SetError(txt_VDinheiro, "O valor deverá ser um número")
+                erroo.SetError(txt_VDinheiro, "O valor deverá ser um número")
                 Return False
             Else
-                errr.Clear()
+                erroo.SetError(txt_VDinheiro, String.Empty)
 
             End If
         End If
@@ -133,11 +132,10 @@
                 tt.ShowAlways = True
                 tt.UseAnimation = True
                 tt.Show("Digite somente números", Me.txt_VFiado, 1000)
-                errr.SetError(txt_VFiado, "O valor deverá ser um número")
+                erroo.SetError(txt_VFiado, "O valor deverá ser um número")
                 Return False
             Else
-                errr.Clear()
-
+                erroo.SetError(txt_VFiado, String.Empty)
             End If
         End If
         'verifica o campo moedas
@@ -156,13 +154,11 @@
                 tt.ShowAlways = True
                 tt.UseAnimation = True
                 tt.Show("Digite somente números", Me.txt_VMoeda, 1000)
-
-                ' errr.SetError(Me.txt_VMoeda, "O valor deverá ser um número")
+                erroo.SetError(txt_VMoeda, "O valor deverá ser um número")
                 Return False
             Else
 
-                ' errr.SetError(Me.txt_VMoeda, String.Empty)
-
+                erroo.SetError(txt_VMoeda, String.Empty)
 
             End If
         End If
@@ -171,5 +167,13 @@
         Return True
     End Function
 
+    Public Sub GravaFinaliza()
+        If VerificaCampos() Then
+            acesso.FinalizaRoamenio(lbl_idromaneio.Text, txt_VCheque.Text, txt_VDinheiro.Text, txt_VMoeda.Text, txt_VBoleto.Text, txt_VFiado.Text)
+        End If
+    End Sub
 
+    Private Sub bnt_finaliza_Click(sender As Object, e As EventArgs) Handles bnt_finaliza.Click
+        GravaFinaliza()
+    End Sub
 End Class
