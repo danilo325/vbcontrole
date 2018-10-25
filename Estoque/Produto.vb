@@ -25,6 +25,19 @@ Public Class Produto
         Me.Ativo = ativo
 
     End Sub
+    Public Sub New(id As Integer,
+                  desc As String, grupo As Integer, quantidade As Double,
+                  unidade As String, pcusto As Double, produzido As Boolean, ativo As Boolean
+                   )
+        Me.Descricao = desc
+        Me.Grupo = grupo
+        Me.Quantidade = quantidade
+        Me.Unidade = unidade
+        Me.Pcusto = pcusto
+        Me.Produzido = produzido
+        Me.Ativo = ativo
+        Me.IdProduto = id
+    End Sub
     Public Sub New()
 
     End Sub

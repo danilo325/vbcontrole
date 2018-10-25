@@ -144,7 +144,7 @@ Partial Class NovoProduto
         '
         'bnt_Inclui
         '
-        Me.bnt_Inclui.Location = New System.Drawing.Point(118, 292)
+        Me.bnt_Inclui.Location = New System.Drawing.Point(29, 302)
         Me.bnt_Inclui.Name = "bnt_Inclui"
         Me.bnt_Inclui.Size = New System.Drawing.Size(75, 23)
         Me.bnt_Inclui.TabIndex = 12
@@ -153,7 +153,7 @@ Partial Class NovoProduto
         '
         'bnt_Limpa
         '
-        Me.bnt_Limpa.Location = New System.Drawing.Point(360, 292)
+        Me.bnt_Limpa.Location = New System.Drawing.Point(166, 302)
         Me.bnt_Limpa.Name = "bnt_Limpa"
         Me.bnt_Limpa.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.bnt_Limpa.Size = New System.Drawing.Size(75, 23)
@@ -163,7 +163,7 @@ Partial Class NovoProduto
         '
         'bnt_Cancela
         '
-        Me.bnt_Cancela.Location = New System.Drawing.Point(602, 292)
+        Me.bnt_Cancela.Location = New System.Drawing.Point(303, 302)
         Me.bnt_Cancela.Name = "bnt_Cancela"
         Me.bnt_Cancela.Size = New System.Drawing.Size(75, 23)
         Me.bnt_Cancela.TabIndex = 14
@@ -174,7 +174,7 @@ Partial Class NovoProduto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(404, 352)
         Me.Controls.Add(Me.bnt_Cancela)
         Me.Controls.Add(Me.bnt_Limpa)
         Me.Controls.Add(Me.bnt_Inclui)

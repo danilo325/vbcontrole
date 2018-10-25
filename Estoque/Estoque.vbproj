@@ -141,6 +141,14 @@
     <Compile Include="DataSet1.vb">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.vb">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DespesasGerais.Designer.vb">
       <DependentUpon>DespesasGerais.vb</DependentUpon>
     </Compile>
@@ -165,18 +173,6 @@
     <Compile Include="FinalizaRomaneio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form4.Designer.vb">
       <DependentUpon>Form4.vb</DependentUpon>
     </Compile>
@@ -190,6 +186,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frete.vb" />
+    <Compile Include="LiderBancoDadosDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LiderBancoDadosDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="NovaDespesaGeral.Designer.vb">
       <DependentUpon>NovaDespesaGeral.vb</DependentUpon>
     </Compile>
@@ -314,6 +315,14 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Romaneio.vb" />
+    <Compile Include="vendaspproduto.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vendaspproduto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="vendaspproduto.vb">
+      <DependentUpon>vendaspproduto.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vendedores.Designer.vb">
       <DependentUpon>Vendedores.vb</DependentUpon>
     </Compile>
@@ -388,8 +397,8 @@
     <EmbeddedResource Include="FinalizaRomaneio.resx">
       <DependentUpon>FinalizaRomaneio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaManutencao.resx">
       <DependentUpon>ListaManutencao.vb</DependentUpon>
@@ -448,10 +457,10 @@
     <EmbeddedResource Include="Producao.resx">
       <DependentUpon>Producao.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Report3.rdlc" />
     <EmbeddedResource Include="Report4.rdlc" />
     <EmbeddedResource Include="Report5.rdlc" />
+    <EmbeddedResource Include="Report6.rdlc" />
     <EmbeddedResource Include="RetornoRoameio.resx">
       <DependentUpon>RetornoRoameio.vb</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +501,17 @@
     <None Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
     <None Include="LiderBancoDadosDataSet.xsc">
       <DependentUpon>LiderBancoDadosDataSet.xsd</DependentUpon>
     </None>
@@ -503,11 +523,23 @@
     <None Include="LiderBancoDadosDataSet.xss">
       <DependentUpon>LiderBancoDadosDataSet.xsd</DependentUpon>
     </None>
+    <None Include="LiderBancoDadosDataSet1.xsc">
+      <DependentUpon>LiderBancoDadosDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="LiderBancoDadosDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LiderBancoDadosDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LiderBancoDadosDataSet1.xss">
+      <DependentUpon>LiderBancoDadosDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\Class1.datasource" />
+    <None Include="My Project\DataSources\Produto.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -519,6 +551,17 @@
     <None Include="packages.config" />
     <None Include="Schema\ReviewReport.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="vendaspproduto.xsc">
+      <DependentUpon>vendaspproduto.xsd</DependentUpon>
+    </None>
+    <None Include="vendaspproduto.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vendaspproduto.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="vendaspproduto.xss">
+      <DependentUpon>vendaspproduto.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

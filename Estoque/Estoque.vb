@@ -8,6 +8,7 @@ Public Class Estoque
     'Inicia as variáveis importantes
 
     Friend bancoDados As New BdClass
+    Private acessodados As New AcessoDados
     Friend grupoProduto As New DataTable
     Friend dicionarioGrupo As New Dictionary(Of String, Integer)
     Friend dicionarioGrupo2 As New Dictionary(Of Integer, String)
@@ -21,7 +22,7 @@ Public Class Estoque
     ''' <param name="e"></param>
 
     Private Sub Estoque_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        bnt_Exclui.Visible = False
+
         bancoDados.Abreconexao()
         dgv_Produtos.AllowUserToAddRows = False
         dgv_Produtos.AllowUserToDeleteRows = False
@@ -34,7 +35,7 @@ Public Class Estoque
         cmb_Produzido.Items.Add("Não")
         Dim dicionario As New Dictionary(Of String, Integer)
         ComboGrupoProdutos()
-        dgv_Produtos.DataSource = bancoDados.Pesquisa("SELECT * FROM produto")
+        dgv_Produtos.DataSource = bancoDados.Pesquisa("SELECT * FROM produto WHERE Ativo = True")
         dicionarioSimNao.Add("Sim", True)
         dicionarioSimNao.Add("Não", False)
         cmb_Produzido.DropDownStyle = ComboBoxStyle.DropDownList
@@ -56,7 +57,7 @@ Public Class Estoque
     ''' </summary>
     Private Sub ComboGrupoProdutos()
         grupoProduto = bancoDados.Pesquisa("SELECT * FROM gruposProduto")
-        cmb_TipoProduto.Items.Add("")
+        cmb_TipoProduto.Items.Add("Todos")
         For Each linha As DataRow In grupoProduto.Rows
             dicionarioGrupo.Add(linha(1).ToString, linha(0))
             dicionarioGrupo2.Add(linha(0), linha(1).ToString)
@@ -252,26 +253,36 @@ Public Class Estoque
     End Sub
 
     Private Sub bnt_Exclui_Click(sender As Object, e As EventArgs) Handles bnt_Exclui.Click
-        Dim query As String
-        Dim mensagem As String = ""
-        query = "DELETE FROM produto WHERE IdProduto IN ("
-        If (dgv_Produtos.SelectedRows.Count > 0) Then 'Garanti que tenha pelomenos uma linha selecionada
 
+        If (dgv_Produtos.SelectedRows.Count > 0) Then
             For Each linha As DataGridViewRow In dgv_Produtos.SelectedRows
-                query += linha.Cells(0).Value.ToString & ","
-                mensagem += linha.Cells(1).Value.ToString & "\n"
+                If MsgBox("Deseja mesmo excluir o produto:" & vbCrLf & linha.Cells(1).Value, MsgBoxStyle.YesNo, "Deseja Excluir " & linha.Cells(1).Value) = vbYes Then
+                    dgv_Produtos.DataSource = acessodados.Inativaproduto(linha.Cells(0).Value)
+                End If
 
             Next linha
-            query += ")"
-            MsgBox("Os produtos \n " & mensagem & "\n serão apagados")
-            MsgBox(query)
 
-
-            bancoDados.Pesquisa(query)
-            dgv_Produtos.DataSource = bancoDados.Pesquisa("SELECT * FROM produto ")
-        Else
-            MsgBox("É necessário selecionar aomenos uma linha")
         End If
+        ' Dim query As String
+        'Dim mensagem As String = ""
+        'query = "DELETE FROM produto WHERE IdProduto IN ("
+        'If (dgv_Produtos.SelectedRows.Count > 0) Then 'Garanti que tenha pelomenos uma linha selecionada
+
+        'For Each linha As DataGridViewRow In dgv_Produtos.SelectedRows
+        'query += linha.Cells(0).Value.ToString & ","
+        'mensagem += linha.Cells(1).Value.ToString & "\n"
+        '
+        'Next linha
+        'query += ")"
+        'MsgBox("Os produtos \n " & mensagem & "\n serão apagados")
+        'MsgBox(query)
+
+
+        'bancoDados.Pesquisa(query)
+        'dgv_Produtos.DataSource = bancoDados.Pesquisa("SELECT * FROM produto WHERE Ativo = True ")
+        'Else
+        'MsgBox("É necessário selecionar ao menos uma linha")
+        'End If
 
     End Sub
 
@@ -295,5 +306,14 @@ Public Class Estoque
 
     Private Sub bnt_producao_Click(sender As Object, e As EventArgs) Handles bnt_producao.Click
         Producao.Visible = True
+    End Sub
+
+    Private Sub RelatóriosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RelatóriosToolStripMenuItem.Click
+
+
+    End Sub
+
+    Private Sub rel_teste_Click(sender As Object, e As EventArgs) Handles rel_teste.Click
+        Form4.Visible = True
     End Sub
 End Class

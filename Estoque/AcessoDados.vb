@@ -145,12 +145,47 @@ Public Class AcessoDados
     End Sub
 
 
+    Public Function Inativaproduto(idProduto As Integer) As DataTable
+        Try
+            Cn = GetConexaoDB()
+            Dim MyCmd As New OleDb.OleDbCommand
+            MyCmd.Connection = Cn
+            MyCmd.CommandText = "UPDATE produto SET Ativo= False WHERE IdProduto =" & idProduto
+            MyCmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            CloseConexao(Cn)
+        End Try
+
+        Dt = New DataTable
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "SELECT * FROM produto WHERE Ativo = True"
+                .Connection = Cn
+            End With
+            With Da
+                .SelectCommand = Cmd
+                .Fill(Dt)
+            End With
+        Catch ex As Exception
+            Dt = Nothing
+            Throw New Exception("Problema ao listar os produtos", ex)
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return Dt
+    End Function
+
+
     Public Sub IncluiProduto(produto As Produto)
         Try
             Cn = GetConexaoDB()
             Cmd.Connection = Cn
             Cmd.CommandText = "INSERT INTO produto(Descricao, Grupo,Qtd, Unidade,Pcusto,Produzido,Ativo)" &
-                "VALUES('" & produto.Descricao & "','" & produto.Grupo & "','" & produto.Quantidade & "','" & produto.Unidade & "','" & produto.Pcusto & "','" & produto.Produzido & "','" & produto.Ativo & "')"
+                "VALUES('" & produto.Descricao & "','" & produto.Grupo & "','" & produto.Quantidade & "','" & produto.Unidade & "','" & produto.Pcusto & "'," & produto.Produzido & "," & produto.Ativo & ")"
             Cmd.ExecuteNonQuery()
 
         Catch ex As Exception

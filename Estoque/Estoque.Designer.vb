@@ -46,7 +46,14 @@ Partial Class Estoque
         Me.bnt_Exclui = New System.Windows.Forms.Button()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.bnt_producao = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.RelatóriosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.rel_teste = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VendasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mn_vendaspproduto = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgv_Produtos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txt_IdProduto
@@ -211,7 +218,6 @@ Partial Class Estoque
         '
         'bnt_Exclui
         '
-        Me.bnt_Exclui.Enabled = False
         Me.bnt_Exclui.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.bnt_Exclui.Location = New System.Drawing.Point(487, 23)
         Me.bnt_Exclui.Name = "bnt_Exclui"
@@ -236,6 +242,48 @@ Partial Class Estoque
         Me.bnt_producao.TabIndex = 22
         Me.bnt_producao.Text = "Produção"
         Me.bnt_producao.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RelatóriosToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.TabIndex = 23
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'RelatóriosToolStripMenuItem
+        '
+        Me.RelatóriosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerEstoqueToolStripMenuItem, Me.VendasToolStripMenuItem})
+        Me.RelatóriosToolStripMenuItem.Name = "RelatóriosToolStripMenuItem"
+        Me.RelatóriosToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
+        Me.RelatóriosToolStripMenuItem.Text = "Relatórios"
+        '
+        'VerEstoqueToolStripMenuItem
+        '
+        Me.VerEstoqueToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.rel_teste})
+        Me.VerEstoqueToolStripMenuItem.Name = "VerEstoqueToolStripMenuItem"
+        Me.VerEstoqueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerEstoqueToolStripMenuItem.Text = "Ver Estoque"
+        '
+        'rel_teste
+        '
+        Me.rel_teste.Name = "rel_teste"
+        Me.rel_teste.Size = New System.Drawing.Size(180, 22)
+        Me.rel_teste.Text = "Relatório produtos"
+        '
+        'VendasToolStripMenuItem
+        '
+        Me.VendasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mn_vendaspproduto})
+        Me.VendasToolStripMenuItem.Name = "VendasToolStripMenuItem"
+        Me.VendasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VendasToolStripMenuItem.Text = "Vendas "
+        '
+        'mn_vendaspproduto
+        '
+        Me.mn_vendaspproduto.Name = "mn_vendaspproduto"
+        Me.mn_vendaspproduto.Size = New System.Drawing.Size(180, 22)
+        Me.mn_vendaspproduto.Text = "Vendas por produto"
         '
         'Estoque
         '
@@ -263,9 +311,12 @@ Partial Class Estoque
         Me.Controls.Add(Me.dgv_Produtos)
         Me.Controls.Add(Me.lbl_IdProduto)
         Me.Controls.Add(Me.txt_IdProduto)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Name = "Estoque"
         Me.Text = "Estoque"
         CType(Me.dgv_Produtos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -293,4 +344,10 @@ Partial Class Estoque
     Friend WithEvents bnt_Exclui As Button
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents bnt_producao As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents RelatóriosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerEstoqueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents rel_teste As ToolStripMenuItem
+    Friend WithEvents VendasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mn_vendaspproduto As ToolStripMenuItem
 End Class
