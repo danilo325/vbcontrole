@@ -316,4 +316,12 @@ Public Class Estoque
     Private Sub rel_teste_Click(sender As Object, e As EventArgs) Handles rel_teste.Click
         Form4.Visible = True
     End Sub
+
+    Private Sub mn_vendaspproduto_Click(sender As Object, e As EventArgs) Handles mn_vendaspproduto.Click
+
+    End Sub
+
+    Private Sub VendasPorProdutoDiaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VendasPorProdutoDiaToolStripMenuItem.Click
+        RelProdutodia.Visible = True
+    End Sub
 End Class

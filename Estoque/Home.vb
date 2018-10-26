@@ -36,7 +36,7 @@
     End Sub
 
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
-        Form4.Visible = True
+        RelProdutodia.Visible = True
 
     End Sub
 

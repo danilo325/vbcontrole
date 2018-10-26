@@ -52,6 +52,7 @@ Partial Class Estoque
         Me.rel_teste = New System.Windows.Forms.ToolStripMenuItem()
         Me.VendasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mn_vendaspproduto = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VendasPorProdutoDiaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgv_Produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -269,12 +270,12 @@ Partial Class Estoque
         'rel_teste
         '
         Me.rel_teste.Name = "rel_teste"
-        Me.rel_teste.Size = New System.Drawing.Size(180, 22)
+        Me.rel_teste.Size = New System.Drawing.Size(172, 22)
         Me.rel_teste.Text = "Relatório produtos"
         '
         'VendasToolStripMenuItem
         '
-        Me.VendasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mn_vendaspproduto})
+        Me.VendasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mn_vendaspproduto, Me.VendasPorProdutoDiaToolStripMenuItem})
         Me.VendasToolStripMenuItem.Name = "VendasToolStripMenuItem"
         Me.VendasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.VendasToolStripMenuItem.Text = "Vendas "
@@ -284,6 +285,12 @@ Partial Class Estoque
         Me.mn_vendaspproduto.Name = "mn_vendaspproduto"
         Me.mn_vendaspproduto.Size = New System.Drawing.Size(180, 22)
         Me.mn_vendaspproduto.Text = "Vendas por produto"
+        '
+        'VendasPorProdutoDiaToolStripMenuItem
+        '
+        Me.VendasPorProdutoDiaToolStripMenuItem.Name = "VendasPorProdutoDiaToolStripMenuItem"
+        Me.VendasPorProdutoDiaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.VendasPorProdutoDiaToolStripMenuItem.Text = "Vendas por produto dia"
         '
         'Estoque
         '
@@ -350,4 +357,5 @@ Partial Class Estoque
     Friend WithEvents rel_teste As ToolStripMenuItem
     Friend WithEvents VendasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mn_vendaspproduto As ToolStripMenuItem
+    Friend WithEvents VendasPorProdutoDiaToolStripMenuItem As ToolStripMenuItem
 End Class
