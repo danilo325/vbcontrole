@@ -323,6 +323,11 @@
     <Compile Include="SaidadeProdutosDia.vb">
       <DependentUpon>SaidadeProdutosDia.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ValorVendedoresmes.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValorVendedoresmes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="vendaspproduto.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -583,6 +588,17 @@
     </None>
     <None Include="Schema\ReviewReport.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="ValorVendedoresmes.xsc">
+      <DependentUpon>ValorVendedoresmes.xsd</DependentUpon>
+    </None>
+    <None Include="ValorVendedoresmes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValorVendedoresmes.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ValorVendedoresmes.xss">
+      <DependentUpon>ValorVendedoresmes.xsd</DependentUpon>
     </None>
     <None Include="vendaspproduto.xsc">
       <DependentUpon>vendaspproduto.xsd</DependentUpon>

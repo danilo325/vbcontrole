@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ValorVendedoresmes" targetNamespace="http://tempuri.org/ValorVendedoresmes.xsd" xmlns:mstns="http://tempuri.org/ValorVendedoresmes.xsd" xmlns="http://tempuri.org/ValorVendedoresmes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LiderBancoDadosConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="LiderBancoDadosConnectionString (MySettings)" PropertyReference="ApplicationSettings.Estoque.My.MySettings.GlobalReference.Default.LiderBancoDadosConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vendedoresTableAdapter" GeneratorDataComponentClassName="vendedoresTableAdapter" Name="vendedores" UserDataComponentName="vendedoresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="LiderBancoDadosConnectionString (MySettings)" DbObjectName="vendedores" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        vendedores.IdVendedor, vendedores.NomeVendedor, SUM(romaneio.ValorTotal) AS Expr1
+FROM            (vendedores INNER JOIN
+                         romaneio ON vendedores.IdVendedor = romaneio.IdVendedor)
+WHERE        (romaneio.Estado = 'Finalizado')
+GROUP BY vendedores.IdVendedor, vendedores.NomeVendedor</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdVendedor" DataSetColumn="IdVendedor" />
+              <Mapping SourceColumn="NomeVendedor" DataSetColumn="NomeVendedor" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ValorVendedoresmes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValorVendedoresmes" msprop:Generator_UserDSName="ValorVendedoresmes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vendedores" msprop:Generator_TableClassName="vendedoresDataTable" msprop:Generator_TableVarName="tablevendedores" msprop:Generator_TablePropName="vendedores" msprop:Generator_RowDeletingName="vendedoresRowDeleting" msprop:Generator_RowChangingName="vendedoresRowChanging" msprop:Generator_RowEvHandlerName="vendedoresRowChangeEventHandler" msprop:Generator_RowDeletedName="vendedoresRowDeleted" msprop:Generator_UserTableName="vendedores" msprop:Generator_RowChangedName="vendedoresRowChanged" msprop:Generator_RowEvArgName="vendedoresRowChangeEvent" msprop:Generator_RowClassName="vendedoresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdVendedor" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdVendedor" msprop:Generator_ColumnPropNameInRow="IdVendedor" msprop:Generator_ColumnPropNameInTable="IdVendedorColumn" msprop:Generator_UserColumnName="IdVendedor" type="xs:int" />
+              <xs:element name="NomeVendedor" msprop:Generator_ColumnVarNameInTable="columnNomeVendedor" msprop:Generator_ColumnPropNameInRow="NomeVendedor" msprop:Generator_ColumnPropNameInTable="NomeVendedorColumn" msprop:Generator_UserColumnName="NomeVendedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vendedores" />
+      <xs:field xpath="mstns:IdVendedor" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
