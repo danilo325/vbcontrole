@@ -161,6 +161,12 @@
     <Compile Include="DetalheProduto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditaRomaneioRetorno.Designer.vb">
+      <DependentUpon>EditaRomaneioRetorno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditaRomaneioRetorno.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditaRomaneioSaida.Designer.vb">
       <DependentUpon>EditaRomaneioSaida.vb</DependentUpon>
     </Compile>
@@ -173,10 +179,22 @@
     <Compile Include="FinalizaRomaneio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form4.Designer.vb">
       <DependentUpon>Form4.vb</DependentUpon>
     </Compile>
     <Compile Include="Form4.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovoProdutoRomaneioSaida.Designer.vb">
+      <DependentUpon>NovoProdutoRomaneioSaida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NovoProdutoRomaneioSaida.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RelProdutodia.Designer.vb">
@@ -410,6 +428,9 @@
     <EmbeddedResource Include="DetalheProduto.resx">
       <DependentUpon>DetalheProduto.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditaRomaneioRetorno.resx">
+      <DependentUpon>EditaRomaneioRetorno.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditaRomaneioSaida.resx">
       <DependentUpon>EditaRomaneioSaida.vb</DependentUpon>
     </EmbeddedResource>
@@ -418,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovoProdutoRomaneioSaida.resx">
+      <DependentUpon>NovoProdutoRomaneioSaida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RelProdutodia.resx">
       <DependentUpon>RelProdutodia.vb</DependentUpon>

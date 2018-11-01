@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class EditaRomaneioSaida
+Partial Class EditaRomaneioRetorno
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
@@ -22,6 +22,7 @@ Partial Class EditaRomaneioSaida
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.bnt_addProduto = New System.Windows.Forms.Button()
         Me.lbl_id = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -32,9 +33,17 @@ Partial Class EditaRomaneioSaida
         Me.dtp_data = New System.Windows.Forms.DateTimePicker()
         Me.dgv_produto = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.bnt_addProduto = New System.Windows.Forms.Button()
         CType(Me.dgv_produto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'bnt_addProduto
+        '
+        Me.bnt_addProduto.Location = New System.Drawing.Point(568, 415)
+        Me.bnt_addProduto.Name = "bnt_addProduto"
+        Me.bnt_addProduto.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_addProduto.TabIndex = 31
+        Me.bnt_addProduto.Text = "Add Produto"
+        Me.bnt_addProduto.UseVisualStyleBackColor = True
         '
         'lbl_id
         '
@@ -44,7 +53,7 @@ Partial Class EditaRomaneioSaida
         Me.lbl_id.Location = New System.Drawing.Point(80, 15)
         Me.lbl_id.Name = "lbl_id"
         Me.lbl_id.Size = New System.Drawing.Size(18, 13)
-        Me.lbl_id.TabIndex = 19
+        Me.lbl_id.TabIndex = 30
         Me.lbl_id.Text = "ID"
         '
         'Label4
@@ -53,7 +62,7 @@ Partial Class EditaRomaneioSaida
         Me.Label4.Location = New System.Drawing.Point(35, 15)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(16, 13)
-        Me.Label4.TabIndex = 18
+        Me.Label4.TabIndex = 29
         Me.Label4.Text = "Id"
         '
         'Label3
@@ -62,7 +71,7 @@ Partial Class EditaRomaneioSaida
         Me.Label3.Location = New System.Drawing.Point(289, 76)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(91, 13)
-        Me.Label3.TabIndex = 17
+        Me.Label3.TabIndex = 28
         Me.Label3.Text = "Data do romaneio"
         '
         'Label2
@@ -71,7 +80,7 @@ Partial Class EditaRomaneioSaida
         Me.Label2.Location = New System.Drawing.Point(21, 73)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
-        Me.Label2.TabIndex = 16
+        Me.Label2.TabIndex = 27
         Me.Label2.Text = "Vendedor"
         '
         'Label1
@@ -80,7 +89,7 @@ Partial Class EditaRomaneioSaida
         Me.Label1.Location = New System.Drawing.Point(555, 49)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(29, 13)
-        Me.Label1.TabIndex = 15
+        Me.Label1.TabIndex = 26
         Me.Label1.Text = "Obs."
         '
         'txt_obs
@@ -89,7 +98,7 @@ Partial Class EditaRomaneioSaida
         Me.txt_obs.Multiline = True
         Me.txt_obs.Name = "txt_obs"
         Me.txt_obs.Size = New System.Drawing.Size(155, 89)
-        Me.txt_obs.TabIndex = 14
+        Me.txt_obs.TabIndex = 25
         '
         'cbm_vendedores
         '
@@ -97,7 +106,7 @@ Partial Class EditaRomaneioSaida
         Me.cbm_vendedores.Location = New System.Drawing.Point(77, 68)
         Me.cbm_vendedores.Name = "cbm_vendedores"
         Me.cbm_vendedores.Size = New System.Drawing.Size(179, 21)
-        Me.cbm_vendedores.TabIndex = 13
+        Me.cbm_vendedores.TabIndex = 24
         '
         'dtp_data
         '
@@ -105,7 +114,7 @@ Partial Class EditaRomaneioSaida
         Me.dtp_data.Location = New System.Drawing.Point(386, 70)
         Me.dtp_data.Name = "dtp_data"
         Me.dtp_data.Size = New System.Drawing.Size(98, 20)
-        Me.dtp_data.TabIndex = 12
+        Me.dtp_data.TabIndex = 23
         '
         'dgv_produto
         '
@@ -113,27 +122,18 @@ Partial Class EditaRomaneioSaida
         Me.dgv_produto.Location = New System.Drawing.Point(12, 126)
         Me.dgv_produto.Name = "dgv_produto"
         Me.dgv_produto.Size = New System.Drawing.Size(776, 269)
-        Me.dgv_produto.TabIndex = 11
+        Me.dgv_produto.TabIndex = 22
         '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(680, 415)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 10
+        Me.Button1.TabIndex = 21
         Me.Button1.Text = "Cadastra"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'bnt_addProduto
-        '
-        Me.bnt_addProduto.Location = New System.Drawing.Point(568, 415)
-        Me.bnt_addProduto.Name = "bnt_addProduto"
-        Me.bnt_addProduto.Size = New System.Drawing.Size(75, 23)
-        Me.bnt_addProduto.TabIndex = 20
-        Me.bnt_addProduto.Text = "Add Produto"
-        Me.bnt_addProduto.UseVisualStyleBackColor = True
-        '
-        'EditaRomaneioSaida
+        'EditaRomaneioRetorno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -149,14 +149,15 @@ Partial Class EditaRomaneioSaida
         Me.Controls.Add(Me.dtp_data)
         Me.Controls.Add(Me.dgv_produto)
         Me.Controls.Add(Me.Button1)
-        Me.Name = "EditaRomaneioSaida"
-        Me.Text = "EditaRomaneioSaida"
+        Me.Name = "EditaRomaneioRetorno"
+        Me.Text = "EditaRomaneioRetorno"
         CType(Me.dgv_produto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
+    Friend WithEvents bnt_addProduto As Button
     Friend WithEvents lbl_id As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
@@ -167,5 +168,4 @@ Partial Class EditaRomaneioSaida
     Friend WithEvents dtp_data As DateTimePicker
     Friend WithEvents dgv_produto As DataGridView
     Friend WithEvents Button1 As Button
-    Friend WithEvents bnt_addProduto As Button
 End Class

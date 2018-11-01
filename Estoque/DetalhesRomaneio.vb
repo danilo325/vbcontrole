@@ -15,11 +15,14 @@ Public Class Dia_DetalhesRomaneio
     Private Sub Dia_DetalhesRomaneio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Select Case lbl_status.Text
             Case "Saida"
-                bnt_modifica.Text = "Altera Saida"
+                bnt_modifica.Text = "A Saida"
+                bnt_retorn.Text = "Retorno"
             Case "Retorno"
-                bnt_modifica.Text = "Altera Retorno"
+                bnt_modifica.Text = "A Retorno"
+                bnt_retorn.Text = "Finalzar"
             Case "Finalizado"
-                bnt_modifica.Text = "Modifica Romaneio"
+                bnt_modifica.Text = "M Romaneio"
+                bnt_retorn.Enabled = False
         End Select
     End Sub
 
@@ -45,6 +48,12 @@ Public Class Dia_DetalhesRomaneio
                 EditaRomaneioSaida.dtp_data.Value = dtp_dataRomaneio.Value
                 EditaRomaneioSaida.Visible = True
             Case "Retorno"
+                EditaRomaneioRetorno.lbl_id.Text = lbl_idromaneio.Text
+                EditaRomaneioRetorno.cbm_vendedores.Text = txt_NomeVendedor.Text
+                EditaRomaneioRetorno.dtp_data.Value = dtp_dataRomaneio.Value
+                EditaRomaneioRetorno.Visible = True
+
+            Case "Finaliza"
                 FinalizaRomaneio.lbl_idromaneio.Text = lbl_idromaneio.Text
                 FinalizaRomaneio.txt_NomeVendedor.Text = txt_NomeVendedor.Text
                 FinalizaRomaneio.dtp_dataRomaneio.Value = dtp_dataRomaneio.Value
@@ -69,10 +78,43 @@ Public Class Dia_DetalhesRomaneio
     End Sub
 
     Private Sub bnt_retorn_Click(sender As Object, e As EventArgs) Handles bnt_retorn.Click
-        RetornoRoameio.lbl_id.Text = lbl_idromaneio.Text
-        RetornoRoameio.cbm_vendedores.Text = txt_NomeVendedor.Text
-        RetornoRoameio.dtp_data.Value = dtp_dataRomaneio.Value
 
-        RetornoRoameio.Visible = True
+        Select Case lbl_status.Text
+            Case "Saida"
+                bnt_retorn.Text = "Retornar"
+                RetornoRoameio.lbl_id.Text = lbl_idromaneio.Text
+                RetornoRoameio.cbm_vendedores.Text = txt_NomeVendedor.Text
+                RetornoRoameio.dtp_data.Value = dtp_dataRomaneio.Value
+
+                RetornoRoameio.Visible = True
+            Case "Retorno"
+                bnt_retorn.Text = "Finalizar"
+                FinalizaRomaneio.lbl_idromaneio.Text = lbl_idromaneio.Text
+                FinalizaRomaneio.txt_NomeVendedor.Text = txt_NomeVendedor.Text
+                FinalizaRomaneio.dtp_dataRomaneio.Value = dtp_dataRomaneio.Value
+                For Each coluna As DataGridViewColumn In dgv_ProdutosRomaneio.Columns
+                    FinalizaRomaneio.dgv_ProdutosRomaneio.Columns.Add(coluna.Clone)
+                Next
+
+
+
+                For Each linha As DataGridViewRow In dgv_ProdutosRomaneio.Rows
+                    If Not linha.IsNewRow Then
+                        FinalizaRomaneio.dgv_ProdutosRomaneio.Rows.Add(linha.Cells("IdRomaneio").Value, linha.Cells(1).Value, linha.Cells(2).Value, linha.Cells(3).Value, linha.Cells(4).Value)
+                    End If
+                Next
+
+
+                FinalizaRomaneio.Visible = True
+
+            Case "Finaliza"
+                bnt_retorn.Text = "Finalizado"
+                bnt_retorn.Enabled = False
+
+        End Select
+
+
+
+
     End Sub
 End Class

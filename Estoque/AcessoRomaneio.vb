@@ -9,7 +9,6 @@ Public Class AcessoRomaneio
     Dim Cmd As New OleDbCommand
     Dim Cn As New OleDb.OleDbConnection
 
-
     ''' <summary>
     ''' Realiza a conexão com o banco de dados 
     ''' </summary>
@@ -26,8 +25,6 @@ Public Class AcessoRomaneio
         End Try
     End Function
 
-
-
     ''' <summary>
     ''' Fecha uma conexão aberta
     ''' </summary>
@@ -41,9 +38,6 @@ Public Class AcessoRomaneio
             Throw ex
         End Try
     End Sub
-
-
-
 
     ''' <summary>
     ''' Metodo busca todos Romaneios dentro do banco de dados e devolve uma lista de romaneios
@@ -71,8 +65,6 @@ Public Class AcessoRomaneio
         End Try
         Return GeraListaRomaneio(Dt)
     End Function
-
-
 
     ''' <summary>
     ''' Função baseada no Carregaromaneios que possui parametros de pesquisa para filtrar os romaneios
@@ -140,8 +132,6 @@ Public Class AcessoRomaneio
         End Try
         Return GeraListaRomaneio(Dt)
     End Function
-
-
 
     ''' <summary>
     ''' Metodo que busca o nome do vendedor através do Id do vendedor
@@ -254,9 +244,50 @@ Public Class AcessoRomaneio
         Return True
     End Function
 
+    Public Function AcrescentaProdutoRomaneio(idproduto As Integer, idromaneio As Integer, qtdproduto As Double) As Boolean
+        Dim query As String = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS) VALUES(" & idproduto & "," & idromaneio & ",'" & qtdproduto & "')"
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = query
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produto SET Qtd =  Qtd -'" & qtdproduto & "' WHERE IdProduto = " & idproduto
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Return True
+
+    End Function
 
     Public Function ModificaProdutoSaida(idRomaneio As Integer, idProduto As Integer, qtdprodutoromaneio As Double, qtdalteraemestoque As Double)
-        MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
+        ' MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
         Try
             Cn = GetConexaoDB()
             With Cmd
@@ -280,6 +311,51 @@ Public Class AcessoRomaneio
             With Cmd
                 .CommandType = CommandType.Text
                 .CommandText = "UPDATE produtosRomaneio SET QtdProdutoS = '" & qtdprodutoromaneio & "' WHERE IdProduto = " & idProduto & " AND IdRomaneio =" & idRomaneio
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atulizar produto romaneio " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+    End Function
+
+
+    Public Function ModificaProdutoRetorno(idRomaneio As Integer, idProduto As Integer, qtdprodutoromaneios As Double, qtdromaneioR As Double, qtdv As Double, qtdalteraemestoque As Double)
+        ' MsgBox("UPDATE produto SET Qtd = Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto & ")")
+        Try
+            Cn = GetConexaoDB()
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produto SET Qtd =  Qtd -'" & qtdalteraemestoque & "' WHERE IdProduto = " & idProduto
+
+                .Connection = Cn
+                .ExecuteNonQuery()
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox("Problemas ao atualizar produto estoque " & ex.ToString)
+            Return False
+        Finally
+            CloseConexao(Cn)
+        End Try
+        Cn = GetConexaoDB()
+        Try
+            With Cmd
+                .CommandType = CommandType.Text
+                .CommandText = "UPDATE produtosRomaneio SET QtdProdutoS = '" & qtdprodutoromaneios & "'," &
+                                                            "QtdProdutoR = '" & qtdromaneioR & "'," &
+                                                            "QtdProduto = '" & qtdv &
+                                                            "' WHERE IdProduto = " & idProduto &
+                                                                 " And IdRomaneio =" & idRomaneio
 
                 .Connection = Cn
                 .ExecuteNonQuery()
