@@ -196,6 +196,9 @@ Public Class AcessoRomaneio
         Dt = New DataTable
         Cn = GetConexaoDB()
         Try
+            If String.IsNullOrEmpty(nome) Then
+                Throw New Exception("O nome do vendedor está vazio")
+            End If
             With Cmd
                 .CommandType = CommandType.Text
                 .CommandText = "SELECT IdVendedor FROM vendedores WHERE NomeVendedor ='" & nome & "'"
@@ -245,7 +248,8 @@ Public Class AcessoRomaneio
     End Function
 
     Public Function AcrescentaProdutoRomaneio(idproduto As Integer, idromaneio As Integer, qtdproduto As Double) As Boolean
-        Dim query As String = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS) VALUES(" & idproduto & "," & idromaneio & ",'" & qtdproduto & "')"
+        Dim query As String = "INSERT INTO produtosRomaneio(IdRomaneio, Idproduto,QtdProdutoS) VALUES(" & idromaneio & "," & idproduto & ",'" & qtdproduto & "')"
+        MsgBox(query)
         Try
             Cn = GetConexaoDB()
             With Cmd

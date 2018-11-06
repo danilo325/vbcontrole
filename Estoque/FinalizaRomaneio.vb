@@ -176,4 +176,32 @@
     Private Sub bnt_finaliza_Click(sender As Object, e As EventArgs) Handles bnt_finaliza.Click
         GravaFinaliza()
     End Sub
+    Private Sub AtiualizavalorToal()
+        Dim vcheque As Double = If(String.IsNullOrEmpty(txt_VCheque.Text), 0, If(IsNumeric(txt_VCheque.Text), Double.Parse(txt_VCheque.Text), 0))
+        Dim vdinheiro As Double = If(String.IsNullOrEmpty(txt_VDinheiro.Text), 0, If(IsNumeric(txt_VDinheiro.Text), Double.Parse(txt_VDinheiro.Text), 0))
+        Dim vmoeda As Double = If(String.IsNullOrEmpty(txt_VMoeda.Text), 0, If(IsNumeric(txt_VMoeda.Text), Double.Parse(txt_VMoeda.Text), 0))
+        Dim vboleto As Double = If(String.IsNullOrEmpty(txt_VBoleto.Text), 0, If(IsNumeric(txt_VBoleto.Text), Double.Parse(txt_VBoleto.Text), 0))
+        Dim vtotal As Double = vcheque + vdinheiro + vboleto + vmoeda
+        lbl_valorTotal.Text = "R$ " & FormatNumber(vtotal, -1)
+    End Sub
+
+    Private Sub txt_VCheque_TextChanged(sender As Object, e As EventArgs) Handles txt_VCheque.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VDinheiro_TextChanged(sender As Object, e As EventArgs) Handles txt_VDinheiro.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VMoeda_TextChanged(sender As Object, e As EventArgs) Handles txt_VMoeda.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VBoleto_TextChanged(sender As Object, e As EventArgs) Handles txt_VBoleto.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VFiado_TextChanged(sender As Object, e As EventArgs) Handles txt_VFiado.TextChanged
+        AtiualizavalorToal()
+    End Sub
 End Class

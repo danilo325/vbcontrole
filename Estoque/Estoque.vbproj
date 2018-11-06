@@ -161,6 +161,12 @@
     <Compile Include="DetalheProduto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DetalhesCompra.Designer.vb">
+      <DependentUpon>DetalhesCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DetalhesCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditaRomaneioRetorno.Designer.vb">
       <DependentUpon>EditaRomaneioRetorno.vb</DependentUpon>
     </Compile>
@@ -427,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetalheProduto.resx">
       <DependentUpon>DetalheProduto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalhesCompra.resx">
+      <DependentUpon>DetalhesCompra.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditaRomaneioRetorno.resx">
       <DependentUpon>EditaRomaneioRetorno.vb</DependentUpon>

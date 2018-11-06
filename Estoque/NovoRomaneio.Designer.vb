@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class NovoRomneio
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class NovoRomneio
     'OBSERVAÇÃO: o procedimento a seguir é exigido pelo Windows Form Designer
     'Pode ser modificado usando o Windows Form Designer.  
     'Não o modifique usando o editor de códigos.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lbl_valorTotal = New System.Windows.Forms.Label()
@@ -47,14 +47,13 @@ Partial Class NovoRomneio
         Me.bnt_inclui = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lbl_estado = New System.Windows.Forms.Label()
-        Me.bnt_mudaestado = New System.Windows.Forms.Button()
         CType(Me.dgv_ProdutosRomaneio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(676, 160)
+        Me.Label9.Location = New System.Drawing.Point(683, 148)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(58, 13)
         Me.Label9.TabIndex = 39
@@ -65,7 +64,7 @@ Partial Class NovoRomneio
         Me.lbl_valorTotal.AutoSize = True
         Me.lbl_valorTotal.BackColor = System.Drawing.Color.Bisque
         Me.lbl_valorTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_valorTotal.Location = New System.Drawing.Point(751, 151)
+        Me.lbl_valorTotal.Location = New System.Drawing.Point(758, 142)
         Me.lbl_valorTotal.Name = "lbl_valorTotal"
         Me.lbl_valorTotal.Size = New System.Drawing.Size(41, 25)
         Me.lbl_valorTotal.TabIndex = 38
@@ -74,16 +73,17 @@ Partial Class NovoRomneio
         'dtp_dataRomaneio
         '
         Me.dtp_dataRomaneio.CustomFormat = "dd/mm/yyyy"
-        Me.dtp_dataRomaneio.Location = New System.Drawing.Point(255, 29)
+        Me.dtp_dataRomaneio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtp_dataRomaneio.Location = New System.Drawing.Point(259, 11)
         Me.dtp_dataRomaneio.Name = "dtp_dataRomaneio"
-        Me.dtp_dataRomaneio.Size = New System.Drawing.Size(158, 20)
+        Me.dtp_dataRomaneio.Size = New System.Drawing.Size(102, 20)
         Me.dtp_dataRomaneio.TabIndex = 37
-        Me.dtp_dataRomaneio.Value = New Date(2018, 9, 19, 14, 50, 1, 0)
+        Me.dtp_dataRomaneio.Value = New Date(2018, 11, 5, 0, 0, 0, 0)
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(207, 35)
+        Me.Label8.Location = New System.Drawing.Point(211, 15)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(30, 13)
         Me.Label8.TabIndex = 36
@@ -91,35 +91,35 @@ Partial Class NovoRomneio
         '
         'txt_VFiado
         '
-        Me.txt_VFiado.Location = New System.Drawing.Point(613, 109)
+        Me.txt_VFiado.Location = New System.Drawing.Point(588, 102)
         Me.txt_VFiado.Name = "txt_VFiado"
         Me.txt_VFiado.Size = New System.Drawing.Size(63, 20)
         Me.txt_VFiado.TabIndex = 34
         '
         'txt_VBoleto
         '
-        Me.txt_VBoleto.Location = New System.Drawing.Point(461, 109)
+        Me.txt_VBoleto.Location = New System.Drawing.Point(462, 102)
         Me.txt_VBoleto.Name = "txt_VBoleto"
         Me.txt_VBoleto.Size = New System.Drawing.Size(63, 20)
         Me.txt_VBoleto.TabIndex = 33
         '
         'txt_VMoeda
         '
-        Me.txt_VMoeda.Location = New System.Drawing.Point(336, 109)
+        Me.txt_VMoeda.Location = New System.Drawing.Point(337, 102)
         Me.txt_VMoeda.Name = "txt_VMoeda"
         Me.txt_VMoeda.Size = New System.Drawing.Size(63, 20)
         Me.txt_VMoeda.TabIndex = 32
         '
         'txt_VDinheiro
         '
-        Me.txt_VDinheiro.Location = New System.Drawing.Point(199, 105)
+        Me.txt_VDinheiro.Location = New System.Drawing.Point(200, 102)
         Me.txt_VDinheiro.Name = "txt_VDinheiro"
         Me.txt_VDinheiro.Size = New System.Drawing.Size(63, 20)
         Me.txt_VDinheiro.TabIndex = 31
         '
         'txt_VCheque
         '
-        Me.txt_VCheque.Location = New System.Drawing.Point(64, 109)
+        Me.txt_VCheque.Location = New System.Drawing.Point(65, 102)
         Me.txt_VCheque.Name = "txt_VCheque"
         Me.txt_VCheque.Size = New System.Drawing.Size(63, 20)
         Me.txt_VCheque.TabIndex = 30
@@ -127,7 +127,7 @@ Partial Class NovoRomneio
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(561, 112)
+        Me.Label7.Location = New System.Drawing.Point(536, 106)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 29
@@ -136,7 +136,7 @@ Partial Class NovoRomneio
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(405, 112)
+        Me.Label6.Location = New System.Drawing.Point(406, 106)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(50, 13)
         Me.Label6.TabIndex = 28
@@ -145,7 +145,7 @@ Partial Class NovoRomneio
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(134, 112)
+        Me.Label4.Location = New System.Drawing.Point(135, 106)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(59, 13)
         Me.Label4.TabIndex = 26
@@ -154,7 +154,7 @@ Partial Class NovoRomneio
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(1, 112)
+        Me.Label3.Location = New System.Drawing.Point(2, 106)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(57, 13)
         Me.Label3.TabIndex = 25
@@ -163,7 +163,7 @@ Partial Class NovoRomneio
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1, 76)
+        Me.Label2.Location = New System.Drawing.Point(1, 69)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(84, 13)
         Me.Label2.TabIndex = 24
@@ -174,7 +174,7 @@ Partial Class NovoRomneio
         Me.lbl_idromaneio.AutoSize = True
         Me.lbl_idromaneio.BackColor = System.Drawing.Color.Bisque
         Me.lbl_idromaneio.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_idromaneio.Location = New System.Drawing.Point(76, 29)
+        Me.lbl_idromaneio.Location = New System.Drawing.Point(80, 9)
         Me.lbl_idromaneio.Name = "lbl_idromaneio"
         Me.lbl_idromaneio.Size = New System.Drawing.Size(34, 25)
         Me.lbl_idromaneio.TabIndex = 23
@@ -183,7 +183,7 @@ Partial Class NovoRomneio
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1, 29)
+        Me.Label1.Location = New System.Drawing.Point(5, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(72, 13)
         Me.Label1.TabIndex = 22
@@ -192,7 +192,7 @@ Partial Class NovoRomneio
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(283, 112)
+        Me.Label5.Location = New System.Drawing.Point(284, 106)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 13)
         Me.Label5.TabIndex = 27
@@ -218,14 +218,14 @@ Partial Class NovoRomneio
         'cmb_vendedor
         '
         Me.cmb_vendedor.FormattingEnabled = True
-        Me.cmb_vendedor.Location = New System.Drawing.Point(91, 68)
+        Me.cmb_vendedor.Location = New System.Drawing.Point(91, 65)
         Me.cmb_vendedor.Name = "cmb_vendedor"
         Me.cmb_vendedor.Size = New System.Drawing.Size(322, 21)
         Me.cmb_vendedor.TabIndex = 41
         '
         'txt_obs
         '
-        Me.txt_obs.Location = New System.Drawing.Point(710, 28)
+        Me.txt_obs.Location = New System.Drawing.Point(710, 15)
         Me.txt_obs.Multiline = True
         Me.txt_obs.Name = "txt_obs"
         Me.txt_obs.Size = New System.Drawing.Size(177, 100)
@@ -234,7 +234,7 @@ Partial Class NovoRomneio
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(628, 38)
+        Me.Label10.Location = New System.Drawing.Point(628, 59)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(65, 13)
         Me.Label10.TabIndex = 43
@@ -252,7 +252,7 @@ Partial Class NovoRomneio
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(491, 9)
+        Me.Label11.Location = New System.Drawing.Point(480, 15)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(40, 13)
         Me.Label11.TabIndex = 45
@@ -261,26 +261,19 @@ Partial Class NovoRomneio
         'lbl_estado
         '
         Me.lbl_estado.AutoSize = True
-        Me.lbl_estado.Location = New System.Drawing.Point(546, 9)
+        Me.lbl_estado.Font = New System.Drawing.Font("Arial Black", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_estado.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.lbl_estado.Location = New System.Drawing.Point(535, 10)
         Me.lbl_estado.Name = "lbl_estado"
-        Me.lbl_estado.Size = New System.Drawing.Size(39, 13)
+        Me.lbl_estado.Size = New System.Drawing.Size(71, 23)
         Me.lbl_estado.TabIndex = 46
         Me.lbl_estado.Text = "estado"
-        '
-        'bnt_mudaestado
-        '
-        Me.bnt_mudaestado.Location = New System.Drawing.Point(494, 35)
-        Me.bnt_mudaestado.Name = "bnt_mudaestado"
-        Me.bnt_mudaestado.Size = New System.Drawing.Size(75, 23)
-        Me.bnt_mudaestado.TabIndex = 47
-        Me.bnt_mudaestado.UseVisualStyleBackColor = True
         '
         'NovoRomneio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(900, 450)
-        Me.Controls.Add(Me.bnt_mudaestado)
         Me.Controls.Add(Me.lbl_estado)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.bnt_inclui)
@@ -339,5 +332,4 @@ Partial Class NovoRomneio
     Friend WithEvents bnt_inclui As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents lbl_estado As Label
-    Friend WithEvents bnt_mudaestado As Button
 End Class

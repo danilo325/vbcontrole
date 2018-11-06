@@ -22,47 +22,48 @@
         'Verifica se algum campo está vazio
         If cmb_vendedor.Text <> "" Then
             romaneio.Vendedor = cmb_vendedor.Text
-            '  insertquey += dadosbd.Pesquisa("SELECT * FROM vendedores WHERE NomeVendedor LIKE '" & cmb_vendedor.Text & "'").Rows(0).Item(0).ToString & ","
+
         Else
             MsgBox("É necessario o nome de um vendedor")
             cmb_vendedor.SelectAll()
+            Return
         End If
         romaneio.Data = Format(dtp_dataRomaneio.Value, "dd/MM/yyyy")
-        'insertquey += "'" & Format(dtp_dataRomaneio.Value, "dd/MM/yyyy") & "'," 'Formata a data para inserir no banco
+
 
         If txt_VCheque.Text <> "" Then
             romaneio.VCheques = txt_VCheque.Text
-            'insertquey += txt_VCheque.Text.Replace(",", ".") & ","
+
         Else
             romaneio.VCheques = 0
         End If
         If txt_VDinheiro.Text <> "" Then
             romaneio.VDinheiro = txt_VDinheiro.Text
-            'insertquey += txt_VDinheiro.Text.Replace(",", ".") & ","
+
         Else
             romaneio.VDinheiro = 0
             ' MsgBox("Coloque um valor para Dinheiro")
         End If
         If txt_VMoeda.Text <> "" Then
             romaneio.VMoedas = txt_VMoeda.Text
-            'insertquey += txt_VMoeda.Text.Replace(",", ".") & ","
+
         Else
             romaneio.VMoedas = 0
-            'MsgBox("Coloque um valor para Moeda")
+
         End If
         If txt_VBoleto.Text <> "" Then
             romaneio.VBoletos = txt_VBoleto.Text
-            '  insertquey += txt_VBoleto.Text.Replace(",", ".") & ","
+
         Else
             romaneio.VBoletos = 0
-            'MsgBox("Coloque um valor para Boleto")
+
         End If
         If txt_VFiado.Text <> "" Then
             romaneio.VFiado = txt_VFiado.Text
-            'insertquey += txt_VFiado.Text.Replace(",", ".") & ","
+
         Else
             romaneio.VFiado = 0
-            ' MsgBox("Coloque um valor para fiado")
+
         End If
 
         If txt_obs.Text <> "" Then
@@ -86,12 +87,12 @@
             End If
         Next produto
         AcessoRomaneio.GravaRomaneio(romaneio)
-        'insertquey += "'" & txt_obs.Text & "')"
-
-        ' dadosbd.Pesquisa(insertquey) 'executa a query e insere o romaneio no banco
 
 
-        ' id = dadosbd.ultimo_id("romaneio", "IdRomaneio") 'pega o valor do id gerado pelo novo romaneio
+
+
+
+
         '#################################################################################################################################
 
         '  Dim produtosromaneio As String = "" 'string que guarda a query para de inserçao dos produtos na tabela produtosRomaneio
@@ -125,12 +126,31 @@
             comboProdutos.Items.Add(nome.Item(0).ToString)
         Next
     End Sub
-
-    Private Sub bnt_mudaestado_Click(sender As Object, e As EventArgs) Handles bnt_mudaestado.Click
-
+    Private Sub AtiualizavalorToal()
+        Dim vcheque As Double = If(String.IsNullOrEmpty(txt_VCheque.Text), 0, If(IsNumeric(txt_VCheque.Text), Double.Parse(txt_VCheque.Text), 0))
+        Dim vdinheiro As Double = If(String.IsNullOrEmpty(txt_VDinheiro.Text), 0, If(IsNumeric(txt_VDinheiro.Text), Double.Parse(txt_VDinheiro.Text), 0))
+        Dim vmoeda As Double = If(String.IsNullOrEmpty(txt_VMoeda.Text), 0, If(IsNumeric(txt_VMoeda.Text), Double.Parse(txt_VMoeda.Text), 0))
+        Dim vboleto As Double = If(String.IsNullOrEmpty(txt_VBoleto.Text), 0, If(IsNumeric(txt_VBoleto.Text), Double.Parse(txt_VBoleto.Text), 0))
+        Dim vtotal As Double = vcheque + vdinheiro + vboleto + vmoeda
+        lbl_valorTotal.Text = "R$ " & FormatNumber(vtotal, -1)
     End Sub
 
 
+    Private Sub txt_VCheque_TextChanged(sender As Object, e As EventArgs) Handles txt_VCheque.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VDinheiro_TextChanged(sender As Object, e As EventArgs) Handles txt_VDinheiro.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VMoeda_TextChanged(sender As Object, e As EventArgs) Handles txt_VMoeda.TextChanged
+        AtiualizavalorToal()
+    End Sub
+
+    Private Sub txt_VBoleto_TextChanged(sender As Object, e As EventArgs) Handles txt_VBoleto.TextChanged
+        AtiualizavalorToal()
+    End Sub
 
     Private Sub NovoRomneio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dadosbd.Abreconexao()
@@ -165,7 +185,7 @@
         lbl_estado.Text = "Finalizado"
         Label1.Visible = False
 
-
+        lbl_valorTotal.Text = 0
 
     End Sub
 
@@ -212,34 +232,10 @@
 
         If coluna = 2 Then
             MsgBox(linha)
-            '  detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(0).Value.ToString))
-            'If detalhesproduto.Rows.Count = 0 Then
-            'dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
-            'dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Selected = True
-            'MsgBox("Problemas para verificar a quantidade disponivel do produto", MsgBoxStyle.DefaultButton1)
-            ' Return
-            'end If
-            ' If detalhesproduto.Rows(0).Item(2) < dgv_ProdutosRomaneio.Item(2, linha).Value Then
-            'dgv_ProdutosRomaneio.Item(2, linha).ErrorText = "Em estoque temos somente " & detalhesproduto.Rows(0).Item(2) & "de " & detalhesproduto.Rows(0).Item(1)
-            'dgv_ProdutosRomaneio.Item(2, linha).Value = ""
-            'dgv_ProdutosRomaneio.Item(2, linha).Selected = True
-            'Return
-            'Else
-            'dgv_ProdutosRomaneio.Item(2, linha).ErrorText = ""
-            'End If
+
         End If
         If coluna = 3 Then
-            '  MsgBox(linha)
-            ' detalhesproduto = AcessoRomaneio.VerificaProdutos(Integer.Parse(dgv_ProdutosRomaneio.Rows(linha).Cells(0).Value.ToString))
 
-            ' If dgv_ProdutosRomaneio.Item(2, linha).Value < dgv_ProdutosRomaneio.Item(3, linha).Value Then
-            '  dgv_ProdutosRomaneio.Item(3, linha).ErrorText = "A quantidade de produtos no retorno está maior que a saida "
-            '     dgv_ProdutosRomaneio.Item(3, linha).Value = ""
-            '  dgv_ProdutosRomaneio.Item(3, linha).Selected = True
-            '  Return
-            'Else
-            ' dgv_ProdutosRomaneio.Item(3, linha).ErrorText = ""
-            ' If
         End If
     End Sub
 End Class
