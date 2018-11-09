@@ -71,13 +71,13 @@
 
 
         End If
-        MsgBox(strquery)
+
         dgv_produtosCompra.DataSource = bancodados.Pesquisa(strquery)
 
 
 
         For Each coluna As DataGridViewColumn In dgv_produtosCompra.Columns
-            MsgBox(coluna.Index)
+            'MsgBox(coluna.Index)
             Select Case coluna.Index
                 Case 0
                     coluna.HeaderText = "ID"
@@ -87,6 +87,7 @@
                     coluna.HeaderText = "Fornecedor"
                     coluna.Name = "fornecedor"
                     coluna.Width = 250
+
                 Case 2
                     coluna.HeaderText = "Nº Pedido"
                     coluna.Name = "npedido"
@@ -111,6 +112,11 @@
 
         Next coluna
 
+
+
+        '  For Each compra As DataGridViewRow In dgv_produtosCompra.Rows
+        'compra.Cells("Fornecedor").Value = dicFornecedorinverido(compra.Cells("Fornecedor").Value)
+        'Next
     End Sub
 
     Private Sub form_compras_Load(sender As Object, e As EventArgs) Handles MyBase.Load

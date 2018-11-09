@@ -35,6 +35,9 @@ Partial Class DetalhesCompra
         Me.lbl_Valorcompra = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.lbl_obs = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lbl_negociado = New System.Windows.Forms.Label()
+        Me.bnt_negociacao = New System.Windows.Forms.Button()
         CType(Me.dgv_produtos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -155,11 +158,41 @@ Partial Class DetalhesCompra
         Me.lbl_obs.TabIndex = 12
         Me.lbl_obs.Text = "OBS"
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(306, 92)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(59, 13)
+        Me.Label7.TabIndex = 13
+        Me.Label7.Text = "Negociado"
+        '
+        'lbl_negociado
+        '
+        Me.lbl_negociado.AutoSize = True
+        Me.lbl_negociado.Location = New System.Drawing.Point(371, 92)
+        Me.lbl_negociado.Name = "lbl_negociado"
+        Me.lbl_negociado.Size = New System.Drawing.Size(59, 13)
+        Me.lbl_negociado.TabIndex = 14
+        Me.lbl_negociado.Text = "Negociado"
+        '
+        'bnt_negociacao
+        '
+        Me.bnt_negociacao.Location = New System.Drawing.Point(332, 121)
+        Me.bnt_negociacao.Name = "bnt_negociacao"
+        Me.bnt_negociacao.Size = New System.Drawing.Size(75, 23)
+        Me.bnt_negociacao.TabIndex = 15
+        Me.bnt_negociacao.Text = "Negociaçao"
+        Me.bnt_negociacao.UseVisualStyleBackColor = True
+        '
         'DetalhesCompra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.bnt_negociacao)
+        Me.Controls.Add(Me.lbl_negociado)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lbl_obs)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lbl_Valorcompra)
@@ -194,4 +227,7 @@ Partial Class DetalhesCompra
     Friend WithEvents lbl_Valorcompra As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents lbl_obs As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents lbl_negociado As Label
+    Friend WithEvents bnt_negociacao As Button
 End Class
