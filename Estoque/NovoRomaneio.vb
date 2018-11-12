@@ -80,7 +80,6 @@
         romaneio.ListaProdutos.Columns.Add("QtdprodutoR")
         romaneio.ListaProdutos.Columns.Add("Qtdproduto")
 
-
         For Each produto As DataGridViewRow In dgv_ProdutosRomaneio.Rows
             If Not produto.IsNewRow Then
                 romaneio.ListaProdutos.Rows.Add(lbl_idromaneio.Text, produto.Cells("id").Value, produto.Cells("qtdsaida").Value, produto.Cells("qtdretorno").Value, produto.Cells("qtdfinalisa").Value)
@@ -216,7 +215,8 @@
         End If
 
             If coluna = 1 Then
-            If dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString <> "" Then
+
+            If Not String.IsNullOrEmpty(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString) Then
                 detalhesproduto = AcessoRomaneio.VerificaProdutos(dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value.ToString)
                 If detalhesproduto.Rows.Count = 0 Then
                     dgv_ProdutosRomaneio.Rows(linha).Cells(coluna).Value = ""
@@ -231,11 +231,12 @@
 
 
         If coluna = 2 Then
-            MsgBox(linha)
+
+            'MsgBox(linha)
 
         End If
         If coluna = 3 Then
-
+            dgv_ProdutosRomaneio.Item(coluna + 1, linha).Value = dgv_ProdutosRomaneio.Item(coluna - 1, linha).Value - dgv_ProdutosRomaneio.Item(coluna, linha).Value
         End If
     End Sub
 End Class
