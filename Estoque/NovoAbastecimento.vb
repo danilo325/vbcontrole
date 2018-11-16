@@ -17,11 +17,31 @@
     Private Sub gravadados()
         Dim str As String = ("INSERT INTO abastecimentos (IdVeicuo,NumeroPedido,LocalAbastecimento,Combustivel,Qtd,ValorLitro,ValorTotal,Data,Obs) VALUES (" &
                        dicveiculo.Item(cmb_veiculo.Text) & ", " & txt_npedido.Text & ",'" & txt_local.Text & "'," & diccombustivel(cmb_combustivel.Text) &
-                       ",'" & txt_qtdlitros.Text & "','" & txt_valorlitro.Text & "','" & txt_valortotal.Text & "','" & Format(dtp_dataabasteci.Value, "dd/MM/yyyy") & "','" &
+                       ",'" & txt_qtdlitros.Text.Replace(".", ",") & "','" & txt_valorlitro.Text.Replace(".", ",") & "','" & txt_valortotal.Text.Replace(".", ",") & "','" & Format(dtp_dataabasteci.Value, "dd/MM/yyyy") & "','" &
                        txt_obs.Text & "')")
-        MsgBox(str)
+        'MsgBox(str)
+
         dados.Pesquisa(str)
-        MsgBox(str)
+
+        MsgBox("Seus dados foram salvos com sucesso" & str)
+        LimpaDados()
+
+
+
+
+
+    End Sub
+    Private Sub LimpaDados()
+        txt_local.ResetText()
+        cmb_combustivel.ResetText()
+        cmb_veiculo.ResetText()
+        txt_npedido.ResetText()
+        txt_obs.ResetText()
+        txt_qtdlitros.ResetText()
+        txt_valorlitro.ResetText()
+        txt_valortotal.ResetText()
+
+
     End Sub
     Private Sub combocombustivel()
         Dim combustiveis As DataTable = dados.Pesquisa("SELECT Id, Nome FROM tiposCombustivel")
